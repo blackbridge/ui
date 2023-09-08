@@ -1,7 +1,7 @@
-
+import type { JSX } from 'preact'
 import classnames from 'classnames'
 
-export default function Checkbox({ label, additional, onChange, large, larger, stack, button, ...props }) {
+export default function Checkbox({ label, additional, onChange, large, larger, stack, button, ...props }): JSX.Element {
 
 	const changeHandler = event => onChange && onChange(event, event.currentTarget.checked)
 	

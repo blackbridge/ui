@@ -1,5 +1,4 @@
-import type { JSX, AnyComponent, ComponentChildren, VNode } from "preact"
-import { isValidElement } from 'preact'
+import type { JSX, AnyComponent, ComponentChildren } from "preact"
 import './style.css'
 import classnames from 'classnames'
 

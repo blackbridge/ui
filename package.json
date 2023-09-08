@@ -5,7 +5,11 @@
   "main": "./src/index.tsx",
   "exports": {
     ".": "./src/index.tsx",
-    "./Button": "./src/Button/index.tsx"
+    "./Button": "./src/Button/index.tsx",
+    "./Checkbox": "./src/Checkbox/index.tsx",
+    "./Container": "./src/Container/index.tsx",
+    "./Pagination": "./src/Pagination/index.tsx",
+    "./Tag": "./src/Tag/index.tsx"
   },
   "dependencies": {
   	"classnames": "^2.3.2"

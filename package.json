@@ -1,0 +1,19 @@
+{
+  "name": "@blackbridge/ui",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./src/index.tsx",
+  "exports": {
+    ".": "./src/index.tsx",
+    "./Button": "./src/Button/index.tsx"
+  },
+  "dependencies": {
+  	"classnames": "^2.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "preact": "^10.17.1"
+  }
+}

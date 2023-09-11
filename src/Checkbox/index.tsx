@@ -1,31 +1,49 @@
-import type { JSX } from 'preact'
+import './style.css'
+import type { JSX, ComponentChildren } from 'preact'
 import classnames from 'classnames'
 
-export default function Checkbox({ label, additional, onChange, large, larger, stack, button, ...props }): JSX.Element {
+type CheckboxProps = {
+	label?: ComponentChildren,
+	count?: ComponentChildren,
+	size?: 'small'|'medium'|'large',
+	block?: Boolean,
+	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: Boolean) => void
+	class?: string|{},
+}
 
-	const changeHandler = event => onChange && onChange(event, event.currentTarget.checked)
+
+export default function Checkbox(props: CheckboxProps): JSX.Element {
+
+	const { 
+		label, 
+		count, 
+		size, 
+		block,
+		onChange, 
+		class: className,
+		...attributes
+	} = props
+
+	const changeHandler: undefined|JSX.PointerEventHandler<HTMLInputElement> = onChange ? event => {
+		if (!event.currentTarget) return
+		onChange(event, event.currentTarget.checked)
+	} : undefined
 	
 	const classes = classnames(
-		'checkbox',
-		large && 'checkbox--large',
-		larger && 'checkbox--larger',
-		stack && 'checkbox--stack',
-		button && 'checkbox--button',
-		props['class'],
-		props['className'],
+		'ui-checkbox',
+		size === 'small' && 'ui-checkbox--small',
+		size === 'medium' && 'ui-checkbox--medium',
+		size === 'large' && 'ui-checkbox--large',
+		block && 'ui-checkbox--block',
+		className
 	)
-
-	delete props['class']
-	delete props['className']
-
-	const additionalText = (typeof additional === 'number') ? additional.toString() : additional
 
 	return <>
 		<label class={classes}>
-			<input type="checkbox" onChange={changeHandler} {...props} /> 
-			<span class="checkbox__label">
+			<input class="ui-checkbox__input" type="checkbox" onChange={changeHandler} {...attributes} /> 
+			<span class="ui-checkbox__label">
 				{label} 
-				{additionalText && <span> {additionalText}</span>}
+				{count && <span class="ui-checkbox__count">{count}</span>}
 			</span>			
 		</label>
 	</>

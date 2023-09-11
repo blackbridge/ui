@@ -36,14 +36,16 @@ export default function Button(props: ButtonProps): JSX.Element {
 		'ui-button',
 		type && `ui-button--${type}`,
 		`ui-button--${size}`,
-		className
+		className,
+		iconLeft && 'has-icon-left',
+		iconRight && 'has-icon-right',
 	)
 
 	const Tag = href !== undefined ? 'a' : 'button'
 
 	return <Tag class={classes} href={href} {...attributes}>
 		{iconLeft && <span class="ui-button__icon ui-button__icon--left"><Any value={iconLeft} /></span>}
-		{children}
-		{iconRight && <span class="ui-button__icon ui-button__icon--left"><Any value={iconRight} /></span>}
+		{children && <span class="ui-button__label">{children}</span>}
+		{iconRight && <span class="ui-button__icon ui-button__icon--right"><Any value={iconRight} /></span>}
 	</Tag>
 }

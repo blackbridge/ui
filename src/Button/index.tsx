@@ -8,7 +8,7 @@ type ButtonProps = {
 	size?: 'small'|'medium'|'large',
 	iconLeft?: AnyComponent<any>|string,
 	iconRight?: AnyComponent<any>|string,
-	class?: string|{},
+	class?: HTMLElement['className'],
 	children?: ComponentChildren
 }
 

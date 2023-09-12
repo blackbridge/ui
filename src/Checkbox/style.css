@@ -1,0 +1,106 @@
+@import './../variables.css';
+
+@layer ui {
+	:root {
+		--checkbox-y-spacing: var(--button-y-spacing);
+		--checkbox-x-spacing: var(--button-x-spacing);
+		--checkbox-font-size: var(--button-font-size);
+		--checkbox-icon-size: var(--button-icon-size);
+		--checkbox-icon-spacing: var(--button-y-spacing);
+	}	
+
+
+	.ui-checkbox {
+		display:inline-flex;
+		max-width:100%;
+		align-items:center;
+		user-select:none;
+	}
+
+	/* hide the <input> */
+	.ui-checkbox__input {
+		margin:0;
+		width:0px; 
+		height:0px; 
+		clip:rect(0, 0, 0, 0);
+	}
+
+	/* truncate label */
+	.ui-checkbox__label {
+		flex-grow:1;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.ui-checkbox__count {
+		padding-left:0.3em;
+		font-weight:bold;
+		opacity:0.6;
+	}
+
+	/* contain the checkmark */
+	.ui-checkbox__box {
+		display:block;
+		flex:none;
+		position:relative;
+		width:1em;
+		height:1em;
+		margin-right: var(--checkbox-icon-spacing);
+		border:1px solid black;
+		border-radius:3px;
+		user-select:none;
+	}
+
+	/* contain the checkmark */
+	.ui-checkbox__check {
+		position:absolute;
+		width:75%;
+		height:75%;
+		top:13%;
+		left:13%;
+	}
+
+	.ui-checkbox__check path {
+		stroke-dasharray:14;
+		stroke-dashoffset:14;
+		transition:stroke-dashoffset 0.08s ease-out;
+	}
+
+	.ui-checkbox__input:checked ~ .ui-checkbox__box path {
+		stroke-dashoffset:0;
+		transition:stroke-dashoffset 0.1s ease-out;
+	}
+
+
+	/* focus states for main and boxed */
+
+	.ui-checkbox:not(.ui-checkbox--fill) .ui-checkbox__input:focus ~ .ui-checkbox__box {
+		outline:var(--ui-focus-width) solid var(--ui-focus-color);	
+		background:var(--ui-focus-box-shadow);
+	}
+
+	.ui-checkbox--fill:focus-within {
+		outline:var(--ui-focus-width) solid var(--ui-focus-color);
+	}
+
+
+	/* variants */
+
+	.ui-checkbox--block {
+		display:flex;
+	}
+
+	.ui-checkbox--small {
+		font-size:0.9em;
+	}
+
+	.ui-checkbox--large {
+		font-size:1.2em;
+	}
+
+	.ui-checkbox--fill {
+		padding: var(--button-y-spacing) var(--checkbox-x-spacing);
+		background:rgba(0,0,0,0.05);
+	}
+}

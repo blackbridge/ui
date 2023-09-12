@@ -1,0 +1,6 @@
+@layer ui {
+	:root {
+		--ui-focus-width:2px;
+		--ui-focus-color:rgb(0, 95, 204);
+	}
+}

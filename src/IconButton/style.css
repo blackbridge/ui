@@ -1,0 +1,23 @@
+:root {
+    --button-icon--spacing: 1em;
+
+    --button-icon--small: 1.25em;
+    --button-icon--medium: 1.75em;
+    --button-icon--large: 2em;
+}
+
+.ui-button--icon {
+    padding: var(--button-icon--spacing);
+}
+
+.ui-button--icon .ui-button__icon {
+    height: var(--button-icon--small);
+}
+
+.ui-button--icon.ui-button--medium .ui-button__icon {
+    height: var(--button-icon--medium);
+}
+
+.ui-button--icon.ui-button--large .ui-button__icon {
+    height: var(--button-icon--large);
+}

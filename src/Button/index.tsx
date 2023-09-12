@@ -9,7 +9,7 @@ type ButtonProps = {
 	iconLeft?: AnyComponent<any>|string,
 	iconRight?: AnyComponent<any>|string,
 	block?: Boolean,
-	class?: string|{},
+	class?: HTMLElement['className'],
 	children?: ComponentChildren
 }
 

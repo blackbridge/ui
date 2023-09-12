@@ -11,7 +11,7 @@ type CheckboxProps = {
 	block?: Boolean,
 	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: Boolean) => void
 	class?: HTMLElement['className'],
-	style?: string|HTMLLabelElement['style']
+	style?: string
 }
 
 
@@ -45,7 +45,7 @@ export default function Checkbox(props: CheckboxProps): JSX.Element {
 	)
 
 	return <>
-		<label class={classes} {...{style}}>
+		<label class={classes} style={style}>
 			<input class="ui-checkbox__input" type="checkbox" checked onChange={changeHandler} {...attributes} /> 
 			<span class="ui-checkbox__box">
 				<Check class="ui-checkbox__check" />

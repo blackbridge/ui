@@ -1,5 +1,4 @@
-export { default as Button } from './Button/index.tsx'
-export { default as IconButton } from './IconButton/index.tsx'
+export { default as Button, IconButton } from './Button/index.tsx'
 export { default as Checkbox } from './Checkbox/index.tsx'
 export { default as Container } from './Container/index.tsx'
 export { default as Pagination } from './Pagination/index.tsx'

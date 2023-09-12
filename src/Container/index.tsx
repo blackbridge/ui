@@ -1,13 +1,13 @@
 import './style.css'
-import type { JSX } from 'preact'
+import type { JSX, ComponentChildren } from 'preact'
 import classnames from 'classnames'
 
 type ContainerArgs = {
-	size: 'small'|'medium'|'large',
-	children?: JSX.Element|string|Array<JSX.Element|string>
+	size?: 'small'|'medium'|'large',
+	children?: ComponentChildren
 }
 
-export default function Container({ size, children }: ContainerArgs) {
+export default function Container({ size = 'medium', children }: ContainerArgs) {
 
 	const classes = classnames(
 		'ui-container',

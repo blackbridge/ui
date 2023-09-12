@@ -10,17 +10,11 @@ type ButtonProps = {
 	iconRight?: AnyComponent<any>|string,
 	block?: Boolean,
 	class?: HTMLElement['className'],
+	style?: string,
 	children?: ComponentChildren
 }
 
-
-function Any({ value: Value }: {value: any}): JSX.Element {
-	if (typeof Value === 'string') return <>{Value}</>
-	return <Value />
-}
-
-
-export default function Button(props: ButtonProps): JSX.Element {
+export function Button(props: ButtonProps): JSX.Element {
 
 	const { 
 		href, 
@@ -51,4 +45,47 @@ export default function Button(props: ButtonProps): JSX.Element {
 		{children && <span class="ui-button__label">{children}</span>}
 		{iconRight && <span class="ui-button__icon ui-button__icon--right"><Any value={iconRight} /></span>}
 	</Tag>
+}
+
+
+type IconButtonProps = {
+	href?: string,
+	type?: 'fill'|'outline'|'text',
+	size?: 'small'|'medium'|'large',
+	icon: AnyComponent<any>|string,
+	class?: string|{},
+}
+
+export function IconButton(props: IconButtonProps): JSX.Element {
+
+	const { 
+		href, 
+		type = 'fill',
+		size = 'medium',
+		icon,
+		class: className, 
+		...attributes 
+	} = props
+
+	const classes = classnames(
+		'ui-button ui-button--icon',
+		type && `ui-button--${type}`,
+		`ui-button--${size}`,
+		className,
+	)
+
+	const Tag = href !== undefined ? 'a' : 'button'
+
+	return <Tag class={classes} href={href} {...attributes}>
+		{icon && <span class="ui-button__icon"><Any value={icon} /></span>}
+	</Tag>
+}
+
+
+export default Button
+
+
+function Any({ value: Value }: {value: any}): JSX.Element {
+	if (typeof Value === 'string') return <>{Value}</>
+	return <Value />
 }

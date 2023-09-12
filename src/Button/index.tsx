@@ -8,6 +8,7 @@ type ButtonProps = {
 	size?: 'small'|'medium'|'large',
 	iconLeft?: AnyComponent<any>|string,
 	iconRight?: AnyComponent<any>|string,
+	block?: Boolean,
 	class?: string|{},
 	children?: ComponentChildren
 }
@@ -27,6 +28,7 @@ export default function Button(props: ButtonProps): JSX.Element {
 		size = 'medium',
 		iconLeft,
 		iconRight,
+		block,
 		class: className, 
 		children,
 		...attributes 
@@ -39,6 +41,7 @@ export default function Button(props: ButtonProps): JSX.Element {
 		className,
 		iconLeft && 'has-icon-left',
 		iconRight && 'has-icon-right',
+		block && 'ui-button--block',
 	)
 
 	const Tag = href !== undefined ? 'a' : 'button'

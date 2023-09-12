@@ -1,14 +1,12 @@
 @layer ui {
 	:root {
-		--button-y-spacing: 0.5em;
-		--button-x-spacing: 0.75em;
+		--button-spacing-y: .75em;
+		--button-spacing-x: 1em;
+        --button-icon-spacing: .5em;
+
 	
 		--button-font-size: 1rem;
-		--button-icon-size: 1.2em;
-	}	
-
-	.button {
-		background:red;
+		--button-icon-size: 1em;
 	}
 
 	.ui-button {
@@ -30,14 +28,20 @@
 		border: 0;
 		background: transparent;
 		appearance: none;
-		margin-right: 1em;
-
+		
 		transition: 0.3s all ease-in-out;
+		margin-right: 1em;
+        margin-bottom: 1em;
+
+        padding: var(--button-spacing-y) var(--button-spacing-x);
 	}
 
-	/* Types */
+    .ui-button--text {
+        padding: 0;
+    }
 
-	.ui-button--outline {
+    /* Fill */
+    .ui-button--outline {
 		border: 1px solid black;
 	}
 
@@ -46,25 +50,8 @@
 		color: #fff;
 	}
 
-	.ui-button--outline, .ui-button--fill {
-		padding-left: var(--button-x-spacing);
-		padding-right: var(--button-x-spacing);
-	}
-	
-	.ui-button__label {
-		padding-top: var(--button-y-spacing);
-		padding-bottom: var(--button-y-spacing);
-	}
 
-	.ui-button__icon--left {
-		padding-right: var(--button-x-spacing);
-	}
-
-	.ui-button__icon--right {
-		padding-left: var(--button-x-spacing);
-	}
-
-	/* Icon */
+    /* Icon */
 
 	.ui-button__icon {
 		display: flex;
@@ -78,31 +65,28 @@
 		height: 100%;
 	}
 
-	/* Sizes */
+    .ui-button__icon--left {
+		padding-right: var(--button-icon-spacing);
+	}
+
+	.ui-button__icon--right {
+		padding-left: var(--button-icon-spacing);
+	}
+
+    /* Block */
+
+    .ui-button--block {
+		width: 100%;
+	}
+
+    /* Sizes */
 
 	.ui-button--small {
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 	}
 
 	.ui-button--large {
-		font-size: 1.1rem;
+		font-size: 1.15rem;
 	}
-
-
-
-
-/* 
-	.ui-button--medium {
-		padding: calc(var(--button-y-spacing) * 1.2) calc(var(--button-x-spacing) * 1.2);
-	}
-
-	.ui-button--large {
-		font-size: 1.2em;
-		padding: calc(var(--button-y-spacing) * 1.5) calc(var(--button-x-spacing) * 1.5);
-	} */
-	
-
-
-
 
 }

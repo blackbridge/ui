@@ -10,10 +10,7 @@ type CheckboxProps = {
 	fill?: Boolean,
 	block?: Boolean,
 	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: Boolean) => void
-	class?: HTMLElement['className'],
-	style?: string
-}
-
+} & Omit<JSX.IntrinsicElements['input'], "className"|keyof CheckboxProps>
 
 export default function Checkbox(props: CheckboxProps): JSX.Element {
 
@@ -46,7 +43,7 @@ export default function Checkbox(props: CheckboxProps): JSX.Element {
 
 	return <>
 		<label class={classes} style={style}>
-			<input class="ui-checkbox__input" type="checkbox" checked onChange={changeHandler} {...attributes} /> 
+			<input class="ui-checkbox__input" type="checkbox" onChange={changeHandler} {...attributes} /> 
 			<span class="ui-checkbox__box">
 				<Check class="ui-checkbox__check" />
 			</span>

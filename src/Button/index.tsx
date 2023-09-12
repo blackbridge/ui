@@ -2,19 +2,27 @@ import type { JSX, AnyComponent, ComponentChildren } from "preact"
 import './style.css'
 import classnames from 'classnames'
 
-type ButtonProps = {
-	href?: string,
+type LinkProps = {
+	href: string 
+}
+
+type BaseProps = {
 	type?: 'fill'|'outline'|'text',
 	size?: 'small'|'medium'|'large',
-	iconLeft?: AnyComponent<any>|string,
-	iconRight?: AnyComponent<any>|string,
+	iconLeft?: AnyComponent<any, any>|string,
+	iconRight?: AnyComponent<any, any>|string,
 	block?: Boolean,
 	class?: HTMLElement['className'],
 	style?: string,
 	children?: ComponentChildren
 }
 
-export function Button(props: ButtonProps): JSX.Element {
+type ButtonOrAnchor<TBaseProps> = (
+	| (LinkProps & TBaseProps & Omit<JSX.IntrinsicElements['a'], 'className'>) 
+	| (TBaseProps & Omit<JSX.IntrinsicElements['button'], 'className'|keyof TBaseProps>)
+)
+
+export function Button(props: ButtonOrAnchor<BaseProps>): JSX.Element {
 
 	const { 
 		href, 
@@ -38,25 +46,27 @@ export function Button(props: ButtonProps): JSX.Element {
 		block && 'ui-button--block',
 	)
 
-	const Tag = href !== undefined ? 'a' : 'button'
-
-	return <Tag class={classes} href={href} {...attributes}>
+	const attrs = { class: classes, href, ...attributes }
+	const content = <>
 		{iconLeft && <span class="ui-button__icon ui-button__icon--left"><Any value={iconLeft} /></span>}
 		{children && <span class="ui-button__label">{children}</span>}
 		{iconRight && <span class="ui-button__icon ui-button__icon--right"><Any value={iconRight} /></span>}
-	</Tag>
+	</>
+
+	return (href !== undefined) 
+		? <a {...attrs as JSX.IntrinsicElements['a'] }>{content}</a>
+		: <button {...attrs as JSX.IntrinsicElements['button'] }>{content}</button>
 }
 
 
-type IconButtonProps = {
-	href?: string,
+type IconButtonBase = {
 	type?: 'fill'|'outline'|'text',
 	size?: 'small'|'medium'|'large',
-	icon: AnyComponent<any>|string,
+	icon?: AnyComponent<any, any>|string,
 	class?: string|{},
 }
 
-export function IconButton(props: IconButtonProps): JSX.Element {
+export function IconButton(props: ButtonOrAnchor<IconButtonBase>): JSX.Element {
 
 	const { 
 		href, 
@@ -74,11 +84,13 @@ export function IconButton(props: IconButtonProps): JSX.Element {
 		className,
 	)
 
-	const Tag = href !== undefined ? 'a' : 'button'
-
-	return <Tag class={classes} href={href} {...attributes}>
+	const attrs = { class: classes, href, ...attributes }
+	const content = <>
 		{icon && <span class="ui-button__icon"><Any value={icon} /></span>}
-	</Tag>
+	</>		
+	return (href !== undefined) 
+		? <a {...attrs as JSX.IntrinsicElements['a'] }>{content}</a>
+		: <button {...attrs as JSX.IntrinsicElements['button'] }>{content}</button>
 }
 
 

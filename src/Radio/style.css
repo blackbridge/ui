@@ -1,0 +1,51 @@
+
+.ui-radio {
+	display:flex-inline;
+	position:relative;
+	text-align:left;
+	cursor: pointer;
+	padding:0.3em 0;
+	padding-left:2.3em;
+	font-weight:300;
+
+	[type="radio"] {
+		position:absolute;
+		margin:0;
+		left:0; top:0.2em;
+		display:inline-block;
+		appearance:none;
+		-webkit-appearance:none; 
+		width:1.35em; height:1.35em;
+		vertical-align:middle;
+		border-radius:100%;
+		border:1px solid darken(grey, 10%);
+		background:white;
+		transition:border 0.3s ease-out;
+
+		&:focus {
+			outline:3px solid yellow;
+		}
+		&:hover {
+			border-color:blue;
+		}
+
+		&:after {
+			content:'';
+			display:block;
+			width:50%; height:50%;
+			border-radius:100%;
+			margin-top:25%;
+			margin-left:25%;
+			background: transparent;
+			transition:all 0.3s ease-out;
+		}
+		
+		&:checked {
+			border-color: blue;
+			&:after {
+				display:block;
+				background:blue;
+			}
+		}
+	}
+}

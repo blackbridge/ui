@@ -8,6 +8,7 @@
     "./Button": "./src/Button/index.tsx",
     "./IconButton": "./src/IconButton/index.tsx",
     "./Checkbox": "./src/Checkbox/index.tsx",
+    "./Radio": "./src/Radio/index.tsx",
     "./Container": "./src/Container/index.tsx",
     "./Pagination": "./src/Pagination/index.tsx",
     "./Tag": "./src/Tag/index.tsx",

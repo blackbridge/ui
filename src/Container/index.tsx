@@ -7,7 +7,7 @@ type ContainerArgs = {
 	children?: ComponentChildren
 }
 
-export default function Container({ size = 'medium', children }: ContainerArgs) {
+export default function Container({ size = 'medium', children }: ContainerArgs): JSX.Element {
 
 	const classes = classnames(
 		'ui-container',

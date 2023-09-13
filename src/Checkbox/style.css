@@ -2,8 +2,8 @@
 
 @layer ui {
 	:root {
-		--checkbox-y-spacing: 0.7em;
-		--checkbox-x-spacing: 0.8em;
+		--checkbox-spacing-y: .75em;
+		--checkbox-spacing-x: 1em;
 		--checkbox-font-size: var(--button-font-size);
 		--checkbox-icon-size: var(--button-icon-size);
 		--checkbox-icon-spacing: 0.5em;
@@ -12,6 +12,7 @@
 
 	.ui-checkbox {
 		font-size:1rem;
+		box-sizing:border-box;
 		display:inline-flex;
 		max-width:100%;
 		align-items:center;
@@ -24,6 +25,7 @@
 		width:0px; 
 		height:0px; 
 		clip:rect(0, 0, 0, 0);
+		position:absolute;
 	}
 
 	/* truncate label */
@@ -101,7 +103,7 @@
 	}
 
 	.ui-checkbox--fill {
-		padding: var(--checkbox-y-spacing) var(--checkbox-x-spacing);
-		background:rgba(0,0,0,0.05);
+		padding: var(--checkbox-spacing-y) var(--checkbox-spacing-x);
+		border:1px solid black;
 	}
 }

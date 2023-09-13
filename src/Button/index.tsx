@@ -1,12 +1,14 @@
 import type { JSX, AnyComponent, ComponentChildren } from "preact"
+import type { WithElementProps } from '../types.tsx'
 import './style.css'
 import classnames from 'classnames'
 
-type LinkProps = {
+
+type LinkArgs = {
 	href: string 
 }
 
-type BaseProps = {
+type ButtonArgs = {
 	type?: 'fill'|'outline'|'text',
 	size?: 'small'|'medium'|'large',
 	iconLeft?: AnyComponent<any, any>|string,
@@ -17,12 +19,9 @@ type BaseProps = {
 	children?: ComponentChildren
 }
 
-type ButtonOrAnchor<TBaseProps> = (
-	| (LinkProps & TBaseProps & Omit<JSX.IntrinsicElements['a'], 'className'>) 
-	| (TBaseProps & Omit<JSX.IntrinsicElements['button'], 'className'|keyof TBaseProps>)
-)
+type ButtonProps = WithElementProps<'button', ButtonArgs> | WithElementProps<'a', LinkArgs & ButtonArgs>
 
-export function Button(props: ButtonOrAnchor<BaseProps>): JSX.Element {
+export function Button(props: ButtonProps): JSX.Element {
 
 	const { 
 		href, 
@@ -59,14 +58,16 @@ export function Button(props: ButtonOrAnchor<BaseProps>): JSX.Element {
 }
 
 
-type IconButtonBase = {
+type IconButtonArgs = {
 	type?: 'fill'|'outline'|'text',
 	size?: 'small'|'medium'|'large',
 	icon?: AnyComponent<any, any>|string,
 	class?: string|{},
 }
 
-export function IconButton(props: ButtonOrAnchor<IconButtonBase>): JSX.Element {
+type IconButtonProps = WithElementProps<'button', IconButtonArgs> | WithElementProps<'a', LinkArgs & IconButtonArgs>
+
+export function IconButton(props: IconButtonProps): JSX.Element {
 
 	const { 
 		href, 

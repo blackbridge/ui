@@ -64,7 +64,7 @@ function Check({ round = true, class:className, ...attributes }: CheckProps) {
 		<path 
 			d="M1 5.71698L4.13953 9L11 3" 
 			stroke="black" 
-			stroke-width="0.8"
+			stroke-width="1.6"
 			stroke-linecap={round && 'round' || undefined} 
 			stroke-linejoin={round && 'round' || undefined}
 		/>

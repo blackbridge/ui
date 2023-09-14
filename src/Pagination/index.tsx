@@ -112,10 +112,10 @@ export function createPagination(props: CreatePaginationProps): Pagination {
 
 
 
-type PaginationProps = WithElementProps<'div', {
+type PaginationProps = WithElementProps<'nav', {
 	currentPage: number,
 	lastPage: number,
-	numberToUrl: (x: number) => string
+	numberToUrl?: (x: number) => string
 	onNavigate?: (event: JSX.TargetedEvent<HTMLAnchorElement>, page: PaginationPage) => void
 }>
 
@@ -148,7 +148,7 @@ export default function Pagination(props: PaginationProps): null|JSX.Element {
 			: undefined
 	} 
 	
-	return <div class="ui-pagination" {...attributes}>
+	return <nav class="ui-pagination" aria-label="pagination" {...attributes}>
 		<a 
 			href={previousPage.href as string || undefined} 
 			class={classnames('ui-pagination__link ui-pagination__prev', previousPage.disabled && 'ui-pagination__link--disabled')}
@@ -166,7 +166,7 @@ export default function Pagination(props: PaginationProps): null|JSX.Element {
 			class={classnames('ui-pagination__link ui-pagination__next', nextPage.disabled && 'ui-pagination__link--disabled')}
 			onClick={createHandler(nextPage)} 
 		>Next</a>
-	</div>
+	</nav>
 }
 
 
@@ -178,7 +178,7 @@ type PageNumberProps = {
 
 export function PageNumber({ page, onClick }: PageNumberProps) {
 	if (page.current) {
-		return <li class="ui-pagination-page ui-pagination-page--current">{page.number}</li>
+		return <li class="ui-pagination-page ui-pagination-page--current" aria-current="page">{page.number}</li>
 	}
 	if (page.href === null) {
 		return <li class="ui-pagination-page ui-pagination-page--ellipsis">…</li>

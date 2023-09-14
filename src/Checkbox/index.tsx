@@ -7,9 +7,9 @@ type CheckboxProps = WithElementProps<'input', {
 	label?: ComponentChildren,
 	count?: ComponentChildren,
 	size?: 'small'|'medium'|'large',
-	fill?: Boolean,
-	block?: Boolean,
-	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: Boolean) => void
+	fill?: boolean,
+	block?: boolean,
+	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: boolean) => void
 }>
 
 export default function Checkbox(props: CheckboxProps): JSX.Element {
@@ -55,7 +55,7 @@ type CheckProps = WithElementProps<'svg', {
 	/**
 	 * Make the checkbox edges rounded
 	 * */
-	round?: Boolean,
+	round?: boolean,
 	class?: HTMLElement['className']
 }>
 

@@ -6,9 +6,9 @@ import classnames from 'classnames'
 type RadioProps = WithElementProps<'input', {
 	label?: ComponentChildren,
 	size?: 'small'|'medium'|'large',
-	fill?: Boolean,
-	block?: Boolean,
-	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: Boolean) => void
+	fill?: boolean,
+	block?: boolean,
+	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: boolean) => void
 	class?: HTMLElement['className'],
 	style?: string,
 	children?: ComponentChildren

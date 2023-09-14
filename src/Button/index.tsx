@@ -13,7 +13,7 @@ type ButtonArgs = {
 	size?: 'small'|'medium'|'large',
 	iconLeft?: AnyComponent<any, any>|string,
 	iconRight?: AnyComponent<any, any>|string,
-	block?: Boolean,
+	block?: boolean,
 	class?: HTMLElement['className'],
 	style?: string,
 	children?: ComponentChildren

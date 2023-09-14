@@ -7,7 +7,10 @@ type LinkProps = {
 }
 
 type BaseProps = {
-	type?: 'fill'|'outline'|'text',
+	/** 
+	 * This is a test 
+	 * **/
+	variant?: 'fill'|'outline'|'text',
 	size?: 'small'|'medium'|'large',
 	iconLeft?: AnyComponent<any, any>|string,
 	iconRight?: AnyComponent<any, any>|string,
@@ -26,7 +29,7 @@ export function Button(props: ButtonOrAnchor<BaseProps>): JSX.Element {
 
 	const { 
 		href, 
-		type = 'fill',
+		variant = 'fill',
 		size = 'medium',
 		iconLeft,
 		iconRight,
@@ -38,7 +41,7 @@ export function Button(props: ButtonOrAnchor<BaseProps>): JSX.Element {
 
 	const classes = classnames(
 		'ui-button',
-		type && `ui-button--${type}`,
+		variant && `ui-button--${variant}`,
 		`ui-button--${size}`,
 		className,
 		iconLeft && 'has-icon-left',
@@ -47,6 +50,7 @@ export function Button(props: ButtonOrAnchor<BaseProps>): JSX.Element {
 	)
 
 	const attrs = { class: classes, href, ...attributes }
+
 	const content = <>
 		{iconLeft && <span class="ui-button__icon ui-button__icon--left"><Any value={iconLeft} /></span>}
 		{children && <span class="ui-button__label">{children}</span>}
@@ -58,19 +62,18 @@ export function Button(props: ButtonOrAnchor<BaseProps>): JSX.Element {
 		: <button {...attrs as JSX.IntrinsicElements['button'] }>{content}</button>
 }
 
-
 type IconButtonBase = {
-	type?: 'fill'|'outline'|'text',
+	variant?: 'fill'|'outline'|'text',
 	size?: 'small'|'medium'|'large',
 	icon?: AnyComponent<any, any>|string,
-	class?: string|{},
+	class?: HTMLElement['className'],
 }
 
 export function IconButton(props: ButtonOrAnchor<IconButtonBase>): JSX.Element {
 
 	const { 
 		href, 
-		type = 'fill',
+		variant = 'fill',
 		size = 'medium',
 		icon,
 		class: className, 
@@ -79,23 +82,23 @@ export function IconButton(props: ButtonOrAnchor<IconButtonBase>): JSX.Element {
 
 	const classes = classnames(
 		'ui-button ui-button--icon',
-		type && `ui-button--${type}`,
+		variant && `ui-button--${variant}`,
 		`ui-button--${size}`,
 		className,
 	)
 
 	const attrs = { class: classes, href, ...attributes }
+
 	const content = <>
 		{icon && <span class="ui-button__icon"><Any value={icon} /></span>}
 	</>		
+	
 	return (href !== undefined) 
 		? <a {...attrs as JSX.IntrinsicElements['a'] }>{content}</a>
 		: <button {...attrs as JSX.IntrinsicElements['button'] }>{content}</button>
 }
 
-
 export default Button
-
 
 function Any({ value: Value }: {value: any}): JSX.Element {
 	if (typeof Value === 'string') return <>{Value}</>

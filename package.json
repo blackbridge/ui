@@ -12,8 +12,8 @@
     "./Radio": "./src/Radio/index.tsx",
     "./Container": "./src/Container/index.tsx",
     "./Pagination": "./src/Pagination/index.tsx",
-    "./Tag": "./src/Tag/index.tsx",
-    "./Icon": "./src/Icon/index.tsx"
+    "./Icon": "./src/Icon/index.tsx",
+    "./ImageLoad": "./src/ImageLoad/index.tsx"
   },
   "dependencies": {
   	"classnames": "^2.3.2"

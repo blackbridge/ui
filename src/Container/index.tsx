@@ -1,20 +1,27 @@
 import './style.css'
 import type { JSX, ComponentChildren } from 'preact'
+import type { WithElementProps } from '../types.tsx'
 import classnames from 'classnames'
 
-type ContainerArgs = {
+type ContainerProps = WithElementProps<'section', {
 	size?: 'small'|'medium'|'large',
 	children?: ComponentChildren
-}
+}>
 
-export default function Container({ size = 'medium', children }: ContainerArgs): JSX.Element {
+export default function Container(props: ContainerProps): JSX.Element {
+
+	const { 
+		size, 
+		children,
+		...attributes
+	} = props
 
 	const classes = classnames(
 		'ui-container',
 		(size ? `ui-container--${size}` : null)
 	)
 
-	return <section class={classes}>
+	return <section class={classes} {...attributes}>
 		{children}
 	</section>
 }

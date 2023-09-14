@@ -1,17 +1,18 @@
 import './style.css'
+import type { WithElementProps } from '../types.tsx'
 import type { JSX, ComponentChildren } from 'preact'
 import classnames from 'classnames'
 
-type RadioProps = {
+type RadioProps = WithElementProps<'input', {
 	label?: ComponentChildren,
 	size?: 'small'|'medium'|'large',
-	fill?: Boolean,
-	block?: Boolean,
-	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: Boolean) => void
+	fill?: boolean,
+	block?: boolean,
+	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: boolean) => void
 	class?: HTMLElement['className'],
 	style?: string,
 	children?: ComponentChildren
-}
+}>
 
 
 export default function Radio(props: RadioProps): JSX.Element {
@@ -28,11 +29,23 @@ export default function Radio(props: RadioProps): JSX.Element {
 		...attributes
 	} = props
 
+	const classes = classnames(
+		'ui-radio',
+		block && 'ui-radio--block',
+		fill && 'ui-radio--fill',
+		size && `ui-radio--${size}`,
+		className
+	)
+
 	return <>
-		<label class="radio radio--large" style={style}>
-			<input type="radio" {...attributes} />
-			{label}
-			{children}
-		</label>		
+		<label class={classes} style={style}>
+			<div class="ui-radio__inner">
+				<input type="radio" class="ui-radio__input" {...attributes} />
+				<span class="ui-radio__label">{label}</span>
+			</div>
+			{children && <div class="ui-radio__children">
+				<div class="ui-radio__children__inner">{children}</div>
+			</div>}
+		</label>
 	</>
 }

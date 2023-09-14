@@ -1,99 +1,79 @@
-
+import type { WithElementProps, EventHandler } from '../types.tsx'
+import type { JSX } from 'preact'
 import classnames from 'classnames'
+import './style.css'
 
 
-export default function Pagination({ currentPage, lastPage, onUpdate, numberToUrl, onClick }) {
-
-	if (!currentPage || !lastPage) return null
-	const handler = page => event => onClick(event, page)
-	const data = createPagination(currentPage, lastPage, 2, numberToUrl)
-	const {previousPage, nextPage, numbers, firstPage, lastPage : last } = data
-	
-	return <>
-		<div class="margin-y">
-			<div class="grid space-between">
-				<a 
-					href={previousPage.href} 
-					onClick={handler(previousPage)} 
-					class={classnames('pagination-prev pagination--arrow underline--blue', previousPage.disabled && 'hidden')}
-					>previous</a>
-		        <ul class="pagination">
-		        	{firstPage && <PageNumber page={firstPage} onClick={handler(firstPage)} />}
-		        	{numbers.map(number => <PageNumber page={number} onClick={handler(number)} />)}
-		        	{last && <PageNumber page={last} onClick={handler(last)} />}
-		        </ul>
-				<a 
-					href={nextPage.href} 
-					onClick={handler(nextPage)} 
-					class={classnames('pagination-prev pagination--arrow underline--blue', nextPage.disabled && 'hidden')}
-					>next</a>
-			</div>
-		</div>
-		{/*<div class="text-center">
-			<span>Page <strong>{currentPage}</strong> of <strong>{lastPage}</strong></span>
-		</div>*/}
-	</>
+type PaginationPage = {
+	number: number|string,
+	href: string|number|null,
+	current: boolean,
+	disabled: boolean
 }
 
-
-
-export function PageNumber({ page, onClick, children }) {
-	if (page.current) {
-		return <li class="active">{page.number}</li>
-	}
-	if (page.disabled) {
-		return <li class="text-grey">…</li>
-	}
-	return <li>
-		<a href={page.href} onClick={onClick}>
-			{children || page.number}
-		</a>
-	</li>
+type CreatePaginationProps = {
+	currentPage: number, 
+	lastPage: number, 
+	range?: number, 
+	numberToUrl?: (x:number) => number|string
 }
 
+type Pagination = {
+	nextPage: PaginationPage,
+	previousPage: PaginationPage,
+	firstPage: PaginationPage,
+	numbers: Array<PaginationPage>
+	lastPage: false | PaginationPage,
+}
 
+export function createPagination(props: CreatePaginationProps): Pagination {
 
-export function createPagination(currentPage, lastPage, range = 2, pageHref = x => x) {
+	const {
+		currentPage,
+		lastPage,
+		range = 2,
+		numberToUrl = x => x,
+	} = props
 
-	currentPage = currentPage || 1
-	lastPage = lastPage || 1
-
-	const pagination = {
+	const pagination: Pagination = {
 		nextPage: {
 			number: currentPage + 1,
-			href: pageHref(currentPage + 1),
+			href: numberToUrl(currentPage + 1),
 			current: false,
-			disabled: !(currentPage < lastPage)
+			disabled: currentPage >= lastPage
 		},
 		previousPage: {
 			number: currentPage - 1,
-			href: (currentPage - 1 > 0) ? pageHref(currentPage - 1) : pageHref(1),
+			href: (currentPage - 1 > 0) ? numberToUrl(currentPage - 1) : numberToUrl(1),
 			current: false,
-			disabled: (currentPage <= 1)
+			disabled: currentPage <= 1
 		},
 		firstPage: {
 			number: 1,
-			href: pageHref(1),
-			current: (currentPage === 1),
+			href: numberToUrl(1),
+			current: currentPage === 1,
 			disabled: false
 		},
 		lastPage: {
 			number: lastPage,
-			href: pageHref(lastPage),
-			current: (currentPage === lastPage),
+			href: numberToUrl(lastPage),
+			current: currentPage === lastPage,
 			disabled: false
 		},
 		numbers : []
 	}
 
-	if (pagination.previousPage.disabled) pagination.previousPage = false
-	if (pagination.nextPage.disabled) pagination.nextPage = false
-	if (pagination.firstPage.number === pagination.lastPage.number) pagination.lastPage = false
+	// do not render last page if there's only one page
+	if (
+		pagination.lastPage 
+		&& pagination.firstPage.number === pagination.lastPage.number
+	) pagination.lastPage = false
+
 
 	// ellipsis item 1
 	if (currentPage > range + 2) {
 		pagination.numbers.push({
-			href: false,
+			href: null,
 			number: '…',
 			current: false,
 			disabled: true
@@ -112,7 +92,7 @@ export function createPagination(currentPage, lastPage, range = 2, pageHref = x 
 
 		pagination.numbers.push({
 			number: i,
-			href: pageHref(i),
+			href: numberToUrl(i),
 			current: (currentPage === i) ? true : false
 		})
 	}
@@ -120,7 +100,7 @@ export function createPagination(currentPage, lastPage, range = 2, pageHref = x 
 	// ellipsis item 2
 	if (currentPage < lastPage - range - 1) {
 		pagination.numbers.push({
-			href: false,
+			href: null,
 			number: '…',
 			current: false,
 			disabled: true
@@ -128,4 +108,84 @@ export function createPagination(currentPage, lastPage, range = 2, pageHref = x 
 	}
 
 	return pagination
+}
+
+
+
+type PaginationProps = WithElementProps<'nav', {
+	currentPage: number,
+	lastPage: number,
+	numberToUrl?: (x: number) => string
+	onNavigate?: (event: JSX.TargetedEvent<HTMLAnchorElement>, page: PaginationPage) => void
+}>
+
+
+export default function Pagination(props: PaginationProps): null|JSX.Element {
+
+	const { 
+		currentPage, 
+		lastPage, 
+		numberToUrl,
+		onNavigate,
+		class: className,
+		style,
+		...attributes
+	} = props
+
+	if (!currentPage || !lastPage) return null
+
+	const {
+		previousPage, 
+		nextPage, 
+		numbers, 
+		firstPage, 
+		lastPage : last 
+	} = createPagination({ currentPage, lastPage, numberToUrl })
+
+	const createHandler = function(page: PaginationPage) {
+		return onNavigate 
+			? (event: JSX.TargetedEvent<HTMLAnchorElement>) => onNavigate(event, page)	
+			: undefined
+	} 
+	
+	return <nav class="ui-pagination" aria-label="pagination" {...attributes}>
+		<a 
+			href={previousPage.href as string || undefined} 
+			class={classnames('ui-pagination__link ui-pagination__prev', previousPage.disabled && 'ui-pagination__link--disabled')}
+			onClick={createHandler(previousPage)} 
+		>Previous</a>
+
+        <ul class="ui-pagination__numbers">
+        	{firstPage && <PageNumber page={firstPage} onClick={createHandler(firstPage)} />}
+        	{numbers.map(number => <PageNumber page={number} onClick={createHandler(number)} />)}
+        	{last && <PageNumber page={last} onClick={createHandler(last)} />}
+        </ul>
+
+		<a 
+			href={nextPage.href as string || undefined} 
+			class={classnames('ui-pagination__link ui-pagination__next', nextPage.disabled && 'ui-pagination__link--disabled')}
+			onClick={createHandler(nextPage)} 
+		>Next</a>
+	</nav>
+}
+
+
+
+type PageNumberProps = {
+	page: PaginationPage,
+	onClick?: EventHandler<HTMLAnchorElement>
+}
+
+export function PageNumber({ page, onClick }: PageNumberProps) {
+	if (page.current) {
+		return <li class="ui-pagination-page ui-pagination-page--current" aria-current="page">{page.number}</li>
+	}
+	if (page.href === null) {
+		return <li class="ui-pagination-page ui-pagination-page--ellipsis">…</li>
+	}
+	return <li class="ui-pagination-page ui-pagination-page--number">
+		<a href={page.href as string || undefined} onClick={onClick}>
+			{page.number}
+		</a>
+	</li>
 }

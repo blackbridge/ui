@@ -1,0 +1,153 @@
+@import './../variables.css';
+
+@layer ui {
+	:root {
+		--select-spacing-y: .75em;
+		--select-label-spacing: .5em;
+	}
+
+	/* variants */
+	.ui-select {
+		font-size: 1em;
+	}
+
+	.ui-select--stacked {
+		display: inline-flex;
+		flex-direction: column;
+		width: fit-content;
+		vertical-align:middle;
+	}
+
+	.ui-select--block,
+	.ui-select--block .ui-select__dropdown, 
+	.ui-select--block .ui-select__label {
+		display: block;
+		width: 100%;
+	}
+	
+	/* Spacing */
+	.ui-select--stacked .ui-select__label,
+	.ui-select--block .ui-select__label {
+		margin-bottom: var(--select-label-spacing);
+	}
+
+	.ui-select--inline .ui-select__label {
+		margin-right: var(--select-label-spacing);
+	}
+
+
+
+	/* Select field */
+	.ui-select__dropdown {
+		color: black;
+		letter-spacing: inherit;
+		display: inline-block;
+		font-family:inherit;
+		font-size: inherit;
+		font-weight: 500;
+		font-size: 1em;
+		line-height: 1.5em;
+		padding: .5em 3em .5em var(--select-spacing-y);
+		box-sizing: border-box;
+		min-width: 10em;
+		max-width:100%;
+		/* height: 38px; */
+		margin:0;
+		border: 1px solid lightgrey;
+		appearance: none;
+		-webkit-appearance:none; 
+		background-color: #fff;
+		background-image: url('./assets/dropdown-arrow.svg');
+		background-repeat: no-repeat, repeat;
+		background-position: right var(--select-spacing-y) top 52%, 0 0;
+		background-size: 1em auto, 100%;
+	}
+
+	.ui-select__dropdown::-ms-expand {
+		display: none;
+	}
+
+	.ui-select__dropdown:focus {
+		outline: none;
+		appearance: none;
+		border: 1px solid var(--ui-focus-color);
+		box-shadow: inset 0px 0px 0px 2px var(--ui-focus-color);
+		-webkit-box-shadow: inset 0px 0px 0px 2px var(--ui-focus-color);
+		box-shadow: inset 0px 0px 0px 1px var(--ui-focus-color), 0px 0px 5px 0px rgba(0,0,0,0.2);
+		-webkit-box-shadow: inset 0px 0px 0px 1px var(--ui-focus-color), 0px 0px 5px 0px rgba(0,0,0,0.2);
+	}
+
+	.ui-select__dropdown::autofill, 
+	.ui-select__dropdown:-webkit-autofill {
+		background:white;
+		-webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.9) inset !important;
+	}
+
+	.ui-select__dropdown option {
+		font-weight:normal;
+	}
+
+	/* Support for rtl text, explicit support for Arabic and Hebrew */
+	*[dir="rtl"] .ui-select__dropdown, :root:lang(ar) .ui-select__dropdown, :root:lang(iw) .ui-select__dropdown {
+		background-position: left .7em top 50%, 0 0;
+		padding: .6em .8em .5em 1.4em;
+	}
+
+	/* Disabled styles */
+	.ui-select__dropdown:disabled, .ui-select__dropdown[aria-disabled=true] {
+		color: graytext;
+		background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+		linear-gradient(to bottom, #ffffff 0%,#f9f9f9 100%);
+	}
+
+	.ui-select__dropdown:disabled:hover, .ui-select__dropdown[aria-disabled=true] {
+		border-color: #aaa;
+	}
+
+
+	.ui-select__dropdown--large {
+		height:3.125em;
+	}
+
+	.ui-select__dropdown--outline-white,
+	.\:.ui-select__dropdown--outline-white .ui-select__dropdown {
+		color:white;
+		background-color:transparent;
+		background-image: url(./img/dropdown-arrow-white.svg);
+		border-color:white;
+		border-width:2px !important;
+		box-shadow:none !important;
+
+		&:focus {
+			border-color:black;
+		}
+
+		option {
+			color:black;
+		}
+	}
+
+	.ui-select__dropdown--outline-blue,
+	.\:.ui-select__dropdown--outline-blue .ui-select__dropdown {
+		color:black;
+		background-color:transparent;
+		background-image: url(./img/dropdown-arrow-blue.svg);
+		border-color:black;
+		border-width:2px !important;
+		box-shadow:none !important;
+
+		&:focus {
+			border-color:black;
+		}
+	}
+
+	/* Sizes */ 
+
+	.ui-select--small {
+		font-size: 0.85rem;
+	}
+
+	.ui-select--large {
+		font-size: 1.15rem;
+	}
+}

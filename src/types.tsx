@@ -13,3 +13,9 @@ export type WithElementProps<
 		| OmitType
 	>
 )
+
+
+export type EventHandler<
+	ElementType extends Element = Element,
+	EventType extends Event = Event
+> = (e: JSX.TargetedEvent<ElementType, EventType>) => void

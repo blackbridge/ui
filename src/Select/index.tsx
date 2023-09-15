@@ -37,7 +37,7 @@ export default function Select(props: SelectProps): JSX.Element {
 
 	return <>
 		<div {...attrs}>
-			<label class="ui-select__label" for={name}>{label}</label>
+			{label && <label class="ui-select__label" for={name}>{label}</label>}
 			<select class="ui-select__dropdown" name={name} id={name}>
 				{children}
 			</select>

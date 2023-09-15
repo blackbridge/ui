@@ -8,16 +8,13 @@
 
 	/* variants */
 	.ui-select {
-		font-size: 1em;
-	}
-
-	.ui-select--stacked {
 		display: inline-flex;
 		flex-direction: column;
 		width: fit-content;
 		vertical-align:middle;
+		font-size: 1em;
 	}
-
+	
 	.ui-select--block,
 	.ui-select--block .ui-select__dropdown, 
 	.ui-select--block .ui-select__label {

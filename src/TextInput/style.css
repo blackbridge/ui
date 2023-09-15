@@ -8,12 +8,16 @@
 		--textinput-color:black;
 	}
 
+	.ui-textinput {
+		display: inline-flex;
+		vertical-align:middle;
+	}
+
 	/* variants */
 	.ui-textinput--stacked {
 		display: inline-flex;
 		flex-direction: column;
 		width: fit-content;
-		vertical-align:middle;
 	}
 
 	.ui-textinput--block,

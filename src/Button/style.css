@@ -18,7 +18,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		vertical-align:middle;
+		vertical-align: middle;
 		position: relative;
 		
 		border: 0;
@@ -26,8 +26,6 @@
 		appearance: none;
 		
 		transition: 0.3s all ease-in-out;
-		margin-right: 1em;
-        margin-bottom: 1em;
 		line-height: var(--ui-input-height--medium);
 		height: var(--ui-input-height--medium);
 

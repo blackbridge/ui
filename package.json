@@ -10,6 +10,7 @@
     "./Checkbox": "./src/Checkbox/index.tsx",
     "./Select": "./src/Select/index.tsx",
     "./Radio": "./src/Radio/index.tsx",
+    "./TextInput": "./src/TextInput/index.tsx",
     "./Container": "./src/Container/index.tsx",
     "./Pagination": "./src/Pagination/index.tsx",
     "./Icon": "./src/Icon/index.tsx",

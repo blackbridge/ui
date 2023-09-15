@@ -2,6 +2,8 @@
 	:root {
 		--button-spacing-y: .75em;
 		--button-spacing-x: 1em;
+
+		--button-child-spacing: 0.5em;
 	}
 
 	.ui-button {
@@ -33,9 +35,8 @@
 		padding-right: var(--button-spacing-x);
 	}
 
-	
 	/* spacing */
-	.ui-button > * { margin: 0 0.25em }
+	.ui-button > * { margin: 0 calc(var(--button-child-spacing) / 2) }
 	.ui-button > *:first-child { margin-left: 0; }
 	.ui-button > *:last-child { margin-right: 0; }
 
@@ -61,6 +62,16 @@
 	.ui-button__icon > * {
 		width: auto; 
 		height: 100%;
+	}
+
+	/* Separator */
+	.has-separator {
+		padding: 0 var(--button-child-spacing);
+	}
+
+	.ui-button__separator {
+		width: 1px; height: 100%;
+		background: black;
 	}
 
 

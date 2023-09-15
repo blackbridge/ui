@@ -13,7 +13,8 @@
     "./Container": "./src/Container/index.tsx",
     "./Pagination": "./src/Pagination/index.tsx",
     "./Icon": "./src/Icon/index.tsx",
-    "./ImageLoad": "./src/ImageLoad/index.tsx"
+    "./ImageLoad": "./src/ImageLoad/index.tsx",
+    "./SwipePane": "./src/SwipePane/index.tsx"
   },
   "dependencies": {
   	"classnames": "^2.3.2"

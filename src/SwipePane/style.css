@@ -1,0 +1,14 @@
+@layer ui {
+
+	.ui-swipe {
+		transition: all 2s ease-out;
+	}	
+
+	.ui-swipe--animate {
+		background:red;
+	}
+
+	.ui-swipe--animateOut {
+		transition-duration: 0.5s;
+	}
+}

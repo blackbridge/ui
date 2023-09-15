@@ -2,5 +2,13 @@
 	:root {
 		--ui-focus-width:2px;
 		--ui-focus-color:rgb(0, 95, 204);
+
+		--ui-input-height--small: 2.4em;
+		--ui-input-height--medium: 2.6em;
+		--ui-input-height--large: 2.8em;
+
+		--ui-input-fontsize--small: 0.85em;
+		--ui-input-fontsize--medium: 1em;
+		--ui-input-fontsize--large: 1.15em;
 	}
 }

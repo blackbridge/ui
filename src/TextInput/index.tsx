@@ -4,32 +4,34 @@ import type { JSX, ComponentChildren } from 'preact'
 import classnames from 'classnames'
 
 
-type SelectProps = {
+type TextProps = {
 	label?: ComponentChildren,
+	placeholder?: string,
 	name?: string,
 	size?: 'small'|'medium'|'large',
 	layout?: 'inline'|'stacked'|'block',
 	class?: HTMLElement['className'],
 	style?: string,
-	children?: ComponentChildren
 }
 
-export default function Select(props: SelectProps): JSX.Element {
 
-	const {
+export default function Radio(props: TextProps): JSX.Element {
+
+	const { 
 		label,
+		placeholder,
 		name,
-		size = 'medium',
+		size = 'medium', 
 		layout = 'stacked',
-		class: className, 
-		children,
-		...attributes 
+		class: className,
+		style,
+		...attributes
 	} = props
 
 	const classes = classnames(
-		'ui-select',
-		`ui-select--${size}`,
-		`ui-select--${layout}`,
+		'ui-textinput',
+		`ui-textinput--${size}`,
+		`ui-textinput--${layout}`,
 		className,
 	)
 
@@ -37,10 +39,8 @@ export default function Select(props: SelectProps): JSX.Element {
 
 	return <>
 		<div {...attrs}>
-			{label && <label class="ui-select__label" for={name}>{label}</label>}
-			<select class="ui-select__dropdown" name={name} id={name}>
-				{children}
-			</select>
+			{label && <label class="ui-textinput__label" for={name}>{label}</label>}
+			<input class="ui-textinput__input" type="text" id={name} name={name} placeholder={placeholder}></input>
 		</div>
 	</>
 }

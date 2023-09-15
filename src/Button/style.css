@@ -2,24 +2,15 @@
 	:root {
 		--button-spacing-y: .75em;
 		--button-spacing-x: 1em;
-        --button-icon-gap: .5em;
 
-		--button-font-size: 1rem;
-		--button-icon-size: 1em;
-
-		--button-icon-padding: 1em;
-		--button-icon--small: 1.25em;
-		--button-icon--medium: 1.75em;
-		--button-icon--large: 2em;
+		--button-child-spacing: 0.5em;
 	}
 
 	.ui-button {
 		/* Reset */
 		text-decoration:none;
 		box-sizing:border-box;
-		font-size: var(--button-font-size);
 		color: inherit;
-		line-height:1.5em;
 		cursor:pointer;
 		padding: 0;
 		font: inherit;
@@ -27,7 +18,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		vertical-align:middle;
+		vertical-align: middle;
 		position: relative;
 		
 		border: 0;
@@ -35,15 +26,18 @@
 		appearance: none;
 		
 		transition: 0.3s all ease-in-out;
-		margin-right: 1em;
-        margin-bottom: 1em;
+		line-height: var(--ui-input-height--medium);
+		height: var(--ui-input-height--medium);
 
-        padding: var(--button-spacing-y) var(--button-spacing-x);
+		padding-left: var(--button-spacing-x);
+		padding-right: var(--button-spacing-x);
 	}
 
-    .ui-button--text {
-        padding: 0;
-    }
+	/* spacing */
+	.ui-button > * { margin: 0 calc(var(--button-child-spacing) / 2) }
+	.ui-button > *:first-child { margin-left: 0; }
+	.ui-button > *:last-child { margin-right: 0; }
+
 
     /* Fill */
     .ui-button--outline {
@@ -57,12 +51,10 @@
 
 
     /* Icon */
-
 	.ui-button__icon {
 		display: flex;
 		align-items: center;
-
-		height: var(--button-icon-size);
+		height: 1em;
 	}
 
 	.ui-button__icon > * {
@@ -70,45 +62,33 @@
 		height: 100%;
 	}
 
-    .ui-button__icon--left {
-		padding-right: var(--button-icon-gap);
+	/* Separator */
+	.has-separator {
+		padding: 0 var(--button-child-spacing);
 	}
 
-	.ui-button__icon--right {
-		padding-left: var(--button-icon-gap);
+	.ui-button__separator {
+		width: 1px; height: 100%;
+		background: black;
 	}
+
 
     /* Block */
-
     .ui-button--block {
 		width: 100%;
 	}
 
-    /* Sizes */
+
+	/* Font size */
+	.ui-button--small {
+		font-size: var(--ui-input-fontsize--small);
+	}
 
 	.ui-button--small {
-		font-size: 0.85rem;
+		font-size: var(--ui-input-fontsize--small);
 	}
 
 	.ui-button--large {
-		font-size: 1.15rem;
-	}
-
-	/* Icon */
-
-	.ui-button--icon {
-	    padding: var(--button-icon-padding);
-	}
-
-	.ui-button--icon .ui-button__icon {
-	    height: var(--button-icon--small);
-	}
-
-	.ui-button--icon.ui-button--medium .ui-button__icon {
-	    height: var(--button-icon--medium);
-	}
-
-	.ui-button--icon.ui-button--large .ui-button__icon {
-	    height: var(--button-icon--large);
+		font-size: var(--ui-input-fontsize--large);
 	}
 }

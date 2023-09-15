@@ -14,6 +14,7 @@ type BaseProps = {
 	iconLeft?: AnyComponent<any, any>|string,
 	iconRight?: AnyComponent<any, any>|string,
 	block?: boolean,
+	separator?: boolean,
 	class?: HTMLElement['className'],
 	style?: string,
 	children?: ComponentChildren
@@ -30,6 +31,7 @@ export function Button(props: ButtonProps): JSX.Element {
 		iconLeft,
 		iconRight,
 		block,
+		separator,
 		class: className, 
 		children,
 		...attributes 
@@ -43,13 +45,16 @@ export function Button(props: ButtonProps): JSX.Element {
 		iconLeft && 'has-icon-left',
 		iconRight && 'has-icon-right',
 		block && 'ui-button--block',
+		separator && 'has-separator',
 	)
 
 	const attrs = { class: classes, href, ...attributes }
 
 	const content = <>
 		{iconLeft && <span class="ui-button__icon ui-button__icon--left"><Any value={iconLeft} /></span>}
+		{iconLeft && separator && <span class="ui-button__separator"></span>}
 		{children && <span class="ui-button__label">{children}</span>}
+		{iconRight && separator && <span class="ui-button__separator"></span>}
 		{iconRight && <span class="ui-button__icon ui-button__icon--right"><Any value={iconRight} /></span>}
 	</>
 

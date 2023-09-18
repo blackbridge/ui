@@ -39,13 +39,11 @@ export function Button(props: ButtonProps): JSX.Element {
 
 	const classes = classnames(
 		'ui-button',
-		variant && `ui-button--${variant}`,
 		`ui-button--${size}`,
 		className,
-		iconLeft && 'has-icon-left',
-		iconRight && 'has-icon-right',
 		block && 'ui-button--block',
-		separator && 'has-separator',
+		variant && `ui-button--${variant}`,
+		separator && 'ui-button--separator',
 	)
 
 	const attrs = { class: classes, href, ...attributes }

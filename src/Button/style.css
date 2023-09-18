@@ -40,6 +40,11 @@
 
 
     /* Fill */
+
+	.ui-button--text {
+		padding: 0;
+	}
+	
     .ui-button--outline {
 		border: 1px solid black;
 	}

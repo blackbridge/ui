@@ -28,6 +28,8 @@
 		appearance: none;
 		
 		transition: 0.3s all ease-in-out;
+		
+		font-size: var(--ui-input-fontsize--medium);
 		line-height: var(--ui-input-height--medium);
 		height: var(--ui-input-height--medium);
 
@@ -90,14 +92,12 @@
 
 	/* Font size */
 	.ui-button--small {
-		font-size: var(--ui-input-fontsize--small);
-	}
-
-	.ui-button--small {
+		height: var(--ui-input-height--small);
 		font-size: var(--ui-input-fontsize--small);
 	}
 
 	.ui-button--large {
+		height: var(--ui-input-height--large);
 		font-size: var(--ui-input-fontsize--large);
 	}
 

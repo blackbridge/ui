@@ -19,7 +19,7 @@ export default function Radio(props: RadioProps): JSX.Element {
 
 	const { 
 		label,
-		size, 
+		size = 'medium', 
 		fill,
 		block,
 		onChange, 

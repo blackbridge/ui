@@ -9,6 +9,7 @@ type CheckboxProps = WithElementProps<'input', {
 	size?: 'small'|'medium'|'large',
 	fill?: boolean,
 	block?: boolean,
+	class?: HTMLElement['className'],
 	onChange?: (event: JSX.TargetedEvent<HTMLInputElement>, checked?: boolean) => void
 }>
 
@@ -17,7 +18,7 @@ export default function Checkbox(props: CheckboxProps): JSX.Element {
 	const { 
 		label, 
 		count, 
-		size, 
+		size = 'medium', 
 		fill,
 		block,
 		onChange, 

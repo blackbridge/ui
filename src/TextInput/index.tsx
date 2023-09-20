@@ -15,7 +15,7 @@ type TextProps = {
 }
 
 
-export default function Radio(props: TextProps): JSX.Element {
+export default function TextInput(props: TextProps): JSX.Element {
 
 	const { 
 		label,
@@ -38,9 +38,9 @@ export default function Radio(props: TextProps): JSX.Element {
 	const attrs = { class: classes, ...attributes }
 
 	return <>
-		<div {...attrs}>
-			{label && <label class="ui-textinput__label" for={name}>{label}</label>}
+		<label {...attrs}>
+			{label && <span class="ui-textinput__label">{label}</span>}
 			<input class="ui-textinput__input" type="text" id={name} name={name} placeholder={placeholder}></input>
-		</div>
+		</label>
 	</>
 }

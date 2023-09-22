@@ -26,7 +26,7 @@ function splitCharacters(string: string): JSX.Element[]  {
 export function SplitText(props: TextProps): JSX.Element {
 
 	const {
-		content = 'testboii',
+		content = '',
 		class: className, 
 		...attributes 
 	} = props

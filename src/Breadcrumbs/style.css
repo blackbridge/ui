@@ -1,0 +1,18 @@
+@import './../variables.css';
+
+@layer ui {
+
+    :root {
+        --breadcrumb--spacing: 1em;
+    }
+
+    .ui-breadcrumbs__item {
+        display: inline;
+    }
+
+    .ui-breadcrumbs__item:not(:last-of-type) {
+        padding-right: var(--breadcrumb--spacing);
+        margin-right: var(--breadcrumb--spacing);
+        border-right: 1px solid black;
+    }
+}

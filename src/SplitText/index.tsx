@@ -23,7 +23,7 @@ function splitCharacters(string: string): JSX.Element[]  {
 }
 
 
-export function SplitText(props: TextProps): JSX.Element {
+export default function SplitText(props: TextProps): JSX.Element {
 
 	const {
 		content = '',

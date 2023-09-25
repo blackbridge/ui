@@ -1,0 +1,52 @@
+@import './../variables.css';
+
+@layer ui {
+
+	:root {
+		--textarea-label-spacing: .5em;
+		--textarea-line-color:black;
+		--textarea-color:black;
+	}
+
+	.ui-textarea__input {
+		letter-spacing: inherit;
+		display: inline-block;
+		font-family:inherit;
+		appearance: none;
+		box-sizing: border-box;
+		resize:vertical;
+		-webkit-appearance:none;
+
+		font-size: 1em;
+		padding: .75em;
+		min-width: 100%;
+		min-height: 10em;
+
+		color: var(--textarea-color);
+		border: 1px solid var(--textarea-line-color);
+		border-radius: 0;
+	}
+
+	.ui-textarea__label {
+		display: block;
+		margin-bottom: var(--textarea-label-spacing);
+	}
+
+	.ui-textarea__input:focus {
+		outline: 1px solid var(--ui-focus-color);
+	}
+
+		/* Font size */
+		.ui-textarea--small {
+			font-size: var(--ui-input-fontsize--small);
+		}
+	
+		.ui-textarea--medium {
+			font-size: var(--ui-input-fontsize--medium);
+		}
+	
+		.ui-textarea--large {
+			font-size: var(--ui-input-fontsize--large);
+		}
+
+}

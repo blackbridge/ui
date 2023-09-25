@@ -2,8 +2,7 @@
 
 @layer ui {
 	:root {
-		--checkbox-spacing-y: .75em;
-		--checkbox-spacing-x: 1em;
+		--checkbox-spacing: 1em;
 		--checkbox-font-size: var(--button-font-size);
 		--checkbox-icon-size: var(--button-icon-size);
 		--checkbox-icon-spacing: 0.5em;
@@ -17,6 +16,10 @@
 		max-width:100%;
 		align-items:center;
 		user-select:none;
+		vertical-align: middle;
+
+		line-height: var(--ui-input-height--medium);
+		height: var(--ui-input-height--medium);
 	}
 
 	/* hide the <input> */
@@ -93,16 +96,21 @@
 		display:flex;
 	}
 
+	/* Font size */
 	.ui-checkbox--small {
-		font-size:0.9em;
+		height: var(--ui-input-height--small);
+		font-size: var(--ui-input-fontsize--small);
 	}
 
 	.ui-checkbox--large {
-		font-size:1.2em;
+		height: var(--ui-input-height--large);
+		font-size: var(--ui-input-fontsize--large);
 	}
 
 	.ui-checkbox--fill {
-		padding: var(--checkbox-spacing-y) var(--checkbox-spacing-x);
+		padding-left: var(--checkbox-spacing);
+		padding-right: var(--checkbox-spacing);
 		border:1px solid black;
+		box-sizing: border-box;
 	}
 }

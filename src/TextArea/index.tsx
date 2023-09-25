@@ -7,31 +7,26 @@ import classnames from 'classnames'
 type TextProps = {
 	label?: ComponentChildren,
 	placeholder?: string,
-	name?: string,
 	size?: 'small'|'medium'|'large',
-	layout?: 'inline'|'stacked'|'block',
 	class?: HTMLElement['className'],
 	style?: string,
 }
 
 
-export default function TextInput(props: TextProps): JSX.Element {
+export default function TextArea(props: TextProps): JSX.Element {
 
 	const { 
 		label,
 		placeholder,
-		name,
 		size = 'medium', 
-		layout = 'stacked',
 		class: className,
 		style,
 		...attributes
 	} = props
 
 	const classes = classnames(
-		'ui-textinput',
-		`ui-textinput--${size}`,
-		`ui-textinput--${layout}`,
+		'ui-textarea',
+		`ui-textarea--${size}`,
 		className,
 	)
 
@@ -39,8 +34,8 @@ export default function TextInput(props: TextProps): JSX.Element {
 
 	return <>
 		<label {...attrs}>
-			{label && <span class="ui-textinput__label">{label}</span>}
-			<input class="ui-textinput__input" type="text" id={name} name={name} placeholder={placeholder}></input>
+			{label && <span class="ui-textarea__label">{label}</span>}
+			<textarea class="ui-textarea__input" placeholder={placeholder}></textarea>
 		</label>
 	</>
 }

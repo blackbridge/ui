@@ -11,11 +11,14 @@
     "./Select": "./src/Select/index.tsx",
     "./Radio": "./src/Radio/index.tsx",
     "./TextInput": "./src/TextInput/index.tsx",
+    "./TextArea": "./src/TextArea/index.tsx",
     "./Container": "./src/Container/index.tsx",
     "./Pagination": "./src/Pagination/index.tsx",
     "./Icon": "./src/Icon/index.tsx",
     "./ImageLoad": "./src/ImageLoad/index.tsx",
-    "./SwipePane": "./src/SwipePane/index.tsx"
+    "./SwipePane": "./src/SwipePane/index.tsx",
+    "./SplitText": "./src/SplitText/index.tsx",
+    "./Breadcrumbs": "./src/Breadcrumbs/index.tsx"
   },
   "dependencies": {
     "classnames": "^2.3.2"

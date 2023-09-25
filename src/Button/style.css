@@ -1,9 +1,11 @@
 @layer ui {
 	:root {
-		--button-spacing-y: .75em;
-		--button-spacing-x: 1em;
+		/* sets the spacing of the default buttons */
+		--button-spacing: 1.5em;
+		--button-child-spacing: .75em;
 
-		--button-child-spacing: 0.5em;
+		/* sets the spacing if the button has a seprator  */
+		--button-spacing--separator: 1em;
 	}
 
 	.ui-button {
@@ -26,20 +28,28 @@
 		appearance: none;
 		
 		transition: 0.3s all ease-in-out;
+		
+		font-size: var(--ui-input-fontsize--medium);
 		line-height: var(--ui-input-height--medium);
 		height: var(--ui-input-height--medium);
 
-		padding-left: var(--button-spacing-x);
-		padding-right: var(--button-spacing-x);
+		padding-left: var(--button-spacing);
+		padding-right: var(--button-spacing);
 	}
+
 
 	/* spacing */
 	.ui-button > * { margin: 0 calc(var(--button-child-spacing) / 2) }
+	.ui-button.ui-button--separator > * { margin: 0 calc(var(--button-spacing--separator) / 2) }
 	.ui-button > *:first-child { margin-left: 0; }
 	.ui-button > *:last-child { margin-right: 0; }
 
 
     /* Fill */
+	.ui-button--text {
+		padding: 0;
+	}
+	
     .ui-button--outline {
 		border: 1px solid black;
 	}
@@ -63,8 +73,9 @@
 	}
 
 	/* Separator */
-	.has-separator {
-		padding: 0 var(--button-child-spacing);
+	.ui-button--separator {
+		padding-left: var(--button-spacing--separator);
+		padding-right: var(--button-spacing--separator);
 	}
 
 	.ui-button__separator {
@@ -81,14 +92,18 @@
 
 	/* Font size */
 	.ui-button--small {
-		font-size: var(--ui-input-fontsize--small);
-	}
-
-	.ui-button--small {
+		height: var(--ui-input-height--small);
 		font-size: var(--ui-input-fontsize--small);
 	}
 
 	.ui-button--large {
+		height: var(--ui-input-height--large);
 		font-size: var(--ui-input-fontsize--large);
 	}
+
+	.ui-button--icon {
+		width: var(--ui-input-height--medium);
+		padding: 0;
+	}
+
 }

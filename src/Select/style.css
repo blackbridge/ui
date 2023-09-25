@@ -2,7 +2,7 @@
 
 @layer ui {
 	:root {
-		--select-spacing-y: .75em;
+		--select-spacing: .75em;
 		--select-label-spacing: .5em;
 	}
 
@@ -54,7 +54,7 @@
 		font-weight: inherit;
 		font-size: 1em;
 
-		padding-right: 3em; padding-left: var(--select-spacing-y);
+		padding-right: 3em; padding-left: var(--select-spacing);
 		min-width: 10em;
 		max-width:100%;
 		height: var(--ui-input-height--medium);
@@ -64,7 +64,7 @@
 		background-color: #fff;
 		background-image: url('./assets/dropdown-arrow.svg');
 		background-repeat: no-repeat, repeat;
-		background-position: right var(--select-spacing-y) top 52%, 0 0;
+		background-position: right var(--select-spacing) top 52%, 0 0;
 		background-size: 1em auto, 100%;
 	}
 

@@ -156,6 +156,7 @@ function useDragToClose<T extends HTMLElement>(
 		}
 		// make doubly sure we're ending…
 		// (`move` was still being fired after `end`)
+		onEnd()
 		requestAnimationFrame(() => {
 			onEnd()
 			requestAnimationFrame(onEnd)

@@ -1,11 +1,12 @@
+import type { RefObject } from 'preact'
 import { useRef, useCallback, useState, useLayoutEffect } from 'preact/hooks'
 
-export function useDisplayTransition<ElementType extends Element>(toggle: boolean) {
+export function useDisplayTransition<ElementType extends Element>(toggle: boolean, elRef?: RefObject<ElementType>) {
 
-	const ref = useRef<ElementType>(null)
+	const ref = elRef || useRef<ElementType>(null)
 	const [display, setDisplay] = useState<boolean>(toggle)
 	const [transition, setTransition] = useState<string|true|false>(false)
-	const [state, setState] = useState<'in'|'out'|'animateIn'|'animateOut'>(toggle ? 'in' : 'out')
+	const [state, setState] = useState<'in'|'out'|'transitionIn'|'transitionOut'>(toggle ? 'in' : 'out')
 
 	const onEndAnimateIn = useCallback(() => {
 		setState('in')
@@ -26,7 +27,7 @@ export function useDisplayTransition<ElementType extends Element>(toggle: boolea
 		// start animation in
 		if (toggle && display && !transition) {
 			setTransition(true)
-			setState('animateIn')
+			setState('transitionIn')
 			ref.current?.getBoundingClientRect()
 			ref.current?.addEventListener('transitionend', onEndAnimateIn)
 			ref.current?.removeEventListener('transitionend', onEndAnimateOut)
@@ -36,7 +37,7 @@ export function useDisplayTransition<ElementType extends Element>(toggle: boolea
 		// start animation out
 		if (!toggle && display) {
 			setTransition(false)
-			setState('animateOut')
+			setState('transitionOut')
 			ref.current?.addEventListener('transitionend', onEndAnimateOut)
 			ref.current?.removeEventListener('transitionend', onEndAnimateIn)
 			

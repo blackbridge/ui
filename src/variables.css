@@ -10,5 +10,8 @@
 		--ui-input-fontsize--small: 0.85em;
 		--ui-input-fontsize--medium: 1em;
 		--ui-input-fontsize--large: 1.15em;
+
+		--ui-ease-1: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+		--ui-ease-2: cubic-bezier(.24,.97,.4,.96);
 	}
 }

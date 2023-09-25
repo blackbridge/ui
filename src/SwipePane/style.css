@@ -1,14 +1,41 @@
 @layer ui {
 
-	.ui-swipe {
-		transition: all 2s ease-out;
-	}	
-
-	.ui-swipe--animate {
-		background:red;
+	:root {
+		--swipe-pane-width:80%;
+		--swipe-pane-height:100%;
 	}
 
-	.ui-swipe--animateOut {
-		transition-duration: 0.5s;
+	.ui-swipepane__bg {
+		display:block;
+		width:100%;
+		height:100%;
+		position:fixed;
+		top:0; left:0;
+		background:transparent;
+		transition:background 0.3s ease-out;
+	}
+
+	.ui-swipepane__bg--open {
+		background:rgba(0,0,0,0.3);
+	}
+
+	.ui-swipepane {
+		display:block;
+		width:var(--swipe-pane-width);
+		height:var(--swipe-pane-height);
+		background:white;
+		position:fixed;
+		top:0;
+		left:0;
+		z-index:400;
+	}
+
+	.ui-swipepane--right {
+		left:auto;
+		right:0;
+	}
+
+	.ui-swipepane {
+		transition: all 0.3s var(--ui-ease-2);
 	}
 }

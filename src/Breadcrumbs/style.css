@@ -4,15 +4,33 @@
 
     :root {
         --breadcrumb--spacing: 1em;
+        --breadcrumb--size: 0.75em;
+    }
+
+    .ui-breadcrumbs__inner {
+        margin-top: calc(-1 * var(--breadcrumb--spacing));
     }
 
     .ui-breadcrumbs__item {
-        display: inline;
+        display: inline-block;
+        margin-top: var(--breadcrumb--spacing);
     }
 
     .ui-breadcrumbs__item:not(:last-of-type) {
-        padding-right: var(--breadcrumb--spacing);
         margin-right: var(--breadcrumb--spacing);
-        border-right: 1px solid black;
     }
+
+    .ui-breadcrumbs__item:not(:last-of-type)::after {
+        content: "";
+        display: inline-block;
+
+        height: var(--breadcrumb--size); width: var(--breadcrumb--size);
+        margin-left: var(--breadcrumb--spacing);
+
+        background-image: url('./assets/arrow-right.svg');
+        background-repeat: no-repeat;
+		background-size: auto var(--breadcrumb--size);
+        background-position: center center;        
+    }
+
 }

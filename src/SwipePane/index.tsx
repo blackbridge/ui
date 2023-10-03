@@ -122,7 +122,10 @@ export function useDragToCloseSignal<T extends HTMLElement>(
 
 	// get x signal from drag hook
 	const { x } = useDragSignal(node, function onEnd({ x }) {
-		const dragLimit = x.value && (isLeft ? x.value < limit : x.value > -limit)
+		const dragLimit = x.value && (isLeft 
+			? x.value < -limit 
+			: x.value > limit
+		)
 		if (dragLimit) {
 			toggle.value = false
 		} else {

@@ -1,61 +1,45 @@
 import './style.css'
+
 import type { WithElementProps } from '../types.tsx'
-import type { JSX, RefObject } from 'preact'
+import type { JSX } from 'preact'
+import type { Signal } from '@preact/signals'
+
 import classnames from 'classnames'
-import { useState, useRef, useEffect } from 'preact/hooks'
-import { useDisplayTransition } from './../utility/useDisplayTransition.ts'
+import { useSignal, useSignalEffect } from '@preact/signals'
+import { useDisplayTransitionSignal } from './../utility/useDisplayTransitionSignal.ts'
+import { useSignalRef } from './../utility/useSignalRef.ts'
+import { useDragSignal } from './../utility/useDragSignal.ts'
+import { useEscKey } from './../utility/useEscKey.ts'
 
 
-export default function(props: SwipePaneProps): JSX.Element {
-
-	const [show, setShow] = useState(false)
-
-	const { 
-		position = 'left', 
-		// class: className, 
-		// ...attributes 
-	} = props
-
-	useEffect(() => {
-		const escHandler = (event: KeyboardEvent) => (event.key === 'Escape') && setShow(false)
-		window.addEventListener('keyup', escHandler)
-		return () => window.removeEventListener('keyup', escHandler)
-	})
-
+export function SwipePaneExample() {
+	const toggle = useSignal<boolean>(false)
 	return <>
-		<button onClick={() => setShow(show => !show)}>Toggle</button>
-		<SwipePane open={show} position={position} onClose={() => setShow(false)} />
+		<button onClick={() => toggle.value = !toggle.value}>Toggle</button>
+		<SwipePane toggle={toggle} position="left">
+			Menu content
+		</SwipePane>
 	</>
 }
 
 
 type SwipePaneProps = WithElementProps<'div', {
-	open: boolean,
+	toggle: Signal<boolean>,
 	onClose?: (event?: Event) => any,
 	position?: 'left'|'right',
 	class?: HTMLElement['className'],
 }>
 
-
 export function SwipePane(props: SwipePaneProps): JSX.Element {
 
 	const { 
-		open = false,
+		toggle,
 		onClose = () => {},
 		position = 'left', 
 		class: className, 
+		children,
 		...attributes 
 	} = props
-
-	const ref = useRef<HTMLDivElement>(null)
-	const [_, display, transition] = useDisplayTransition<HTMLDivElement>(open, ref)
-
-	const closedTransform = position === 'left' ? '-100%' : '100%'
-	const dragTransform = useDragToClose(ref, {
-		position, 
-		onClose, 
-		limit: 200 
-	})
 
 	const classes = classnames(
 		'ui-swipepane',
@@ -63,117 +47,101 @@ export function SwipePane(props: SwipePaneProps): JSX.Element {
 		className,
 	)
 
-	const style = { 
-		display: display ? '' : 'none',
-		transform: transition 
-			? `translateX(${dragTransform}px)` 
-			: `translateX(${closedTransform})`
-	}
+	const { ref, node } = useSignalRef()
+	const { initialDisplay } = useDragToCloseSignal(node, toggle, { position })
 
 	return <>
-		<BackgroundPane open={open} onClick={onClose} />
+		<BackgroundPane toggle={toggle} onClick={() => toggle.value = false} />
 		<div 
 			ref={ref} 
 			class={classes} 
-			style={style} 
-			{...attributes}
-		>
-			Menu
-		</div>
+			style={{ display: initialDisplay ? '' : 'none' }}
+			{...attributes} 
+		>{children}</div>
 	</>
 }
 
 
 type BackgroundPaneProps = WithElementProps<'div', {
-	open: boolean
+	toggle: Signal<boolean>
 }>
 
 
-export function BackgroundPane({ open, onClick }: BackgroundPaneProps): JSX.Element {
+export function BackgroundPane({ toggle, onClick }: BackgroundPaneProps): JSX.Element {
 
-	const [ref, display, transition] = useDisplayTransition<HTMLDivElement>(open)
-	const backgroundClasses = classnames(
-		'ui-swipepane__bg',
-		transition && 'ui-swipepane__bg--open',
-	)
+	const { ref, node } = useSignalRef()
+	const { initialDisplay } = useDisplayTransitionSignal(node, toggle, ({ node, isOpen }) => {
+		node.classList[isOpen ? 'add' : 'remove']('ui-swipepane__bg--open')
+	})
+
 	return <>
-		{display && <div ref={ref} onClick={onClick} class={backgroundClasses}></div>}
+		<div 
+			ref={ref} 
+			onClick={onClick} 
+			class="ui-swipepane__bg" 
+			style={{ display: initialDisplay ? '' : 'none' }}
+		/>
 	</>
 }
 
 
-type DragOptions = {
-	position: 'left'|'right',
-	onClose: () => any,
-	limit: number
+type DragToCloseOptions = {
+	position?: string,
+	limit?: number
+}
+
+export function useDragToCloseSignal<T extends HTMLElement>(
+	node: Signal<T | null>, 
+	toggle: Signal<boolean>, 
+	options: DragToCloseOptions
+) {
+
+	const { 
+		limit = 100, 
+		position = 'left'
+	} = options
+	const isLeft = position === 'left'
+	const open = '0px'
+	const closed = isLeft ? '-100%' : '100%'
+	const translateX = useSignal<string>(toggle.peek() ? open : closed)
+
+	// toggle translateX value based on display transition signal
+	const { initialDisplay } = useDisplayTransitionSignal(node, toggle, ({ isOpen }) => {
+		translateX.value = isOpen ? open : closed
+	})
+
+	// update transform attr from various signal updates
+	useSignalEffect(() => {
+		if (node.value) node.value.style.transform = `translateX(${translateX.value})`
+	})
+
+	// esc key to close
+	useEscKey(() => {
+		if (toggle.value) toggle.value = false
+	})
+
+	// get x signal from drag hook
+	const { x } = useDragSignal(node, function onEnd({ x }) {
+		const dragLimit = x.value && (isLeft 
+			? x.value < -limit 
+			: x.value > limit
+		)
+		if (dragLimit) {
+			toggle.value = false
+		} else {
+			translateX.value = '0px'
+		}
+	})
+
+	// update translateX value based on drag, with limit
+	useSignalEffect(() => {
+		if (x.value) {
+			const limit = Math[isLeft ? 'min' : 'max'](0, x.value)
+			translateX.value = `${limit}px`
+		}
+	})
+
+	return { translateX, initialDisplay }
 }
 
 
-function useDragToClose<T extends HTMLElement>(
-		elRef: RefObject<T>, 
-		{ 
-			position = 'left', 
-			onClose,
-			limit = 200 
-		}: DragOptions
-	) {
-
-	let [dragStart, setDragStart] = useState<number>(0)
-	let [dragPosition, setDragPosition] = useState<number>(0)
-
-	function start(event:MouseEvent) {
-		if (
-			event.buttons !== 1 ||
-			event.metaKey ||
-			event.altKey ||
-			event.ctrlKey ||
-			event.shiftKey
- 		) return
-		setDragStart(event.clientX)
-	}
-
-	let lastMove: MouseEvent|null = null
-	function move(event:MouseEvent) {
-		if (!dragStart) return
-		if (!lastMove) (requestAnimationFrame || setTimeout)(update)
-		lastMove = event
-	}
-
-	function update() {
-		if (!lastMove || !dragStart) return
-		const pos = lastMove.clientX - dragStart
-		const constrainedPos = (position === 'left') ? Math.min(0, pos) : Math.max(0, pos)
-		setDragPosition(constrainedPos)
-		lastMove = null
-	}
-
-	function end() {
-		if (!dragStart) return
-		if (Math.abs(dragPosition || 0) > limit) onClose()
-		const onEnd = () => {
-			setDragStart(0)
-			setDragPosition(0)
-		}
-		// make doubly sure we're ending…
-		// (`move` was still being fired after `end`)
-		onEnd()
-		requestAnimationFrame(() => {
-			onEnd()
-			requestAnimationFrame(onEnd)
-		})
-	}
-
-	// run effect on all updates and do DOM update directly
-	useEffect(() => {
-		elRef.current?.addEventListener('mousedown', start)
-		window.addEventListener('mousemove', move)
-		window.addEventListener('mouseup', end)
-		return () => {
-			elRef.current?.removeEventListener('mousedown', start)
-			window.removeEventListener('mousemove', move)
-			window.removeEventListener('mouseup', end)
-		}
-	}, [elRef, dragStart, dragPosition])
-
-	return dragPosition
-}

@@ -4,12 +4,14 @@ import classnames from 'classnames'
 import { useState, useRef, useEffect } from 'preact/hooks'
 import { isClient } from '../utility/env.ts'
 import { useIsIntersecting } from '../utility/intersection.ts'
+import defaultPlaceholder from './placeholder-default.svg'
 
 
 type ImageLoadProps = WithElementProps<'img', {
 	onScroll?: boolean,
 	onLoad?: (loaded: boolean) => void,
 	class?: HTMLElement['className'],
+	placeholder?: string,
 }>
 
 
@@ -19,6 +21,7 @@ export default function ImageLoad(props: ImageLoadProps) {
 		onScroll = true, 
 		onLoad = () => {}, 
 		class: className, 
+		placeholder = defaultPlaceholder.src,
 		...attributes 
 	} = props
 
@@ -44,6 +47,9 @@ export default function ImageLoad(props: ImageLoadProps) {
 
 	// lazy loading by default
 	if (!attributes.loading) attributes.loading ='lazy'
+
+	// set default placeholder
+	if (!attributes.src && !attributes.srcset) attributes.src = placeholder
 
 	return <img 
 		ref={ref}

@@ -28,7 +28,7 @@ export function Breadcrumbs(props: BreadcrumbProps): JSX.Element {
 
 	return <>
 			<nav aria-label="Breadcrumb" {...attrs}>
-				<div class="breadcrumbs__inner">
+				<div class="ui-breadcrumbs__inner">
 					{children}
 				</div>
 			</nav>

@@ -5,11 +5,12 @@ import type { JSX } from 'preact'
 import type { Signal } from '@preact/signals'
 
 import classnames from 'classnames'
-import { useSignal, useSignalEffect } from '@preact/signals'
+import { useSignal, useSignalEffect, useComputed } from '@preact/signals'
 import { useDisplayTransitionSignal } from './../utility/useDisplayTransitionSignal.ts'
 import { useSignalRef } from './../utility/useSignalRef.ts'
 import { useDragSignal } from './../utility/useDragSignal.ts'
 import { useEscKey } from './../utility/useEscKey.ts'
+import { useCallback } from 'preact/hooks'
 
 
 export function SwipePaneExample() {
@@ -48,14 +49,14 @@ export function SwipePane(props: SwipePaneProps): JSX.Element {
 	)
 
 	const { ref, node } = useSignalRef()
-	const { initialDisplay } = useDragToCloseSignal(node, toggle, { position })
+	const { visible, initial } = useDragToCloseSignal(node, toggle, { position })
 
 	return <>
 		<BackgroundPane toggle={toggle} onClick={() => toggle.value = false} />
 		<div 
 			ref={ref} 
 			class={classes} 
-			style={{ display: initialDisplay ? '' : 'none' }}
+			style={{ display: initial ? '' : 'none' }}
 			{...attributes} 
 		>{children}</div>
 	</>
@@ -68,18 +69,15 @@ type BackgroundPaneProps = WithElementProps<'div', {
 
 
 export function BackgroundPane({ toggle, onClick }: BackgroundPaneProps): JSX.Element {
-
 	const { ref, node } = useSignalRef()
-	const { initialDisplay } = useDisplayTransitionSignal(node, toggle, ({ node, isOpen }) => {
-		node.classList[isOpen ? 'add' : 'remove']('ui-swipepane__bg--open')
-	})
-
+	const { visible, initial } = useDisplayTransitionSignal(node, toggle)
+	const classes = useComputed(() => visible.value ? 'ui-swipepane__bg ui-swipepane__bg--open' : 'ui-swipepane__bg')
 	return <>
 		<div 
 			ref={ref} 
 			onClick={onClick} 
-			class="ui-swipepane__bg" 
-			style={{ display: initialDisplay ? '' : 'none' }}
+			class={classes}
+			style={{ display: initial ? '' : 'none' }}
 		/>
 	</>
 }
@@ -104,10 +102,11 @@ export function useDragToCloseSignal<T extends HTMLElement>(
 	const open = '0px'
 	const closed = isLeft ? '-100%' : '100%'
 	const translateX = useSignal<string>(toggle.peek() ? open : closed)
+	const { visible, initial } = useDisplayTransitionSignal(node, toggle)
 
-	// toggle translateX value based on display transition signal
-	const { initialDisplay } = useDisplayTransitionSignal(node, toggle, ({ isOpen }) => {
-		translateX.value = isOpen ? open : closed
+	// toggle translateX value when visible state changes
+	useSignalEffect(() => {
+		translateX.value = visible.value ? open : closed	
 	})
 
 	// update transform attr from various signal updates
@@ -141,7 +140,7 @@ export function useDragToCloseSignal<T extends HTMLElement>(
 		}
 	})
 
-	return { translateX, initialDisplay }
+	return { translateX, initial }
 }
 
 

@@ -2,45 +2,83 @@ import './style.css'
 
 import type { WithElementProps } from '../types.tsx'
 import type { JSX, ComponentChildren } from 'preact'
+import type { Signal } from '@preact/signals'
 
 import { useComputed, useSignal } from '@preact/signals'
-import { useDisplayTransitionSignal, useDisplayTransitionHeightSignal } from './../utility/useDisplayTransitionSignal.ts'
+import { useDisplayTransitionHeightSignal } from './../utility/useDisplayTransitionSignal.ts'
 import { useSignalRef } from './../utility/useSignalRef.ts'
 
 
-type AccordionItemProps = {
-	title: string,
-	content?: string,
-	children?: ComponentChildren
-}
-
-type AccordionGroupProps = WithElementProps<'section', {
-	items: Array<AccordionItemProps>
+type AccordionGroupProps = WithElementProps<'div', {
+	items: Array<AccordionProps>,
+	openFirst?: boolean,
+	autoClose?: boolean
 }>
 
 
 export function AccordionGroup(props: AccordionGroupProps): JSX.Element {
-	const { items, ...attributes } = props
+	const { 
+		items, 
+		openFirst = false,
+		autoClose = true,
+		...attributes 
+	} = props
+
+	const withToggle = items.map((item, index) => {
+		const initial = openFirst ? (index === 0 ? true : false) : false
+		const _internalOnOpen = (): any => withToggle.map((item, i) => {
+			if (i !== index) item.open.value = false
+		})
+		return {
+			...item,
+			open: useSignal<boolean>(initial),
+			_internalOnOpen,
+		}
+	})
+
 	return <div class="accordion-group" {...attributes}>
-		{items.map(item => <AccordionItem {...item} />)}
+		{withToggle.map(item => <Accordion {...item} />)}
 	</div>
 }
 
+type AccordionProps = WithElementProps<'div', {
+	title: string,
+	content?: string,
+	open?: Signal<boolean> | boolean,
+	onChange?: (open: boolean) => any,
+	_internalOnOpen?: () => any,
+	children?: ComponentChildren,
+}>
 
-export function AccordionItem(props: AccordionItemProps): JSX.Element {
+export function Accordion(props: AccordionProps): JSX.Element {
 
-	const toggle = useSignal<boolean>(false)
+	if (props.open === undefined) props.open = false
+	const open = typeof props.open === 'boolean' ? useSignal<boolean>(props.open) : props.open
+		
+	const {
+		title,
+		children,
+		content,
+		onChange = () => {},
+		_internalOnOpen = () => {}
+	} = props
+
 	const { ref, node } = useSignalRef()
-
-	const { visible, initial } = useDisplayTransitionHeightSignal(node, toggle)
+	const { visible, initial } = useDisplayTransitionHeightSignal(node, open)
 	const classes = useComputed(() => visible.value ? 'accordion accordion--open' : 'accordion')
 
+	const onClick = () => {
+		open.value = !open.value
+		onChange(open.value)
+		if (open.value) _internalOnOpen()
+	}
+
 	return <div class={classes}>
-		<div class="accordion__title" onClick={() => toggle.value = !toggle.value}>
-			{props.title}
+		<div class="accordion__title" onClick={onClick}>
+			{title}
 		</div>
 		<div ref={ref} class="accordion__content" style={initial ? '' : 'display:none'}>
-			<div class="accordion__content__inner">{props.children || props.content}</div>
+			<div class="accordion__content__inner">{content || children}</div>
 		</div>
 	</div>
 }

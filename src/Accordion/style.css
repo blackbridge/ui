@@ -1,0 +1,16 @@
+@layer ui {
+	.accordion__title {
+		border:1px solid black;
+		padding:0.3em;
+	}
+	.accordion__content {
+		overflow:hidden;
+		transition:all 0.5s var(--ui-ease-1);
+		transform:translateX(-1em);
+		height:0px;
+	}
+	.accordion--open .accordion__content {
+		transform:translateX(0em);
+		height:auto;
+	}
+}

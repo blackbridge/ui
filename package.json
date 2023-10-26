@@ -19,6 +19,7 @@
     "./SwipePane": "./src/SwipePane/index.tsx",
     "./SplitText": "./src/SplitText/index.tsx",
     "./Breadcrumbs": "./src/Breadcrumbs/index.tsx",
+    "./Accordion": "./src/Accordion/index.tsx",
     "./MediaText": "./src/MediaText/index.tsx"
   },
   "dependencies": {

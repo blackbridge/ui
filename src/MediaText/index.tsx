@@ -38,7 +38,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 	return <>
 			<div class={classes}>
 				<ImageLoad class="ui-mediatext__media col-6" src={image} />
-				<div class="ui-mediatext__content  col-6">
+				<div class="ui-mediatext__content col-6">
 					{children}
 				</div>
 			</div>

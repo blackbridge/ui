@@ -1,5 +1,13 @@
 @import './../variables.css';
 
 @layer ui {
-
+    @media (min-width: 55em) {
+        .ui-mediatext--right .ui-mediatext__media {
+            order: 2;
+        }
+    
+        .ui-mediatext--right .ui-mediatext__content{
+            order: 1;
+        }
+    }
 }

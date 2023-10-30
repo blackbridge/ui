@@ -4,7 +4,6 @@ import '../utility.css'
 
 import type { JSX, ComponentChildren } from "preact"
 import classnames from 'classnames'
-import ImageLoad from '../ImageLoad/index.tsx'
 
 type MediaTextProps = {
 	class?: HTMLElement['className'],
@@ -37,7 +36,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 
 	return <>
 			<div class={classes}>
-				<ImageLoad class="ui-mediatext__media col-6" src={image} />
+				<img class="ui-mediatext__media col-6" src={image} />
 				<div class="ui-mediatext__content col-6">
 					{children}
 				</div>

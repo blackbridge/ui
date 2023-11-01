@@ -26,7 +26,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 	} = props
 
 	const classes = classnames(
-		'ui-mediatext grid grid--gutter',
+		'ui-mediatext grid',
 		imagePosition && `ui-mediatext--${imagePosition}`,
 		align && `flex-${align}`,
 		className,
@@ -36,9 +36,13 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 
 	return <>
 			<div class={classes}>
-				<img class="ui-mediatext__media col-6" src={image} />
-				<div class="ui-mediatext__content col-6">
-					{children}
+				<div class="ui-mediatext__media">
+					<img src={image} class="object-fit" />
+				</div>
+				<div class="ui-mediatext__content">
+					<div class="ui-mediatext__content__inner">
+						{children}
+					</div>
 				</div>
 			</div>
 		</>

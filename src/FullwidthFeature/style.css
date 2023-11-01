@@ -3,7 +3,7 @@
 @layer ui {
     .ui-fullwidth-feature {
         position: relative;
-        min-height: 80vh;
+        padding: 15em 0;
     }
 
     .ui-fullwidth-feature__content  {
@@ -12,8 +12,12 @@
     }
 
     .ui-fullwidth-feature__overlay {
-        background: rgba(0,0,0,0.5);
+        position: absolute;
         z-index: 5;
+
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
     }
     
     .ui-fullwidth-feature__media {}

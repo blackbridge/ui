@@ -24,7 +24,7 @@ export default function FullwidthFeature(props: FullwidthFeatureProps): JSX.Elem
 	} = props
 
 	const classes = classnames(
-		'ui-fullwidth-feature grid flex-center',
+		'ui-fullwidth-feature',
 		className,
 	)
 
@@ -33,11 +33,9 @@ export default function FullwidthFeature(props: FullwidthFeatureProps): JSX.Elem
 	return <>
 			<div class={classes}>
 				<div class="ui-fullwidth-feature__content">
-					<Container>
-						{children}
-					</Container>
+					{children}
 				</div>
-				{overlay && <div class="ui-fullwidth-feature__overlay object-fit--absolute"></div>}
+				{overlay && <div class="ui-fullwidth-feature__overlay"></div>}
 				<img class="ui-fullwidth-feature__media object-fit--absolute" src={image} />
 			</div>
 		</>

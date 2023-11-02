@@ -20,7 +20,9 @@
     "./SplitText": "./src/SplitText/index.tsx",
     "./Breadcrumbs": "./src/Breadcrumbs/index.tsx",
     "./Accordion": "./src/Accordion/index.tsx",
-    "./MediaText": "./src/MediaText/index.tsx"
+    "./MediaText": "./src/MediaText/index.tsx",
+    "./FullwidthFeature": "./src/FullwidthFeature/index.tsx",
+    "./Card": "./src/Card/index.tsx"
   },
   "dependencies": {
     "@preact/signals": "^1.2.1",

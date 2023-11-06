@@ -22,7 +22,8 @@
     "./Accordion": "./src/Accordion/index.tsx",
     "./MediaText": "./src/MediaText/index.tsx",
     "./FullwidthFeature": "./src/FullwidthFeature/index.tsx",
-    "./Card": "./src/Card/index.tsx"
+    "./Card": "./src/Card/index.tsx",
+    "./SocialIcon": "./src/SocialIcon/index.tsx"
   },
   "dependencies": {
     "@preact/signals": "^1.2.1",

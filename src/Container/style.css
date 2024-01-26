@@ -1,15 +1,22 @@
-
-
-.ui-container {
-	max-width:var(--page-width-medium);
+.ui-container,
+.ui-container--small,
+.ui-container--large {
+	width: 90vw;
 	margin-left:auto;
 	margin-right:auto;
 }
 
-.ui-container--small {
-	max-width:var(--page-width-small);
-}
+@media (min-width: 55em) {
+	.ui-container {
+		max-width:var(--page-width-medium);
 
-.ui-container--large {
-	max-width:var(--page-width-large);
+	}
+
+	.ui-container--small {
+		max-width:var(--page-width-small);
+	}
+
+	.ui-container--large {
+		max-width:var(--page-width-large);
+	}
 }

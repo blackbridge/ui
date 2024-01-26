@@ -1,0 +1,20 @@
+@import './../variables.css';
+
+@layer ui {
+
+    .ui-card {
+        text-decoration: none;
+    }
+
+    .ui-card__media {
+        position: relative;
+        min-height: 13em;
+    }
+
+    @media (min-width: 55em) {
+        .ui-card__media {
+            min-height: 16em;
+        } 
+    }
+
+}

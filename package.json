@@ -21,7 +21,10 @@
     "./Breadcrumbs": "./src/Breadcrumbs/index.tsx",
     "./Accordion": "./src/Accordion/index.tsx",
     "./MediaText": "./src/MediaText/index.tsx",
-    "./TestLess": "./src/TestLess/index.tsx"
+    "./TestLess": "./src/TestLess/index.tsx",
+    "./FullwidthFeature": "./src/FullwidthFeature/index.tsx",
+    "./Card": "./src/Card/index.tsx",
+    "./SocialIcon": "./src/SocialIcon/index.tsx"
   },
   "dependencies": {
     "classnames": "^2.3.2"

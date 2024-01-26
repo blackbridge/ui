@@ -13,12 +13,12 @@
         
     .grid--gutter-x, .grid--gutter {
         margin-left:calc(var(--grid-gutter) * -1);
-        [class*=col-] { padding-left:var(--grid-gutter) }
+        > * { padding-left:var(--grid-gutter) }
     }
     
     .grid--gutter-y, .grid--gutter {
         margin-top:calc(var(--grid-gutter) * -1);
-        [class*=col-] { padding-top:var(--grid-gutter) }
+        > * { padding-top:var(--grid-gutter) }
     }
 
     [class*=col-] { 

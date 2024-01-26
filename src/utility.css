@@ -47,45 +47,29 @@
 .block, .show { display:block !important }
 .flex { display:flex !important }
 
-/* .for-breakpoints({
-    .hide\@@{breakpoint} { display:none !important }
-    .inline\@@{breakpoint} { display:inline !important }
-    .inline-block\@@{breakpoint} { display:inline-block !important }
-    .block\@@{breakpoint}, .show\@@{breakpoint} { display:block !important }
-    .flex\@@{breakpoint} { display:flex !important }
-}); */
-
 
 /* container */
 
-.first > :first-child { margin-top:0 !important }
-.last > :last-child { margin-bottom:0 !important }
-
-.first-last {
-	> :first-child { margin-top:0 !important }
-	> :last-child { margin-bottom:0 !important }
-}
+.first > :first-child, .first-last > :first-child { margin-top:0 !important }
+.last > :last-child, .first-last > :last { margin-bottom:0 !important }
 
 
 /* object fit */
 
-.object-fit, .object-fit--cover {
+.object-fit, 
+.object-fit--cover
+.object-fit--contain,
+.object-fit--absolute {
 	object-fit:cover;
 	object-position:50% 50%;
 	width:100%; height:100%;
 }
 
 .object-fit--contain {
-	&:extend(.object-fit);
 	object-fit:contain;
 }
 
-.object-fit--absolute {
-	&:extend(.object-fit);
-	&:extend(.absolute-fit);
-}
-
-.absolute-fit {
+.object-fit--absolute, .absolute-fit {
 	position: absolute;
 	top:0; right:0; bottom:0; left:0;
 }

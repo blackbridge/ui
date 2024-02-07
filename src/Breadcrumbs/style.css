@@ -7,8 +7,15 @@
         --breadcrumb--size: 0.75em;
     }
 
+
     .ui-breadcrumbs__inner {
         margin-top: calc(-1 * var(--breadcrumb--spacing));
+        white-space: nowrap;
+        overflow: scroll;
+    }
+
+    .ui-breadcrumbs__inner::-webkit-scrollbar {
+        display: none;
     }
 
     .ui-breadcrumbs__item {

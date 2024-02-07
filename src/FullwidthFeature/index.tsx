@@ -36,7 +36,7 @@ export default function FullwidthFeature(props: FullwidthFeatureProps): JSX.Elem
 					{children}
 				</div>
 				{overlay && <div class="ui-fullwidth-feature__overlay"></div>}
-				<img class="ui-fullwidth-feature__media object-fit--absolute" src={image} />
+				<img class="ui-fullwidth-feature__media object-fit--absolute object-fit--cover" src={image} />
 			</div>
 		</>
 		

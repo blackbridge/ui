@@ -40,7 +40,7 @@ export default function Card(props: CardProps): JSX.Element {
 
 	const content = <>
 			<div class="ui-card__media">
-				<img class="object-fit--absolute" src={image} />
+				<img class="object-fit--absolute object-fit--cover" src={image} />
 			</div>
 			<div class="ui-card__content">
 				{children}

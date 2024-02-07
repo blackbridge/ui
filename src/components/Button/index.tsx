@@ -1,5 +1,5 @@
 import type { JSX, AnyComponent, ComponentChildren } from "preact"
-import type { WithElementProps } from '../types.tsx'
+import type { WithElementProps } from '../../types.tsx'
 import './style.css'
 import classnames from 'classnames'
 

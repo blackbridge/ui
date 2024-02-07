@@ -1,4 +1,4 @@
-import type { WithElementProps, EventHandler } from '../types.tsx'
+import type { WithElementProps, EventHandler } from '../../types.tsx'
 import type { JSX } from 'preact'
 import classnames from 'classnames'
 import './style.css'

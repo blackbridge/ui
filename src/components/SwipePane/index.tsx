@@ -1,15 +1,15 @@
 import './style.css'
 
-import type { WithElementProps } from '../types.tsx'
+import type { WithElementProps } from '../../types.tsx'
 import type { JSX } from 'preact'
 import type { Signal } from '@preact/signals'
 
 import classnames from 'classnames'
 import { useSignal, useSignalEffect, useComputed } from '@preact/signals'
-import { useDisplayTransitionSignal } from './../utility/useDisplayTransitionSignal.ts'
-import { useSignalRef } from './../utility/useSignalRef.ts'
-import { useDragSignal } from './../utility/useDragSignal.ts'
-import { useEscKey } from './../utility/useEscKey.ts'
+import { useDisplayTransitionSignal } from '../../utility/useDisplayTransitionSignal.ts'
+import { useSignalRef } from '../../utility/useSignalRef.ts'
+import { useDragSignal } from '../../utility/useDragSignal.ts'
+import { useEscKey } from '../../utility/useEscKey.ts'
 import { useCallback } from 'preact/hooks'
 
 

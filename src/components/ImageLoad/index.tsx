@@ -1,9 +1,9 @@
 import './style.css'
-import type { WithElementProps } from '../types.tsx'
+import type { WithElementProps } from '../../types.tsx'
 import classnames from 'classnames'
 import { useState, useRef, useEffect } from 'preact/hooks'
-import { isClient } from '../utility/env.ts'
-import { useIsIntersecting } from '../utility/intersection.ts'
+import { isClient } from '../../utility/env.ts'
+import { useIsIntersecting } from '../../utility/intersection.ts'
 import defaultPlaceholder from './placeholder-default.svg'
 
 

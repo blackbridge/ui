@@ -1,6 +1,6 @@
 import './style.css'
-import '../grid/grid.css'
-import '../utility.css'
+import '../../global/grid.less'
+import '../../utility.css'
 
 import type { JSX, ComponentChildren } from "preact"
 import classnames from 'classnames'
@@ -26,7 +26,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 	} = props
 
 	const classes = classnames(
-		'ui-mediatext grid',
+		'ui-mediatext grid grid--gutter',
 		imagePosition && `ui-mediatext--${imagePosition}`,
 		align && `flex-${align}`,
 		className,

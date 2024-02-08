@@ -1,0 +1,85 @@
+/* 
+    for 
+    provides @rules with @i.
+*/
+
+.for(@number, @rules) {
+    & {
+        .loop(@number);
+        .loop(@i) when (@i > 0) {
+            .loop((@i - 1));
+            @rules();
+        }
+    }   
+}
+
+/*
+    for-breakpoints
+    repeats @rules per breakpoint, and provides the following vars to @rules:
+    • @breakpoint – name of breakpoint, e.g. mobile
+    • @width – width of breakpoint, e.g. 60em
+*/
+
+// .for-breakpoints(@rules) {
+//     & {
+//         .loop(length(@breakpoints));
+//         .loop(@for-breakpoints-i) when (@for-breakpoints-i > 0) {
+//             .loop((@for-breakpoints-i - 1));
+//             @breakpoint: e(extract(@breakpoints, @for-breakpoints-i));
+//             @width: @@breakpoint;
+//             @media(min-width:@width) {
+//                 @rules();
+//             }
+//         }
+//     }
+// }
+
+/*
+    for-n-per-breakpoint
+    repeats @rules @n times within each breakpoint
+    provides:
+    • @i – iteration value of @n
+    • @breakpoint – name of breakpoint, e.g. mobile
+    • @width – width of breakpoint, e.g. 60em
+*/
+
+// .for-n-per-breakpoint(@n, @rules) {
+//     .for-breakpoints({
+//         .for(@n, @rules);
+//     });
+// }
+
+
+@grid-columns: 12;
+
+
+.grid {
+	display:flex;
+	flex-wrap:wrap;
+	--grid-gutter:2rem;
+}
+
+.grid--small { --grid-gutter:1rem; }
+
+// gutter
+.grid--gutter-x, .grid--gutter {
+	margin-left:calc(var(--grid-gutter) * -1);
+	[class*=col-] { padding-left:var(--grid-gutter) }
+}
+
+.grid--gutter-y, .grid--gutter {
+	margin-top:calc(var(--grid-gutter) * -1);
+	[class*=col-] { padding-top:var(--grid-gutter) }
+}
+
+// .col-x classes
+[class*=col-] { width:100% }
+
+.for(@grid-columns, {
+	.col-@{i} { width: (100% / @grid-columns * @i) }
+});
+
+// // .col-x@breakpoint classes
+// .for-n-per-breakpoint(@grid-columns, {
+// 	.col-@{i}\@@{breakpoint} { width: (100% / @grid-columns * @i) }
+// });

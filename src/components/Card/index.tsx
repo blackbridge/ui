@@ -1,5 +1,5 @@
 import './style.css'
-import '../grid/grid.css'
+import '../../global/grid.less'
 import '../utility.css'
 
 import type { JSX, ComponentChildren } from "preact"

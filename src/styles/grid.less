@@ -1,0 +1,36 @@
+@import './mixins.less';
+
+
+@grid-columns: 12;
+
+.grid {
+	display:flex;
+	flex-wrap:wrap;
+	--grid-gutter:2rem;
+}
+
+// gutter
+.grid--gutter-x, .grid--gutter {
+	margin-left:calc(var(--grid-gutter) * -1);
+	[class*=col-] { padding-left:var(--grid-gutter) }
+}
+
+.grid--gutter-y, .grid--gutter {
+	margin-top:calc(var(--grid-gutter) * -1);
+	[class*=col-] { padding-top:var(--grid-gutter) }
+}
+
+// .col-x classes
+[class*=col-] { 
+	width:100%; 
+	box-sizing: border-box;
+}
+
+.for(@grid-columns, {
+	.col-@{i} { width: (100% / @grid-columns * @i) }
+});
+
+// .col-x@breakpoint classes
+.for-n-per-breakpoint(@grid-columns, {
+	.col-@{i}\@@{breakpoint} { width: (100% / @grid-columns * @i) }
+});

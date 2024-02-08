@@ -1,0 +1,80 @@
+@import './breakpoints.less';
+
+.antialias() {
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.ellipsis() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clearfix() {
+    *zoom:1; 
+    &:before, 
+    &:after { 
+        content:""; 
+        display:table; 
+    } 
+    &:after { 
+        clear:both;
+    }
+}
+
+
+/* 
+    for 
+    provides @rules with @i.
+*/
+
+.for(@number, @rules) {
+    & {
+        .loop(@number);
+        .loop(@i) when (@i > 0) {
+            .loop((@i - 1));
+            @rules();
+        }
+    }   
+}
+
+
+/*
+    for-breakpoints
+    repeats @rules per breakpoint, and provides the following vars to @rules:
+    • @breakpoint – name of breakpoint, e.g. mobile
+    • @width – width of breakpoint, e.g. 60em
+*/
+
+.for-breakpoints(@rules) {
+    & {
+        .loop(length(@breakpoints));
+        .loop(@for-breakpoints-i) when (@for-breakpoints-i > 0) {
+            .loop((@for-breakpoints-i - 1));
+            @breakpoint: e(extract(@breakpoints, @for-breakpoints-i));
+            @width: @@breakpoint;
+            @media(min-width:@width) {
+                @rules();
+            }
+        }
+    }
+}
+
+
+/*
+    for-n-per-breakpoint
+    repeats @rules @n times within each breakpoint
+    provides:
+    • @i – iteration value of @n
+    • @breakpoint – name of breakpoint, e.g. mobile
+    • @width – width of breakpoint, e.g. 60em
+*/
+
+.for-n-per-breakpoint(@n, @rules) {
+    .for-breakpoints({
+        .for(@n, @rules);
+    });
+}

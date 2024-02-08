@@ -1,0 +1,26 @@
+
+// breakpoints
+
+@x-small: 25em;
+@small: 38em;
+@medium: 55em;
+@large: 80em;
+@x-large: 100em;
+
+
+// breakpoint-max sizes
+// · used to stop the 1px overlay when doing `@media (max-width:@breakpoint) {}`
+// · when using max-width breakpoints, use the `@max-breakpoint` version.
+
+@breakpoint-round: 0.01em;
+@max-x-small: (@x-small - @breakpoint-round);
+@max-small: (@small - @breakpoint-round);
+@max-medium: (@medium - @breakpoint-round);
+@max-large: (@large - @breakpoint-round);
+@max-x-large: (@x-large - @breakpoint-round);
+
+
+// list out all breakpoints that breakpoint mixins should loops over (e.g. the grid system)
+// · order @breakpoints from smallest to largest.
+
+@breakpoints: 'x-small', 'small', 'medium', 'large', 'x-large';

@@ -21,7 +21,9 @@ export default function Container(props: ContainerProps): JSX.Element {
 		(size ? `ui-container--${size}` : null)
 	)
 
-	return <section class={classes} {...attributes}>
-		{children}
+	return <section {...attributes}>
+		<div class={classes}>
+			{children}
+		</div>
 	</section>
 }

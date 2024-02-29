@@ -24,6 +24,7 @@
     "./TestLess": "./src/components/TestLess/index.tsx",
     "./FullwidthFeature": "./src/components/FullwidthFeature/index.tsx",
     "./Card": "./src/components/Card/index.tsx",
+    "./IconCard": "./src/components/IconCard/index.tsx",
     "./SocialIcon": "./src/components/SocialIcon/index.tsx"
   },
   "dependencies": {

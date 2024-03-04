@@ -22,7 +22,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 		children,
 		image,
 		imagePosition = 'left',
-		align = 'center',
+		align,
 		breakpoint = 'medium',
 		//media width, content width
 		...attributes

@@ -75,8 +75,11 @@ export function Accordion(props: AccordionProps): JSX.Element {
 	}
 
 	return <div class={classes}>
-		<div class="accordion__title" onClick={onClick}>
-			{title}
+		<div class="accordion__button" onClick={onClick}>
+			<div class="accordion__title">{title}</div>
+			<div class="accordion__icon">
+				<div class="accordion__icon__inner"></div>
+			</div>
 		</div>
 		<div ref={ref} class="accordion__content" style={initial ? '' : 'display:none'}>
 			<div class="accordion__content__inner">{content || children}</div>

@@ -7,6 +7,7 @@
 .accordion__button {
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 
 	background: #F5F5F5;
 	padding: var(--accordion-padding);

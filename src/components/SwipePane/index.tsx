@@ -6,11 +6,10 @@ import type { Signal } from '@preact/signals'
 
 import classnames from 'classnames'
 import { useSignal, useSignalEffect, useComputed } from '@preact/signals'
-import { useDisplayTransitionSignal } from '../../utility/useDisplayTransitionSignal.ts'
-import { useSignalRef } from '../../utility/useSignalRef.ts'
-import { useDragSignal } from '../../utility/useDragSignal.ts'
-import { useEscKey } from '../../utility/useEscKey.ts'
-import { useCallback } from 'preact/hooks'
+import { useDisplayTransitionSignal } from '../../hooks/useDisplayTransitionSignal.ts'
+import { useSignalRef } from '../../hooks/useSignalRef.ts'
+import { useDragSignal } from '../../hooks/useDragSignal.ts'
+import { useEscKey } from '../../hooks/useEscKey.ts'
 
 
 export function SwipePaneExample() {

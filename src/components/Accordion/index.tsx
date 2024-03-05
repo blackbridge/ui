@@ -6,8 +6,8 @@ import type { JSX, ComponentChildren } from 'preact'
 import type { Signal } from '@preact/signals'
 
 import { useComputed, useSignal } from '@preact/signals'
-import { useDisplayTransitionHeightSignal } from '../../utility/useDisplayTransitionSignal.ts'
-import { useSignalRef } from '../../utility/useSignalRef.ts'
+import { useDisplayTransitionHeightSignal } from '../../hooks/useDisplayTransitionSignal.ts'
+import { useSignalRef } from '../../hooks/useSignalRef.ts'
 
 
 type AccordionGroupProps = WithElementProps<'div', {

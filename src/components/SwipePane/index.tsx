@@ -10,7 +10,6 @@ import { useDisplayTransitionSignal } from '../../hooks/useDisplayTransitionSign
 import { useSignalRef } from '../../hooks/useSignalRef.ts'
 import { useDragSignal } from '../../hooks/useDragSignal.ts'
 import { useEscKey } from '../../hooks/useEscKey.ts'
-import { useCallback } from 'preact/hooks'
 
 
 export function SwipePaneExample() {

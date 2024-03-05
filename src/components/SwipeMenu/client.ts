@@ -1,0 +1,125 @@
+import { displayTransition, onDrag, onEscKey } from '../../utility/dom.ts'
+import type { XYPos } from '../../utility/dom.ts'
+
+
+class SwipeMenu extends HTMLElement {
+
+	static observedAttributes = ["open"]
+	main: HTMLDivElement
+	bg: HTMLDivElement
+	displayMain: ReturnType<typeof displayTransition>
+	displayBg: ReturnType<typeof displayTransition>
+	removeDragListener: ReturnType<typeof onDrag>
+	removeEscKeyListener: ReturnType<typeof onEscKey>
+	previousFocus: null | Element = null
+
+	constructor() {
+		super()
+
+		// get elements
+		const component = this
+		this.main = this.querySelector('.ui-swipe-menu__main') as HTMLDivElement
+		this.bg = this.querySelector('.ui-swipe-menu__bg') as HTMLDivElement
+
+		// setup display transition toggle
+		this.displayMain = displayTransition(this.main, toggle)
+		this.displayBg = displayTransition(this.bg, toggle)
+
+		// setup drag
+		const limit = 150
+		const isLeft = this.getAttribute('position') === 'left'
+		const closed = isLeft ? '-100%' : '100%'
+
+		this.removeDragListener = onDrag(this.main, onMove, onEnd)
+
+		// setup close events
+		this.removeEscKeyListener = onEscKey(close)
+		this.bg.addEventListener('click', () => close())
+		
+		// handlers
+		function toggle(node: HTMLDivElement, state: boolean) {
+			node.classList[state ? 'add' : 'remove']('open')
+		}
+
+		function onMove(node: HTMLDivElement, { x }: XYPos) {			
+			const limit = Math[isLeft ? 'min' : 'max'](0, x)
+			node.style.transform = `translateX(${limit}px)`
+			node.style.transition = 'none'
+		}
+
+		function onEnd(node: HTMLDivElement, { x }: XYPos) {
+			node.style.transition = ''
+			const dragLimit = x && (isLeft 
+				? x < -limit 
+				: x > limit
+			)
+			if (dragLimit) {
+				node.style.transform = `translateX(${closed})`
+				close()
+			} else {
+				node.style.transform = ''
+			}
+		}
+
+		// helpers
+		function close() {
+			component.removeAttribute('open')
+		}
+	}
+
+	attributeChangedCallback(name: string, _: string, newValue: string) {
+		if (name !== 'open') return
+		const isOpen = newValue === ''
+		
+		// open or close panes
+		this.displayMain(isOpen)
+		this.displayBg(isOpen)
+
+		// lock/unlock window scroll
+		document.documentElement.style.overflow = isOpen ? 'hidden' : ''
+
+		// save previous focus and go back to it on close
+		if (isOpen) {
+			this.previousFocus = document.activeElement
+		} else {
+			if (this.previousFocus) {
+				this.previousFocus.focus()
+			}
+		}
+
+		// send event when changing state
+    	this.dispatchEvent(new CustomEvent(isOpen ? 'open' : 'close', { 
+			bubbles: true, detail: this,
+    	}))
+	}
+
+	disconnectedCallback() {
+		this.removeDragListener()
+		this.removeEscKeyListener()
+	}
+}
+
+customElements.define('swipe-menu', SwipeMenu)
+
+
+
+
+let isOpen = false
+const button = document.querySelector('burger-nav')
+const nav = document.querySelector('swipe-menu')
+if (button && nav) {
+	button.addEventListener('click', () => {
+		if (isOpen) {
+			button.removeAttribute('open')
+			nav.removeAttribute('open')
+			isOpen = false
+		} else {
+			button.setAttribute('open', '')
+			nav.setAttribute('open', '')
+			isOpen = true
+		}
+	})
+	nav.addEventListener('close', () => {
+		isOpen = false
+	})
+}

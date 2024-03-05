@@ -1,5 +1,9 @@
 @import '../../styles/mixins.less';
 
+:root {
+    --container-padding: calc((100vw - var(--page-width-large)) / 2);
+}
+
 .for-breakpoints({
     .row-reverse\@@{breakpoint} { flex-direction: row-reverse }
 });
@@ -7,3 +11,16 @@
 .ui-mediatext__media__inner {
     min-height: 25em;
 }
+
+
+/* Full width */
+
+.ui-mediatext--fullwidth .ui-mediatext__content__inner {
+    padding: 2em;
+    padding-right: var(--container-padding);
+}
+
+.ui-mediatext--fullwidth.ui-mediatext--flip .ui-mediatext__content__inner {
+    padding-left: var(--container-padding);
+}
+

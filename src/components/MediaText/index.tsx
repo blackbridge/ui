@@ -11,6 +11,8 @@ type MediaTextProps = {
 	image?: string,
 	imagePosition?: 'left'|'right',
 	breakpoint?: 'small'|'medium'|'large'|'x-large',
+	fullwidth?: boolean,
+	gutter?: boolean,
 	align?: 'start'|'center'|'end',
 	children?: ComponentChildren
 }
@@ -24,14 +26,18 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 		imagePosition = 'left',
 		align,
 		breakpoint = 'medium',
+		gutter = false,
+		fullwidth = false,
 		//media width, content width
 		...attributes
 	} = props
 
 	const classes = classnames(
-		'ui-mediatext grid grid--gutter',
-		imagePosition === 'right' && `row-reverse@${breakpoint}`,
+		'ui-mediatext grid',
 		align && `flex-${align}`,
+		gutter && `grid--gutter`,
+		fullwidth && `ui-mediatext--fullwidth`,
+		imagePosition === 'right' && `ui-mediatext--flip row-reverse@${breakpoint}`,
 		className,
 	)
 

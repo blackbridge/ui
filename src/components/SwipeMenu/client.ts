@@ -83,14 +83,11 @@ class SwipeMenu extends HTMLElement {
 		if (isOpen) {
 			this.previousFocus = document.activeElement
 		} else {
-			if (this.previousFocus) {
-				this.previousFocus.focus()
-			}
+			this.previousFocus?.focus()
 		}
 
-		// send event when changing state
-    	this.dispatchEvent(new CustomEvent(isOpen ? 'open' : 'close', { 
-			bubbles: true, detail: this,
+    	this.dispatchEvent(new CustomEvent('change', { 
+			bubbles: true, detail: isOpen,
     	}))
 	}
 

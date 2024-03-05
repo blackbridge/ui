@@ -11,6 +11,7 @@
 	background:var(--swipe-menu-background, white);
 	width:var(--swipe-menu-width, 80vw); 
 	height:var(--swipe-menu-height, 100vh);
+	padding:3em;
 	transform:translate(-100%, 0);
 	transition: transform 0.3s var(--ui-ease-2);
 }

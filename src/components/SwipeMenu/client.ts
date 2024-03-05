@@ -54,8 +54,9 @@ class SwipeMenu extends HTMLElement {
 				: x > limit
 			)
 			if (dragLimit) {
-				node.style.transform = `translateX(${closed})`
 				close()
+				node.style.transform = ``
+				
 			} else {
 				node.style.transform = ''
 			}

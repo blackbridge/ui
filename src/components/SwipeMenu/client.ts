@@ -100,26 +100,3 @@ class SwipeMenu extends HTMLElement {
 }
 
 customElements.define('swipe-menu', SwipeMenu)
-
-
-
-
-let isOpen = false
-const button = document.querySelector('burger-nav')
-const nav = document.querySelector('swipe-menu')
-if (button && nav) {
-	button.addEventListener('click', () => {
-		if (isOpen) {
-			button.removeAttribute('open')
-			nav.removeAttribute('open')
-			isOpen = false
-		} else {
-			button.setAttribute('open', '')
-			nav.setAttribute('open', '')
-			isOpen = true
-		}
-	})
-	nav.addEventListener('close', () => {
-		isOpen = false
-	})
-}

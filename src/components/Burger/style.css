@@ -1,65 +1,82 @@
 
-.burger-nav {
-    position: relative;
-    width: 33px; height: 22px;
-    cursor: pointer;
+/* use integer pixel 
+ values for best results */
+
+:root {
+	--burger-line-width:30px;
+    --burger-line-height:3px;
+    --burger-line-space:7px;
+	--burger-height: calc(
+		var(--burger-line-height) * 3 + 
+		var(--burger-line-space) * 2
+	);
+	--burger-color: black;
 }
 
-
-.burger-nav span {
-    width: 100%;
-    height: 2px;
-    background-color: #000;
-    display: block;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    transition: all 0.3s ease-in-out;
+burger-button {
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
 
-.burger-nav span:nth-child(1) {
+.ui-burger {
+	display:block;
+    position:relative;
+    width:var(--burger-line-width);
+    height:var(--burger-height);
+    cursor:pointer;
+    padding:0;
+    border:0;
+    background:0;
+}
+
+.ui-burger__top,
+.ui-burger__patty,
+.ui-burger__bottom {
+    width:var(--burger-line-width);
+    height:var(--burger-line-height);
+    display:block;
+    position:absolute;
+    left:0;
+    background-color: var(--burger-color);
+}
+
+.ui-burger__top {
+	top:0;
+}
+
+.ui-burger__patty {
     position: absolute;
-    top: 0;
+    top: calc(50% - calc(var(--burger-line-height)/2));
 }
 
-.burger-nav span:nth-child(2) {
+.ui-burger__bottom {
     position: absolute;
-    top: calc(50% - 1px);
+    bottom: 0;
 }
 
-.burger-nav span:nth-child(3) {
-    position: absolute;
-    top: calc(100% - 1px);
+.ui-burger, .ui-burger > span {
+	transition: all 0.3s var(--ui-ease-2, ease-in-out);
 }
 
-.burger-nav.open span:nth-child(2) {
-    opacity: 0;
+burger-button[open] .ui-burger {
+	transform:rotate(0deg);
 }
 
-.burger-nav.open span {
-    background: #000;
-}
-
-.burger-nav.open span:nth-child(1) ,
-.burger-nav.open span:nth-child(3) {
-    top: calc(50% - 1px);
-    top: 11px;
-}
-
-.burger-nav.open span:nth-child(1) {
+burger-button[open] .ui-burger__patty {
     transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg); 
 }
 
-.burger-nav.open span:last-child {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
+burger-button[open] .ui-burger__top,
+burger-button[open] .ui-burger__bottom {
+    top: calc(50% - calc(var(--burger-line-height)/2));
+}
+
+burger-button[open] .ui-burger__top {
+    transform: rotate(135deg);
+}
+
+burger-button[open] .ui-burger__bottom {
+    transform: rotate(135deg);
+    opacity:0;
 }

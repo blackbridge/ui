@@ -28,7 +28,8 @@
     "./SwipePane": "./src/components/SwipePane/index.tsx",
     "./TestLess": "./src/components/TestLess/index.tsx",
     "./TextArea": "./src/components/TextArea/index.tsx",
-    "./TextInput": "./src/components/TextInput/index.tsx"
+    "./TextInput": "./src/components/TextInput/index.tsx",
+    "./VideoPoster": "./src/components/VideoPoster/index.tsx"
   },
   "dependencies": {
     "classnames": "^2.3.2"

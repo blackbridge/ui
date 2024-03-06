@@ -1,0 +1,20 @@
+@layer ui {
+	.ui-video-poster {
+		width:100%;
+		position:relative;
+		padding-bottom:56.25%;
+		background:rgba(0,0,0,0.1);
+	}
+
+	.ui-video-poster__image {
+		position:absolute;
+		top:0; left:0;
+		width:100%; height:100%;
+	}
+
+	.ui-video-poster__button {
+		position:absolute;
+		top:50%; left:50%;
+		transform:translate(-50%, -50%);
+	}
+}

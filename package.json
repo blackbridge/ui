@@ -26,6 +26,7 @@
     "./SplitText": "./src/components/SplitText/index.tsx",
     "./SwipeMenu": "./src/components/SwipeMenu/index.tsx",
     "./SwipePane": "./src/components/SwipePane/index.tsx",
+    "./TabbedContent": "./src/components/TabbedContent/index.tsx",
     "./TestLess": "./src/components/TestLess/index.tsx",
     "./TextArea": "./src/components/TextArea/index.tsx",
     "./TextInput": "./src/components/TextInput/index.tsx",

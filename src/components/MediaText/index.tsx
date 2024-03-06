@@ -44,18 +44,17 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 	const attrs = { class: classes, ...attributes }
 
 	return <>
-			<div class={classes}>
-				<div class={`ui-mediatext__media col-6@${breakpoint}`}>
-					<div className="ui-mediatext__media__inner relative">
-						<img src={image} class="object-fit--absolute" />
-					</div>
-				</div>
-				<div class={`ui-mediatext__content col-6@${breakpoint}`}>
-					<div class="ui-mediatext__content__inner first-last">
-						{children}
-					</div>
+		<div class={classes}>
+			<div class={`ui-mediatext__media col-6@${breakpoint}`}>
+				<div className="ui-mediatext__media__inner relative">
+					<img src={image} class="object-fit--absolute" />
 				</div>
 			</div>
-		</>
-		
+			<div class={`ui-mediatext__content col-6@${breakpoint}`}>
+				<div class="ui-mediatext__content__inner first-last">
+					{children}
+				</div>
+			</div>
+		</div>
+	</>
 }

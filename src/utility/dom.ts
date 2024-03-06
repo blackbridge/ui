@@ -18,6 +18,56 @@ export function displayTransition<T extends HTMLElement>(node: T, callback: (nod
 }
 
 
+export function slideUpDown<T extends HTMLElement>(node: T, callback: (node: T, state: boolean) => any) {
+	
+	let willDisplay = false
+	return (display: boolean) => {
+		const style = getComputedStyle(node)
+		const from = (style.display === 'none') ? '0px' : style.height
+		if (display) {
+			// measure natural height
+			node.style.height = 'auto'
+			node.style.display = ''
+			const { height } = node.getBoundingClientRect()
+
+			// setup transition starting point
+			node.style.transition = ''
+			node.style.height = from
+			node.getBoundingClientRect()
+
+			// transition height after sync read
+			node.style.height = `${height}px`
+			
+			// trigger show transition
+			callback(node, true)
+
+			// remove height property after animation
+			const onEnd = (event: TransitionEvent) => willDisplay && ((event.currentTarget as T).style.height = '')
+			node.addEventListener('transitionend', onEnd, { once: true })
+
+		} else {
+			node.style.height = from
+			node.getBoundingClientRect()
+			node.style.height = '0px'
+
+			// trigger hide transition
+			callback(node, false)
+
+			// hide after transitionend
+			const onEnd = (event: TransitionEvent) => {
+				const el = event.currentTarget as T
+				if (!willDisplay) {
+					el.style.display = 'none'
+					el.style.height = ''
+				}
+			}
+			node.addEventListener('transitionend', onEnd, { once: true })
+		}
+		willDisplay = display
+	}
+}
+
+
 export type XYPos = {
 	x: number,
 	y: number

@@ -1,0 +1,31 @@
+@import '../../variables.css';
+
+
+.ui-tabbedcontent__tab {
+    display: inline-block;
+    padding: 1em 2em;
+    background: #F4F4F4;
+}
+
+.ui-tabbedcontent__content__item {
+    padding: 2em;
+    background: #F4F4F4;
+}
+
+.ui-tabbedcontent__tab {
+    cursor: pointer;
+
+    opacity: 0.6;
+}
+
+.ui-tabbedcontent__tab.active {
+    opacity: 1;
+}
+
+.ui-tabbedcontent__content__item {
+    display: none;
+}
+
+.ui-tabbedcontent__content__item.active {
+    display: block;
+}

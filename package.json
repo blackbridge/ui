@@ -9,6 +9,7 @@
     "./Breadcrumbs": "./src/components/Breadcrumbs/index.tsx",
     "./Burger": "./src/components/Burger/index.tsx",
     "./Button": "./src/components/Button/index.tsx",
+    "./ButtonPlayPause": "./src/components/ButtonPlayPause/index.tsx",
     "./Card": "./src/components/Card/index.tsx",
     "./Checkbox": "./src/components/Checkbox/index.tsx",
     "./Container": "./src/components/Container/index.tsx",

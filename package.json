@@ -13,6 +13,7 @@
     "./Checkbox": "./src/components/Checkbox/index.tsx",
     "./Container": "./src/components/Container/index.tsx",
     "./FullwidthFeature": "./src/components/FullwidthFeature/index.tsx",
+    "./HorizontalScroll": "./src/components/HorizontalScroll/index.tsx",
     "./Icon": "./src/components/Icon/index.tsx",
     "./IconButton": "./src/components/IconButton/index.tsx",
     "./IconCard": "./src/components/IconCard/index.tsx",

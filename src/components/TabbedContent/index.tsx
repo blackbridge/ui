@@ -20,7 +20,7 @@ export function TabGroup(props: TabbedGroupProps): JSX.Element {
 	const tabs = (toChildArray(children).map(child => child?.props))
 
 	return <div class="ui-tabbedcontent" {...attributes}>
-		<div class="ui-tabbedcontent__tabs">
+		<div class="ui-tabbedcontent__tabs" role="tablist" aria-labelledby="tablist">
 			{tabs.map((tab, index) => <TabbedTitle index={index} {...tab} />)}
 		</div>
 		<div class="ui-tabbedcontent__content">
@@ -53,6 +53,7 @@ export function TabbedTitle(props: TabbedProps): JSX.Element {
 	} = props
 
 	const isActive = (index === 0)
+	const ariaSelected = (isActive) ? 'true' : 'false'
 
 	const classes = classnames(
 		'ui-tabbedcontent__tab',
@@ -60,7 +61,7 @@ export function TabbedTitle(props: TabbedProps): JSX.Element {
 		className
 	)
 	
-	return <button class={classes} data-tab={index}>
+	return <button class={classes} data-tab={index} type="button" role="tab" aria-controls={`tabpanel-${index}`} aria-selected={ariaSelected}>
 		{title}
 	</button>
 }

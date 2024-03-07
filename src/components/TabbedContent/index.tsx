@@ -1,5 +1,7 @@
 import './style.css'
 import './client.ts?client'
+import HorizontalScroll from '../HorizontalScroll/index.tsx'
+
 import { cloneElement, toChildArray } from 'preact'
 import classnames from 'classnames'
 
@@ -20,9 +22,11 @@ export function TabGroup(props: TabbedGroupProps): JSX.Element {
 	const tabs = (toChildArray(children).map(child => child?.props))
 
 	return <div class="ui-tabbedcontent" {...attributes}>
-		<div class="ui-tabbedcontent__tabs" role="tablist" aria-labelledby="tablist">
-			{tabs.map((tab, index) => <TabbedTitle index={index} {...tab} />)}
-		</div>
+		<HorizontalScroll>
+			<div class="ui-tabbedcontent__tabs" role="tablist" aria-labelledby="tablist">
+				{tabs.map((tab, index) => <TabbedTitle index={index} {...tab} />)}
+			</div>
+		</HorizontalScroll>
 		<div class="ui-tabbedcontent__content">
 			{tabs.map((tab, index) => <TabbedContent index={index} {...tab} />)}
 		</div>

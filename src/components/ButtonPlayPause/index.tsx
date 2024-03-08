@@ -36,11 +36,11 @@ export default function ButtonPlayPause(props: ButtonPlayPauseProps): JSX.Elemen
 
 	const content = <>
 		<div className="ui-button-play-pause__inner">
-			<svg width="24px" height="12px" viewBox="0 0 24 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			<svg width="26px" height="12px" viewBox="0 0 26 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
 		        <polygon class="ui-button-play-pause__play" fill="#FFFFFF" points="12 6 0 12 0 0"></polygon>
 		        <g class="ui-button-play-pause__pause" stroke="none" fill="#FFFFFF" fill-rule="evenodd">
-			        <rect x="20" y="0.5" width="4" height="11"></rect>
-			        <rect x="12" y="0.5" width="4" height="11"></rect>
+			        <rect x="22" y="0.5" width="4" height="11"></rect>
+			        <rect x="14" y="0.5" width="4" height="11"></rect>
 			    </g>
 			</svg>
 		</div>

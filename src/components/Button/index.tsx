@@ -9,7 +9,7 @@ type LinkArgs = {
 }
 
 type BaseProps = {
-	variant?: 'fill'|'outline'|'text',
+	variant?: 'fill'|'outline'|'text'|'ghost',
 	size?: 'small'|'medium'|'large',
 	iconLeft?: AnyComponent<any, any>|string,
 	iconRight?: AnyComponent<any, any>|string,
@@ -62,7 +62,7 @@ export function Button(props: ButtonProps): JSX.Element {
 }
 
 type IconButtonBase = {
-	variant?: 'fill'|'outline'|'text',
+	variant?: 'fill'|'outline'|'text'|'ghost',
 	size?: 'small'|'medium'|'large',
 	icon?: AnyComponent<any, any>|string,
 	class?: HTMLElement['className'],

@@ -28,7 +28,7 @@
 		background: transparent;
 		appearance: none;
 		
-		transition: 0.3s all ease-in-out;
+		transition: 0.4s all var(--ui-ease-2);
 		
 		font-size: var(--ui-input-fontsize--medium);
 		height: var(--ui-input-height--medium);
@@ -63,6 +63,10 @@
 	.ui-button--fill {
 		background: black;
 		color: #fff;
+	}
+
+	.ui-button--ghost:hover {
+		background:rgba(0,0,0,0.1);
 	}
 
 

@@ -2,6 +2,14 @@ import './style.css'
 import type { JSX } from 'preact'
 
 
+export function Close(): JSX.Element {
+	return <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M0 5.50001L5.5 6.027e-06L55 49.5L49.5 55L0 5.50001Z" fill="black"/>
+		<path d="M49.5 0L55 5.5L5.5 55L8.34508e-07 49.5L49.5 0Z" fill="black"/>
+	</svg>
+}
+
+
 export function External(): JSX.Element {
 	return <svg width="650" height="650" viewBox="0 0 650 650" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<path d="M191.667 625H605C616.047 625 625 616.047 625 605V45C625 33.9543 616.047 25 605 25H45C33.9543 25 25 33.9543 25 45V458.333" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>

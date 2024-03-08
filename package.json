@@ -19,6 +19,7 @@
     "./IconCard": "./src/components/IconCard/index.tsx",
     "./ImageLoad": "./src/components/ImageLoad/index.tsx",
     "./MediaText": "./src/components/MediaText/index.tsx",
+    "./Modal": "./src/components/Modal/index.tsx",
     "./Pagination": "./src/components/Pagination/index.tsx",
     "./Radio": "./src/components/Radio/index.tsx",
     "./Select": "./src/components/Select/index.tsx",

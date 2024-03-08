@@ -1,18 +1,13 @@
 customElements.define("video-embed", class extends HTMLElement {
-
 	connectedCallback() {
 		const main = this.querySelector('.ui-video-embed__inner') as HTMLDivElement
 		const src = this.getAttribute('src')
 		if (!src) return this.remove()
 		const autoplay = this.getAttribute('autoplay') !== null
-		Promise.any([
-			youtubeEmbed(src, autoplay),
-			vimeoEmbed(src, autoplay)
-		])
+		oembed(src, { autoplay })
 		.then(oembed => oembed && this.renderVideo(main, oembed))
 		.catch(() => this.remove())
 	}
-
 	renderVideo(el: HTMLDivElement, oembed:any) {
 		el.innerHTML = oembed.html
 		el.style.paddingBottom = `${oembed.height / oembed.width * 100 }%`
@@ -31,6 +26,13 @@ function request(url: string) {
 	    request.open("GET", url, true)
 	    request.send(null)
 	})
+}
+
+function oembed(src: string, { autoplay = false }) {
+	return Promise.any([
+		youtubeEmbed(src, autoplay),
+		vimeoEmbed(src, autoplay)
+	])
 }
 
 function youtubeEmbed(url: string, autoplay: boolean): Promise<unknown> {

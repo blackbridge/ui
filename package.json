@@ -30,6 +30,7 @@
     "./TestLess": "./src/components/TestLess/index.tsx",
     "./TextArea": "./src/components/TextArea/index.tsx",
     "./TextInput": "./src/components/TextInput/index.tsx",
+    "./VideoEmbed": "./src/components/VideoEmbed/index.tsx",
     "./VideoPoster": "./src/components/VideoPoster/index.tsx"
   },
   "dependencies": {

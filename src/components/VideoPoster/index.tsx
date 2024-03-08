@@ -1,47 +1,57 @@
-import type { ComponentChildren, JSX } from "preact"
+import type { JSX } from 'preact'
 import type { WithElementProps } from '../../types.tsx'
 import './style.css'
 import classnames from 'classnames'
-import ButtonPlayPause from "../ButtonPlayPause/index.tsx"
+import ButtonPlayPause from '../ButtonPlayPause/index.tsx'
 
 type BaseProps = {
 	videoUrl?: string 
 	class?: HTMLElement['className']
-	pause?: boolean
+	pause?: boolean,
+	poster: JSX.IntrinsicElements['img'] | string
+	href?: string 
+	target?: string
 }
 
-type VideoPosterProps = WithElementProps<'div', BaseProps>
+type VideoPosterProps = WithElementProps<'a', BaseProps>
 
 export default function VideoPoster(props: VideoPosterProps): JSX.Element {
 
 	const { 
 		videoUrl, 
 		class: className,
+		poster: imageProps,
+		href,
+		target = '_blank',
 		...attributes 
 	} = props
+
+	const link = href || videoUrl || undefined
 
 	const classes = classnames(
 		'ui-video-poster',
 		className,
 	)
 
-	return <div class={classes} {...attributes}>
+	return <div class={classes}>
 		<div class="ui-video-poster__image">
-			image
-			<LinkWrap target="_blank" href="s">test</LinkWrap>
+			{imageProps && 
+				<LinkWrap href={link} target={target} {...attributes}>
+					{(typeof imageProps === 'string') && <img src={imageProps} />}
+					{(typeof imageProps !== 'string') && <img {...imageProps} />}
+				</LinkWrap>
+			}
 		</div>
 		<div class="ui-video-poster__button">
-			<ButtonPlayPause href={videoUrl} />
+			<LinkWrap href={link} target={target} {...attributes}>
+				<ButtonPlayPause />
+			</LinkWrap>
 		</div>
 	</div>
 }
 
 
-type LinkWrapProps = WithElementProps<'a', {
-	href?: string
-}>
-
-function LinkWrap({ children, ...props }: LinkWrapProps) {
+function LinkWrap({ children, ...props }: JSX.IntrinsicElements['a']) {
 	return (props.href !== undefined) 
 		? <a {...props }>{children}</a>
 		: <>{children}</>

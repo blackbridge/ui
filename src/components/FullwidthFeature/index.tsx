@@ -1,9 +1,8 @@
 import './style.css'
-import '../utility.css'
+import '../../styles/utility.less'
 
 import type { JSX, ComponentChildren } from "preact"
 import classnames from 'classnames'
-import Container from '../Container/index.tsx'
 
 type FullwidthFeatureProps = {
 	class?: HTMLElement['className'],

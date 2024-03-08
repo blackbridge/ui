@@ -1,7 +1,7 @@
 .ui-container,
 .ui-container--small,
 .ui-container--large {
-	width: 90vw;
+	width: var(--page-width-default);
 	margin-left:auto;
 	margin-right:auto;
 }

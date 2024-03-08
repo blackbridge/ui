@@ -17,6 +17,7 @@ function toggleTabs(el: Element) {
 
                 activeTab = tab
                 tab.classList.add('active')
+				tab.setAttribute('aria-selected', 'true')
 
 				activeContent = item
 				item.classList.add('active')
@@ -26,13 +27,13 @@ function toggleTabs(el: Element) {
 	
 	function removeClasses() {
 		activeTab && activeTab.classList.remove('active')
+		activeTab && activeTab.setAttribute('aria-selected', 'false')
 		activeContent && activeContent.classList.remove('active')
 	}
 
 	tabs.forEach(function(tab) {
 		tab.addEventListener('click', clickHandler)
 	})
-    
 }
 
 

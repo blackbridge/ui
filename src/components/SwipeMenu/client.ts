@@ -81,9 +81,12 @@ class SwipeMenu extends HTMLElement {
 
 		// save previous focus and go back to it on close
 		if (isOpen) {
+			this.setAttribute('tabindex', '0')
 			this.previousFocus = document.activeElement
+			this.focus()
 		} else {
-			this.previousFocus?.focus()
+			this.setAttribute('tabindex', '-1')
+			;(this.previousFocus as HTMLElement)?.focus()
 		}
 
     	this.dispatchEvent(new CustomEvent('change', { 

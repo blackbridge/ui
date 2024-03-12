@@ -10,7 +10,9 @@ type BaseProps = {
 declare module 'preact' {
     namespace JSX {
         interface IntrinsicElements {
-            'swipe-menu': JSX.HTMLAttributes<HTMLElement> & BaseProps
+            'swipe-menu': JSX.HTMLAttributes<HTMLElement> & BaseProps & {
+            	tabindex?: string
+            }
         }
     }
 }
@@ -18,7 +20,7 @@ declare module 'preact' {
 type SwipeMenuProps = WithElementProps<'div', BaseProps>
 
 export default function SwipeMenu({ open = false, position = 'left', children, ...props }: SwipeMenuProps) {
-	return <swipe-menu open={open} position={position} {...props}>
+	return <swipe-menu open={open} position={position} {...props} tabindex={ open ? '0' : '-1'}>
 		<div class="ui-swipe-menu__bg" role="presentation"></div>
 		<div class="ui-swipe-menu__main">
 			{children}

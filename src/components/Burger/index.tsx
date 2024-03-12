@@ -1,5 +1,6 @@
 import './client.ts?client'
 import './style.css'
+import classnames from 'classnames'
 import type { WithElementProps } from '../../types.tsx'
 
 type BaseProps = {
@@ -7,22 +8,23 @@ type BaseProps = {
 	class?: HTMLElement['className'] 
 }
 
-declare module 'preact' {
-    namespace JSX {
-        interface IntrinsicElements {
-            'burger-button': JSX.HTMLAttributes<HTMLDivElement> & BaseProps
-        }
-    }
-}
+type BurgerProps = WithElementProps<'button', BaseProps>
 
-type BurgerProps = WithElementProps<'div', BaseProps>
+export default function Burger(props: BurgerProps) {
 
-export default function Burger({ open, ...props }: BurgerProps) {
-	return <burger-button open={open} {...props}>
-		<div class="ui-burger">
+	const {
+		open, 
+		class: className, 
+		...attributes
+	} = props
+	
+	const classes = classnames('ui-burger', className)
+
+	return <button is="burger-button" class={classes} open={open} {...attributes}>
+		<div class="ui-burger__inner">
 			<span class="ui-burger__top"></span>
 			<span class="ui-burger__patty"></span>
 			<span class="ui-burger__bottom"></span>
 		</div>
-	</burger-button>
+	</button>
 }

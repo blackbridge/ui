@@ -3,7 +3,7 @@
  values for best results */
 
 :root {
-	--burger-line-width:30px;
+	--burger-line-width:25px;
     --burger-line-height:3px;
     --burger-line-space:7px;
 	--burger-height: calc(
@@ -13,21 +13,26 @@
 	--burger-color: black;
 }
 
-burger-button {
+.ui-burger {
+	padding:0;
+    border:0;
+    background:0;
+	cursor:pointer;
+
 	display:flex;
 	align-items:center;
 	justify-content:center;
+
+	width: var(--ui-input-height--medium);
+	height: var(--ui-input-height--medium);
+	font-size: var(--ui-input-fontsize--medium);
 }
 
-.ui-burger {
+.ui-burger__inner {
 	display:block;
     position:relative;
     width:var(--burger-line-width);
     height:var(--burger-height);
-    cursor:pointer;
-    padding:0;
-    border:0;
-    background:0;
 }
 
 .ui-burger__top,
@@ -55,28 +60,29 @@ burger-button {
     bottom: 0;
 }
 
-.ui-burger, .ui-burger > span {
+.ui-burger__inner, 
+.ui-burger__inner > span {
 	transition: all 0.3s var(--ui-ease-2, ease-in-out);
 }
 
-burger-button[open] .ui-burger {
+.ui-burger[open] .ui-burger {
 	transform:rotate(0deg);
 }
 
-burger-button[open] .ui-burger__patty {
+.ui-burger[open] .ui-burger__patty {
     transform: rotate(45deg);
 }
 
-burger-button[open] .ui-burger__top,
-burger-button[open] .ui-burger__bottom {
+.ui-burger[open] .ui-burger__top,
+.ui-burger[open] .ui-burger__bottom {
     top: calc(50% - calc(var(--burger-line-height)/2));
 }
 
-burger-button[open] .ui-burger__top {
+.ui-burger[open] .ui-burger__top {
     transform: rotate(135deg);
 }
 
-burger-button[open] .ui-burger__bottom {
+.ui-burger[open] .ui-burger__bottom {
     transform: rotate(135deg);
     opacity:0;
 }

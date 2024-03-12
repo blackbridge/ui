@@ -10,7 +10,7 @@ type BaseProps = {
 declare module 'preact' {
     namespace JSX {
         interface IntrinsicElements {
-            'swipe-menu': JSX.HTMLAttributes<HTMLElement> & BaseProps & {
+            'swipe-menu': JSX.HTMLAttributes<HTMLDivElement> & BaseProps & {
             	tabindex?: string
             }
         }

@@ -87,6 +87,10 @@ export function onDrag<T extends HTMLElement>(node: T, onMove: DragHandler<T>, o
 			|| event.ctrlKey // ignore ctrl+click
 		) return 
 
+		// @ts-ignore
+		// if we're pointerdown on an anchor or button, don't start to drag
+		if (event.target.closest('a') || event.target.closest('button')) return
+
 		const el = event.currentTarget as HTMLElement
 		event.stopPropagation()
 		el.setPointerCapture(event.pointerId)

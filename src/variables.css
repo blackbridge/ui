@@ -1,22 +1,31 @@
-@layer ui {
-	:root {
-		--ui-focus-width:2px;
-		--ui-focus-color:rgb(0, 95, 204);
+:root {
+	--ui-page-width:90vw;
+	--ui-page-width-small: 50em;
+	--ui-page-width-medium:60em;
+	--ui-page-width-large:70em;
 
-		--ui-input-height--small: 2.4em;
-		--ui-input-height--medium: 2.6em;
-		--ui-input-height--large: 2.8em;
+	--ui-page-width-small-min: min(var(--ui-page-width), var(--ui-page-width-small));
+	--ui-page-width-medium-min: min(var(--ui-page-width), var(--ui-page-width-medium));
+	--ui-page-width-large-min: min(var(--ui-page-width), var(--ui-page-width-large));
 
-		--ui-input-fontsize--small: 0.85em;
-		--ui-input-fontsize--medium: 1em;
-		--ui-input-fontsize--large: 1.15em;
+	--ui-grid-gutter:2rem;
 
-		--ui-ease-1: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-		--ui-ease-2: cubic-bezier(.24,.97,.4,.96);
+	--ui-focus-width:2px;
+	--ui-focus-color:rgb(0, 95, 204);
 
-		--z-index-1: 100;
-		--z-index-2: 200;
-		--z-index-3: 300;
-		--z-index-4: 400;
-	}
+	--ui-input-height--small: 2.4em;
+	--ui-input-height--medium: 2.6em;
+	--ui-input-height--large: 2.8em;
+
+	--ui-input-fontsize--small: 0.85em;
+	--ui-input-fontsize--medium: 1em;
+	--ui-input-fontsize--large: 1.15em;
+
+	--ui-ease-1: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+	--ui-ease-2: cubic-bezier(.24,.97,.4,.96);
+
+	--z-index-1: 100;
+	--z-index-2: 200;
+	--z-index-3: 300;
+	--z-index-4: 400;
 }

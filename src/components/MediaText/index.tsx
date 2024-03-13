@@ -1,6 +1,6 @@
 import './style.less'
 import '../../styles/grid.less'
-import '../..//styles/utility.less'
+import '../../styles/utility.less'
 import VideoPoster from '../VideoPoster/index.tsx'
 
 import type { JSX, ComponentChildren } from "preact"

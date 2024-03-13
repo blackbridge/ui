@@ -1,8 +1,10 @@
 @import '../../styles/mixins.less';
+@import '../../variables.css';
 
-:root {
-    --container-padding: calc((100vw - var(--page-width-large)) / 2);
-    --container-padding-mobile: calc((100vw - var(--page-width-default)) / 2)
+
+* {
+    box-sizing: border-box;
+    outline: 1px solid rgba(255,0,0,0.1)
 }
 
 .for-breakpoints({
@@ -10,27 +12,65 @@
 });
 
 .ui-mediatext__media__inner {
-    min-height: 25em;
+    min-height: 22em;
+    @media (min-width: @medium) {
+        min-height: 30em;
+    }
 }
 
 /* Full width MediaText */
 
-.ui-mediatext--fullwidth .ui-mediatext__content__inner {
-    padding: var(--container-padding-mobile);
+.ui-mediatext--fullwidth {
+    --content-width: var(--ui-page-width);
     @media (min-width: @medium) {
-        padding: 2em;
-        padding-right: var(--container-padding);
+        --content-width: calc(var(--ui-page-width-large-min) / 2);
     }
 }
 
+.ui-mediatext--fullwidth .ui-mediatext__content {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.ui-mediatext--fullwidth.ui-mediatext--flip .ui-mediatext__content {
+    justify-content: flex-end;
+}
+
+.ui-mediatext--fullwidth .ui-mediatext__content__inner {
+    margin: 0 auto;
+    max-width: var(--content-width);
+    margin-top: var(--ui-grid-gutter);
+    margin-bottom: var(--ui-grid-gutter);
+    @media (min-width: @medium) {
+        margin: 0;
+        // padding-right: 0;
+    }
+}
 
 .ui-mediatext--fullwidth.ui-mediatext--flip .ui-mediatext__content__inner {
-    padding: var(--container-padding-mobile);
     @media (min-width: @medium) {
-        padding: 2em;
-        padding-left: var(--container-padding);
+        padding-left: 0;
     }
 }
+
+
+
+// .ui-mediatext--fullwidth .ui-mediatext__content__inner {
+//     padding: var(--container-padding-mobile);
+//     @media (min-width: 70em) {
+//         padding: 2em;
+//         padding-right: var(--container-padding);
+//     }
+// }
+
+
+// .ui-mediatext--fullwidth.ui-mediatext--flip .ui-mediatext__content__inner {
+//     padding: var(--container-padding-mobile);
+//     @media (min-width: 70em) {
+//         padding: 2em;
+//         padding-left: var(--container-padding);
+//     }
+// }
 
 
 

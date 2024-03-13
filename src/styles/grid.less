@@ -1,23 +1,26 @@
 @import './mixins.less';
+@import '../variables.css';
 
 
 @grid-columns: 12;
 
 .grid {
-	display:flex;
-	flex-wrap:wrap;
-	--grid-gutter:2rem;
+	display:inline-flex;
+	flex-wrap: wrap;
+	min-width: 100%;
 }
 
 // gutter
 .grid--gutter-x, .grid--gutter {
-	margin-left:calc(var(--grid-gutter) * -1);
-	[class*=col-] { padding-left:var(--grid-gutter) }
+	margin-left:calc(var(--ui-grid-gutter) * -1);
+	[class*=col-] { padding-left:var(--ui-grid-gutter) }
 }
 
 .grid--gutter-y, .grid--gutter {
-	margin-top:calc(var(--grid-gutter) * -1);
-	[class*=col-] { padding-top:var(--grid-gutter) }
+	position: relative;
+	top:calc(var(--ui-grid-gutter) * -1);
+	margin-bottom:calc(var(--ui-grid-gutter) * -1);
+	[class*=col-] { padding-top:var(--ui-grid-gutter) }
 }
 
 // .col-x classes

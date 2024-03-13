@@ -1,22 +1,44 @@
-.ui-container,
-.ui-container--small,
-.ui-container--large {
-	width: var(--page-width-default);
+@import '../../variables.css';
+
+.ui-container {
+	max-width: var(--ui-page-width);
 	margin-left:auto;
 	margin-right:auto;
 }
 
-@media (min-width: 55em) {
-	.ui-container {
-		max-width:var(--page-width-medium);
-
-	}
-
-	.ui-container--small {
-		max-width:var(--page-width-small);
-	}
-
-	.ui-container--large {
-		max-width:var(--page-width-large);
-	}
+.ui-container {
+	max-width: var(--ui-page-width-medium-min);
 }
+
+
+.ui-container--small {
+	max-width: var(--ui-page-width-small-min);
+}
+
+.ui-container--large {
+	max-width: var(--ui-page-width-large-min);
+}
+
+
+/* 
+// @media(min-width: @medium) {
+// 	.ui-container {
+// 		--ui-page-width: var(--ui-page-width-medium);
+// 	}
+
+// 	.ui-container--small {
+// 		--ui-page-width: var(--ui-page-width-small);
+// 	}
+
+// 	.ui-container--large {
+// 		--ui-page-width: var(--ui-page-width-large);
+// 	}
+// }
+
+// @media (min-width: @medium) {
+
+// }
+
+// @media(min-width:@large) {
+
+// } */

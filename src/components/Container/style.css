@@ -10,7 +10,6 @@
 	max-width: var(--ui-page-width-medium-min);
 }
 
-
 .ui-container--small {
 	max-width: var(--ui-page-width-small-min);
 }
@@ -18,27 +17,3 @@
 .ui-container--large {
 	max-width: var(--ui-page-width-large-min);
 }
-
-
-/* 
-// @media(min-width: @medium) {
-// 	.ui-container {
-// 		--ui-page-width: var(--ui-page-width-medium);
-// 	}
-
-// 	.ui-container--small {
-// 		--ui-page-width: var(--ui-page-width-small);
-// 	}
-
-// 	.ui-container--large {
-// 		--ui-page-width: var(--ui-page-width-large);
-// 	}
-// }
-
-// @media (min-width: @medium) {
-
-// }
-
-// @media(min-width:@large) {
-
-// } */

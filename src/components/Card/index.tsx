@@ -1,5 +1,4 @@
-import './style.css'
-import '../../styles/grid.less'
+import './style.less'
 import '../../styles/utility.less'
 import type { JSX, ComponentChildren } from "preact"
 import classnames from 'classnames'

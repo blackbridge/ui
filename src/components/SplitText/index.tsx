@@ -10,15 +10,15 @@ type TextProps = {
 	style?: string,
 }
 
-function splitWords(string: string): JSX.Element[] {
+function splitWords(string: string): string[] {
     return string.split(' ').map(word => {
-        return <><div class="ui-singleword">{splitCharacters(word)}</div> </>
+        return `<div class="ui-single-word">${splitCharacters(word).join('')}</div>`
     })
 }
 
-function splitCharacters(string: string): JSX.Element[]  {	
+function splitCharacters(string: string): string[]  {	
     return string.split('').map(letter => {
-        return <div class="ui-singleletter">{letter}</div>
+        return `<div class="ui-single-letter">${letter}</div>`
     })
 }
 
@@ -32,15 +32,13 @@ export default function SplitText(props: TextProps): JSX.Element {
 	} = props
 
 	const classes = classnames(
-		'ui-splittext',
+		'ui-split-text',
 		className,
 	)
 
 	const attrs = { class: classes, ...attributes }
 
 	return <>
-			<div {...attrs}>
-				{splitWords(content)}
-			</div>
+			<div {...attrs} dangerouslySetInnerHTML={{ __html: splitWords(content).join(' ') }}></div>
 		</>
 }

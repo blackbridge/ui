@@ -1,126 +1,125 @@
-@layer ui {
-	:root {
-		/* sets the spacing of the default buttons */
-		--button-spacing: 1.1em;
-		--button-child-spacing: .75em;
 
-		/* sets the spacing if the button has a seprator  */
-		--button-spacing--separator: 1em;
-	}
+:root {
+	/* sets the spacing of the default buttons */
+	--ui-button-spacing: 1.1em;
+	--ui-button-child-spacing: .75em;
 
-	.ui-button {
-		/* Reset */
-		text-decoration:none;
-		box-sizing:border-box;
-		color: inherit;
-		cursor:pointer;
-		padding: 0;
-		font: inherit;
-		line-height: inherit;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		vertical-align: middle;
-		position: relative;
-		max-width:100%;
-		
-		border: 0;
-		background: transparent;
-		appearance: none;
-		
-		transition: 0.4s all var(--ui-ease-2);
-		
-		font-size: var(--ui-input-fontsize--medium);
-		height: var(--ui-input-height--medium);
+	/* sets the spacing if the button has a separator  */
+	--ui-button-spacing--separator: 1em;
+}
 
-		padding-left: var(--button-spacing);
-		padding-right: var(--button-spacing);
-	}
-
-	.ui-button__label {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-
-	/* spacing */
-	.ui-button > * { margin: 0 calc(var(--button-child-spacing) / 2) }
-	.ui-button.ui-button--separator > * { margin: 0 calc(var(--button-spacing--separator) / 2) }
-	.ui-button > *:first-child { margin-left: 0; }
-	.ui-button > *:last-child { margin-right: 0; }
-
-
-    /* Fill */
-	.ui-button--text {
-		padding: 0;
-	}
+.ui-button {
+	/* Reset */
+	text-decoration:none;
+	box-sizing:border-box;
+	color: inherit;
+	cursor:pointer;
+	padding: 0;
+	font: inherit;
+	line-height: inherit;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	position: relative;
+	max-width:100%;
 	
-    .ui-button--outline {
-		border: 1px solid black;
-	}
+	border: 0;
+	background: transparent;
+	appearance: none;
+	
+	transition: 0.4s all var(--ui-ease-2);
+	
+	font-size: var(--ui-input-fontsize--medium);
+	height: var(--ui-input-height--medium);
 
-	.ui-button--fill {
-		background: black;
-		color: #fff;
-	}
+	padding-left: var(--ui-button-spacing);
+	padding-right: var(--ui-button-spacing);
+}
 
-	.ui-button--ghost:hover {
-		background:rgba(0,0,0,0.08);
-	}
-
-
-    /* Icon */
-	.ui-button__icon {
-		display: flex;
-		align-items: center;
-		height: 1em;
-	}
-
-	.ui-button__icon > * {
-		width: auto; 
-		height: 100%;
-	}
-
-	/* Separator */
-	.ui-button--separator {
-		padding-left: var(--button-spacing--separator);
-		padding-right: var(--button-spacing--separator);
-	}
-
-	.ui-button__separator {
-		width: 1px; height: 100%;
-		background: black;
-	}
+.ui-button__label {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 
-    /* Block */
-    .ui-button--block {
-		width: 100%;
-	}
+/* spacing */
+.ui-button > * { margin: 0 calc(var(--ui-button-child-spacing) / 2) }
+.ui-button.ui-button--separator > * { margin: 0 calc(var(--ui-button-spacing--separator) / 2) }
+.ui-button > *:first-child { margin-left: 0; }
+.ui-button > *:last-child { margin-right: 0; }
 
 
-	/* Font size */
-	.ui-button--small {
-		height: var(--ui-input-height--small);
-		font-size: var(--ui-input-fontsize--small);
-	}
+/* Fill */
+.ui-button--text {
+	padding: 0;
+}
 
-	.ui-button--large {
-		height: var(--ui-input-height--large);
-		font-size: var(--ui-input-fontsize--large);
-	}
+.ui-button--outline {
+	border: 1px solid black;
+}
 
-	.ui-button--icon {
-		width: var(--ui-input-height--medium);
-		padding: 0;
-	}
+.ui-button--fill {
+	background: black;
+	color: #fff;
+}
 
-	.ui-button--icon.ui-button--small {
-		width: var(--ui-input-height--small);
-	}
+.ui-button--ghost:hover {
+	background:rgba(0,0,0,0.08);
+}
 
-	.ui-button--icon.ui-button--large {
-		width: var(--ui-input-height--large);
-	}
+
+/* Icon */
+.ui-button__icon {
+	display: flex;
+	align-items: center;
+	height: 1em;
+}
+
+.ui-button__icon > * {
+	width: auto; 
+	height: 100%;
+}
+
+/* Separator */
+.ui-button--separator {
+	padding-left: var(--ui-button-spacing--separator);
+	padding-right: var(--ui-button-spacing--separator);
+}
+
+.ui-button__separator {
+	width: 1px; height: 100%;
+	background: black;
+}
+
+
+/* Block */
+.ui-button--block {
+	width: 100%;
+}
+
+
+/* Font size */
+.ui-button--small {
+	height: var(--ui-input-height--small);
+	font-size: var(--ui-input-fontsize--small);
+}
+
+.ui-button--large {
+	height: var(--ui-input-height--large);
+	font-size: var(--ui-input-fontsize--large);
+}
+
+.ui-button--icon {
+	width: var(--ui-input-height--medium);
+	padding: 0;
+}
+
+.ui-button--icon.ui-button--small {
+	width: var(--ui-input-height--small);
+}
+
+.ui-button--icon.ui-button--large {
+	width: var(--ui-input-height--large);
 }

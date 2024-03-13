@@ -1,6 +1,3 @@
-import './style.css'
-import '../../styles/grid.less'
-import '../../styles/utility.less'
 import type { JSX, AnyComponent, ComponentChildren } from "preact"
 import classnames from 'classnames'
 import type { WithElementProps } from '../../types.tsx'

@@ -1,10 +1,16 @@
-@import '../../variables.css';
-
-.accordion {
-	margin-bottom: 0.5em;
+:root {
+	--ui-accordion-padding: 1.2em;
+	--ui-accordion-icon-size: 1.8em;
+	--ui-accordion-icon-gap: 1.5em;
+	--ui-accordion-icon-color: currentColor;
+	--ui-accordion-icon-width: 2px;
 }
 
-.accordion__button {
+.ui-accordion {
+	margin-bottom: 2px;
+}
+
+.ui-accordion__button {
 	border:0;
 	display: flex;
 	align-items: center;
@@ -13,60 +19,59 @@
 	font:inherit;
 	text-align:inherit;
 	background: #F5F5F5;
-	padding: var(--accordion-padding);
+	padding: 1em var(--ui-accordion-padding);
 }
 
-.accordion__title {
-	width: calc(100% - var(--accordion-icon-size) - var(--accordion-icon-gap));
+.ui-accordion__title {
+	width: calc(100% - var(--ui-accordion-icon-size) - var(--ui-accordion-icon-gap));
 }
 
-.accordion__icon {
-	width: var(--accordion-icon-size); height: var(--accordion-icon-size);
+.ui-accordion__icon {
+	width: var(--ui-accordion-icon-size); height: var(--ui-accordion-icon-size);
 	border-radius: 100%;
-	border: 2px solid #000;
+	border: var(--ui-accordion-icon-width) solid var(--ui-accordion-icon-color);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	margin-left: var(--accordion-icon-gap);
+	margin-left: var(--ui-accordion-icon-gap);
 }
 
-.accordion__icon::before,
-.accordion__icon::after {
+.ui-accordion__icon::before,
+.ui-accordion__icon::after {
 	content: "";
 	display: block;
-	height: 2px;
+	height: var(--ui-accordion-icon-width);
 	width: 0.75em;
 	position: absolute;
 	transition: 0.4s all ease-in-out;
 }
 
-.accordion__icon::before {
-	background: #000;
+.ui-accordion__icon::before {
+	background: var(--ui-accordion-icon-color);
 }
 
-.accordion__icon::after {
-	background: #000;
+.ui-accordion__icon::after {
+	background: var(--ui-accordion-icon-color);
 	transform: rotate(-90deg);
 }
 
-.accordion--open .accordion__icon::before {
+.ui-accordion--open .ui-accordion__icon::before {
 	transform: rotate(90deg);
 	width: 0;
 }
 
-.accordion--open .accordion__icon::after {
-	background: #000;
+.ui-accordion--open .ui-accordion__icon::after {
+	background: var(--ui-accordion-icon-color);
 	transform: rotate(0deg);
 }
 
-.accordion__content {
+.ui-accordion__content {
 	overflow: hidden;
 	transition: 0.3s all ease-in-out;
 }
 
-.accordion__content__inner {
-	border-top: 1px solid #fff;
+.ui-accordion__content__inner {
 	background: #F5F5F5;
-	padding: var(--accordion-padding);
+	padding: var(--ui-accordion-padding);
 }

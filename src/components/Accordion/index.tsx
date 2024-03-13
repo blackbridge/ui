@@ -1,6 +1,8 @@
 import classnames from 'classnames'
 import './client.ts?client'
 import './style.css'
+import './../../styles/utility.less'
+
 import { kebabCase } from '../../utility/string.ts'
 import type { WithElementProps } from '../../types.tsx'
 
@@ -33,9 +35,9 @@ export function AccordionItem(props: AccordionItemProps) {
 	} = props
 
 	const classes = classnames(
-		'accordion', 
+		'ui-accordion', 
 		// open by default until hydration
-		'accordion--open',
+		'ui-accordion--open',
 		className
 	)
 
@@ -43,14 +45,14 @@ export function AccordionItem(props: AccordionItemProps) {
 
 	return <accordion-item open={open} {...attributes}>
 		<div class={classes}>
-			<button type="button" class="accordion__button" aria-controls={id}>
-				<div class="accordion__title">{title}</div>
-				<div class="accordion__icon">
-					<div class="accordion__icon__inner"></div>
+			<button type="button" class="ui-accordion__button" aria-controls={id}>
+				<div class="ui-accordion__title">{title}</div>
+				<div class="ui-accordion__icon">
+					<div class="ui-accordion__icon__inner"></div>
 				</div>
 			</button>
-			<div class="accordion__content" aria-labelledby={id}>
-				<div class="accordion__content__inner">{children}</div>
+			<div class="ui-accordion__content" aria-labelledby={id}>
+				<div class="ui-accordion__content__inner first">{children}</div>
 			</div>
 		</div>
 	</accordion-item>
@@ -70,7 +72,7 @@ export function AccordionGroup(props: AccordionGroupProps) {
 	} = props
 
 	const classes = classnames(
-		'accordion-group', 
+		'ui-accordion-group', 
 		className
 	)
 

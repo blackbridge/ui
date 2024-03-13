@@ -84,7 +84,7 @@ class SwipeMenu extends HTMLElement {
 			this.previousFocus = document.activeElement
 			this.focus()
 		} else {
-			this.setAttribute('tabindex', '-1')
+			this.removeAttribute('tabindex')
 			;(this.previousFocus as HTMLElement)?.focus()
 		}
 

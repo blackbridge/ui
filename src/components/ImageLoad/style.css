@@ -1,26 +1,23 @@
-@layer ui {
+:root {
+	--ui-image-load-animation-name: uiFadeIn;
+	--ui-image-load-animation-duration: 1s;
+	--ui-image-load-animation-timing-function: ease-out;
+}
+.ui-image-load {
+	animation-name: var(--ui-image-load-animation-name);
+	animation-duration: var(--ui-image-load-animation-duration);
+	animation-timing-function: var(--ui-image-load-animation-timing-function);
+	animation-iteration-count: 1;
+	animation-fill-mode: both;
+	animation-play-state:paused;
+}
 
-	:root {
-		--image-load-animation-name: uiFadeIn;
-		--image-load-animation-duration: 1s;
-		--image-load-animation-timing-function: ease-out;
-	}
-	.ui-image-load {
-		animation-name: var(--image-load-animation-name);
-		animation-duration: var(--image-load-animation-duration);
-		animation-timing-function: var(--image-load-animation-timing-function);
-		animation-iteration-count: 1;
-		animation-fill-mode: both;
-		animation-play-state:paused;
-	}
+.no-js .ui-image-load,
+.ui-image-load--loaded {
+	animation-play-state:running;
+}
 
-	.no-js .ui-image-load,
-	.ui-image-load--loaded {
-		animation-play-state:running;
-	}
-
-	@keyframes uiFadeIn {
-		0% { opacity:0; }
-		100% { opacity:1; }
-	}
+@keyframes uiFadeIn {
+	0% { opacity:0; }
+	100% { opacity:1; }
 }

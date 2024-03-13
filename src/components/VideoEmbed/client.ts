@@ -21,7 +21,7 @@ function request(url: string): Promise<unknown> {
 	return new Promise((resolve, reject) => {
 		if (!url) return reject()
 		const request = new XMLHttpRequest()
-		request.addEventListener('readystatechange', event => {
+		request.addEventListener('readystatechange', () => {
 			if (request.readyState !== 4) return
 		    if (request.status == 200) {
 		    	cache[url] = JSON.parse(request.responseText)

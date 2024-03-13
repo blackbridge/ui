@@ -21,10 +21,10 @@
 	--ui-ease-1: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 	--ui-ease-2: cubic-bezier(.24,.97,.4,.96);
 
-	--z-index-1: 100;
-	--z-index-2: 200;
-	--z-index-3: 300;
-	--z-index-4: 400;
+	--ui-z-index-1: 100;
+	--ui-z-index-2: 200;
+	--ui-z-index-3: 300;
+	--ui-z-index-4: 400;
 
 	/* computed variables */
 	--ui-page-width-small-min: min(var(--ui-page-width), var(--ui-page-width-small));

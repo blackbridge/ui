@@ -1,55 +1,55 @@
-@layer ui {
-	.ui-button-play-pause {
-		text-decoration:none;
-		box-sizing:border-box;
-		cursor:pointer;
-		padding: 0;
-		margin:0;
-		border: 0;
-		background: transparent;
-		appearance: none;
-		width:3.5em;
-		height:3.5em;
-		background:black;
-		display:inline-flex;
-		align-items: center;
-		justify-content: center;
-		overflow:hidden;
-	}
+@import "./../../variables.css";
 
-	.ui-button-play-pause__inner {
-		font-size:calc(var(--ui-button-play-pause-size, 1) * 1em);
-		display:block;
-		overflow:hidden;
-		width:1.4em;
-		height:1.4em;
-		position:relative;
-	}
+.ui-button-play-pause {
+	text-decoration:none;
+	box-sizing:border-box;
+	cursor:pointer;
+	padding: 0;
+	margin:0;
+	border: 0;
+	background: transparent;
+	appearance: none;
+	width:3.5em;
+	height:3.5em;
+	background:black;
+	display:inline-flex;
+	align-items: center;
+	justify-content: center;
+	overflow:hidden;
+}
 
-	.ui-button-play-pause__inner svg {
-		position:absolute;
-		top:0; left:0;
-		width:2.8em;
-		height:1.4em;
-	}
+.ui-button-play-pause__inner {
+	font-size:calc(var(--ui-button-play-pause-size, 1) * 1em);
+	display:block;
+	overflow:hidden;
+	width:1.4em;
+	height:1.4em;
+	position:relative;
+}
 
-	.ui-button-play-pause:not(.pause) .ui-button-play-pause__inner {
-		/* visually centre play icon */
-		left:0.04em;
-	}
+.ui-button-play-pause__inner svg {
+	position:absolute;
+	top:0; left:0;
+	width:2.8em;
+	height:1.4em;
+}
 
-	.ui-button-play-pause.pause svg {
-		left:auto; 
-		right:0;
-	}
+.ui-button-play-pause:not(.pause) .ui-button-play-pause__inner {
+	/* visually centre play icon */
+	left:0.04em;
+}
 
-	.ui-button--small {
-		height: var(--ui-input-height--small);
-		font-size: var(--ui-input-fontsize--small);
-	}
+.ui-button-play-pause.pause svg {
+	left:auto; 
+	right:0;
+}
 
-	.ui-button--large {
-		height: var(--ui-input-height--large);
-		font-size: var(--ui-input-fontsize--large);
-	}
+.ui-button--small {
+	height: var(--ui-input-height--small);
+	font-size: var(--ui-input-fontsize--small);
+}
+
+.ui-button--large {
+	height: var(--ui-input-height--large);
+	font-size: var(--ui-input-fontsize--large);
 }

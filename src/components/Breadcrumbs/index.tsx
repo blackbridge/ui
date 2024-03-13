@@ -1,5 +1,5 @@
 import './style.css'
-
+import HorizontalScroll from '../HorizontalScroll/index.tsx'
 import type { JSX, ComponentChildren } from "preact"
 import type { WithElementProps } from '../../types.tsx'
 import classnames from 'classnames'
@@ -29,7 +29,9 @@ export function Breadcrumbs(props: BreadcrumbProps): JSX.Element {
 	return <>
 			<nav aria-label="Breadcrumb" {...attrs}>
 				<div class="ui-breadcrumbs__inner">
-					{children}
+					<HorizontalScroll>
+						{children}
+					</HorizontalScroll>
 				</div>
 			</nav>
 		</>

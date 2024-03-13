@@ -3,8 +3,8 @@
 @layer ui {
 
 	:root {
-		--swipe-pane-width:80%;
-		--swipe-pane-height:100%;
+		--ui-swipe-pane-width:80%;
+		--ui-swipe-pane-height:100%;
 	}
 
 	.ui-swipepane__bg {
@@ -23,13 +23,13 @@
 
 	.ui-swipepane {
 		display:block;
-		width:var(--swipe-pane-width);
-		height:var(--swipe-pane-height);
+		width:var(--ui-swipe-pane-width);
+		height:var(--ui-swipe-pane-height);
 		background:white;
 		position:fixed;
 		top:0;
 		left:0;
-		z-index:var(--z-index-3);
+		z-index:var(--ui-z-index-3);
 	}
 
 	.ui-swipepane--right {

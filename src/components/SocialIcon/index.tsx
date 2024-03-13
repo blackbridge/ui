@@ -1,3 +1,6 @@
+// TODO: is this component necessary?
+
+
 import type { JSX, AnyComponent, ComponentChildren } from "preact"
 import './style.css'
 import classnames from 'classnames'

@@ -3,14 +3,14 @@
  values for best results */
 
 :root {
-	--burger-line-width:25px;
-    --burger-line-height:3px;
-    --burger-line-space:7px;
-	--burger-height: calc(
-		var(--burger-line-height) * 3 + 
-		var(--burger-line-space) * 2
+	--ui-burger-line-width:25px;
+    --ui-burger-line-height:3px;
+    --ui-burger-line-space:7px;
+	--ui-burger-height: calc(
+		var(--ui-burger-line-height) * 3 + 
+		var(--ui-burger-line-space) * 2
 	);
-	--burger-color: black;
+	--ui-burger-color: black;
 }
 
 .ui-burger {
@@ -31,19 +31,19 @@
 .ui-burger__inner {
 	display:block;
     position:relative;
-    width:var(--burger-line-width);
-    height:var(--burger-height);
+    width:var(--ui-burger-line-width);
+    height:var(--ui-burger-height);
 }
 
 .ui-burger__top,
 .ui-burger__patty,
 .ui-burger__bottom {
-    width:var(--burger-line-width);
-    height:var(--burger-line-height);
+    width:var(--ui-burger-line-width);
+    height:var(--ui-burger-line-height);
     display:block;
     position:absolute;
     left:0;
-    background-color: var(--burger-color);
+    background-color: var(--ui-burger-color);
 }
 
 .ui-burger__top {
@@ -52,7 +52,7 @@
 
 .ui-burger__patty {
     position: absolute;
-    top: calc(50% - calc(var(--burger-line-height)/2));
+    top: calc(50% - calc(var(--ui-burger-line-height)/2));
 }
 
 .ui-burger__bottom {
@@ -75,7 +75,7 @@
 
 .ui-burger[open] .ui-burger__top,
 .ui-burger[open] .ui-burger__bottom {
-    top: calc(50% - calc(var(--burger-line-height)/2));
+    top: calc(50% - calc(var(--ui-burger-line-height)/2));
 }
 
 .ui-burger[open] .ui-burger__top {

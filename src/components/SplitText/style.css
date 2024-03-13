@@ -1,8 +1,6 @@
 @import '../../variables.css';
 
-@layer ui {
-	.ui-singleword,
-	.ui-singleletter {
-		display: inline;
-	}	
+.ui-single-word,
+.ui-single-letter {
+	display: inline;
 }

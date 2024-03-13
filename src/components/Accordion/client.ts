@@ -10,16 +10,16 @@ class AccordionItem extends HTMLElement {
 
 	constructor() {
 		super()
-		const main = this.querySelector('.accordion') as HTMLDivElement
-		const button = this.querySelector('.accordion__button') as HTMLButtonElement
-		const content = this.querySelector('.accordion__content') as HTMLDivElement
+		const main = this.querySelector('.ui-accordion') as HTMLDivElement
+		const button = this.querySelector('.ui-accordion__button') as HTMLButtonElement
+		const content = this.querySelector('.ui-accordion__content') as HTMLDivElement
 		
 		const toggle = slideUpDown(content, (_node, state) => {
-			main.classList[state ? 'add' : 'remove']('accordion--open')
+			main.classList[state ? 'add' : 'remove']('ui-accordion--open')
 		})
 
 		const toggleWithoutAnimation = (display: boolean) => {
-			main.classList[display ? 'add' : 'remove']('accordion--open')
+			main.classList[display ? 'add' : 'remove']('ui-accordion--open')
 			content.style.display = display ? '' : 'none'
 		}
 
@@ -76,7 +76,7 @@ class AccordionGroup extends HTMLElement {
 	constructor() {
 		super()
 		this.#items = [
-			...this.querySelectorAll(':scope > .accordion-group > accordion-item')
+			...this.querySelectorAll(':scope > .ui-accordion-group > accordion-item')
 		] as AccordionItem[]
 
 		if (this.getAttribute('open-first') !== null) {
@@ -93,7 +93,9 @@ class AccordionGroup extends HTMLElement {
 	}
 
 	onChildOpen(event: Event) {
+		// @ts-ignore
 		if (!event.detail) return
+		// @ts-ignore
 		const child = event.target?.nodeName === 'ACCORDION-ITEM' && event.target
 		if (!child) return
 		event.stopPropagation()

@@ -1,15 +1,14 @@
 import './style.css'
 import './client.ts?client'
 import HorizontalScroll from '../HorizontalScroll/index.tsx'
-
-import { cloneElement, toChildArray } from 'preact'
+import { toChildArray } from 'preact'
 import classnames from 'classnames'
 
 import type { WithElementProps } from '../../types.tsx'
 import type { JSX, ComponentChildren } from 'preact'
 
-type TabbedGroupProps = WithElementProps<'div', {}>
 
+type TabbedGroupProps = WithElementProps<'div', {}>
 
 export function TabGroup(props: TabbedGroupProps): JSX.Element {
 
@@ -34,12 +33,6 @@ export function TabGroup(props: TabbedGroupProps): JSX.Element {
 }
 
 
-export function TabItem(_props: TabbedProps) {
-	// a virtual component for TabGroup to extract props
-	return <></>
-}
-
-
 type TabbedProps = WithElementProps<'div', {
 	title: string
 	children?: ComponentChildren
@@ -47,8 +40,12 @@ type TabbedProps = WithElementProps<'div', {
 	class?: HTMLElement['className']
 }>
 
+export function TabItem(_props: TabbedProps) {
+	// a virtual component for TabGroup to extract props
+	return <></>
+}
 
-export function TabbedTitle(props: TabbedProps): JSX.Element {
+function TabbedTitle(props: TabbedProps): JSX.Element {
 		
 	const {
 		title,
@@ -65,12 +62,21 @@ export function TabbedTitle(props: TabbedProps): JSX.Element {
 		className
 	)
 	
-	return <button class={classes} data-tab={index} type="button" role="tab" aria-controls={`tabpanel-${index}`} aria-selected={ariaSelected}>
+	return <>
+		<button 
+			class={classes} 
+			data-tab={index} 
+			type="button" 
+			role="tab" 
+			aria-controls={`tabpanel-${index}`} 
+			aria-selected={ariaSelected}
+		>
 		{title}
-	</button>
+		</button>
+	</>
 }
 
-export function TabbedContent(props: TabbedProps): JSX.Element {
+function TabbedContent(props: TabbedProps): JSX.Element {
 		
 	const {
 		index,

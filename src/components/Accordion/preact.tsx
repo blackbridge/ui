@@ -36,7 +36,7 @@ export function AccordionGroup(props: AccordionGroupProps): JSX.Element {
 		}
 	})
 
-	return <div class="accordion-group" {...attributes}>
+	return <div class="ui-accordion-group" {...attributes}>
 		{withToggle.map(item => <Accordion {...item} />)}
 	</div>
 }
@@ -65,7 +65,7 @@ export function Accordion(props: AccordionProps): JSX.Element {
 
 	const { ref, node } = useSignalRef()
 	const { visible, initial } = useDisplayTransitionHeightSignal(node, open)
-	const classes = useComputed(() => visible.value ? 'accordion accordion--open' : 'accordion')
+	const classes = useComputed(() => visible.value ? 'ui-accordion ui-accordion--open' : 'accordion')
 
 	const onClick = () => {
 		open.value = !open.value
@@ -74,14 +74,14 @@ export function Accordion(props: AccordionProps): JSX.Element {
 	}
 
 	return <div class={classes}>
-		<button type="button" class="accordion__button" onClick={onClick}>
-			<div class="accordion__title">{title}</div>
-			<div class="accordion__icon">
-				<div class="accordion__icon__inner"></div>
+		<button type="button" class="ui-accordion__button" onClick={onClick}>
+			<div class="ui-accordion__title">{title}</div>
+			<div class="ui-accordion__icon">
+				<div class="ui-accordion__icon__inner"></div>
 			</div>
 		</button>
-		<div ref={ref} class="accordion__content" style={initial ? '' : 'display:none'}>
-			<div class="accordion__content__inner">{content || children}</div>
+		<div ref={ref} class="ui-accordion__content" style={initial ? '' : 'display:none'}>
+			<div class="ui-accordion__content__inner">{content || children}</div>
 		</div>
 	</div>
 }

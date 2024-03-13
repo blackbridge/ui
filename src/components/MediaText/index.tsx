@@ -29,11 +29,13 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 		videoSrc,
 		align,
 		breakpoint = 'medium',
-		gutter = false,
 		fullwidth = false,
 		//media width, content width
 		...attributes
 	} = props
+
+	// by default, include a gutter, but only if we're not using the fullwidth variant
+	const gutter = props.gutter || (fullwidth ? false : true)
 
 	const classes = classnames(
 		'ui-mediatext grid',

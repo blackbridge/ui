@@ -1,25 +1,23 @@
-@layer ui {
-    :root {
-        --social-icon--height: 1.5em;
-        --social-icon--color: #222;
-    }
 
-    .ui-social-icon {
-        display: inline-block;
-        margin-right: 1em;
-    }
+:root {
+    --social-icon--height: 1.5em;
+    --social-icon--color: #222;
+}
 
-    .ui-social-icon:last-of-type {
-        margin-right: 0;
-    }
+.ui-social-icon {
+    display: inline-block;
+    margin-right: 1em;
+}
 
-    .ui-social-icon svg {
-        height: var(--social-icon--height);
-        width: auto;
-    }
+.ui-social-icon:last-of-type {
+    margin-right: 0;
+}
 
-    .ui-social-icon .svg-path {
-        fill: var(--social-icon--color);
-    }
+.ui-social-icon svg {
+    height: var(--social-icon--height);
+    width: auto;
+}
 
+.ui-social-icon .svg-path {
+    fill: var(--social-icon--color);
 }

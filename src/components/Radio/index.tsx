@@ -1,4 +1,5 @@
 import './style.css'
+import './../../styles/utility.less'
 import type { WithElementProps } from '../../types.tsx'
 import type { JSX, ComponentChildren } from 'preact'
 import classnames from 'classnames'
@@ -44,7 +45,7 @@ export default function Radio(props: RadioProps): JSX.Element {
 				<span class="ui-radio__label">{label}</span>
 			</div>
 			{children && <div class="ui-radio__children">
-				<div class="ui-radio__children__inner">{children}</div>
+				<div class="ui-radio__children__inner first-last">{children}</div>
 			</div>}
 		</label>
 	</>

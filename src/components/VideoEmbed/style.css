@@ -1,6 +1,8 @@
 
 .ui-video-embed__inner {
 	position:relative;
+	padding-bottom:56.25%;
+	background:black;
 }
 
 .ui-video-embed__inner > iframe {

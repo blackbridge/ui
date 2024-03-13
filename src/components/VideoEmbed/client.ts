@@ -1,3 +1,5 @@
+let cache: Record<string, unknown> = {}
+
 customElements.define("video-embed", class extends HTMLElement {
 	connectedCallback() {
 		const main = this.querySelector('.ui-video-embed__inner') as HTMLDivElement
@@ -14,13 +16,17 @@ customElements.define("video-embed", class extends HTMLElement {
 	}
 })
 
-function request(url: string) {
+function request(url: string): Promise<unknown> {
+	if (cache[url]) return Promise.resolve(cache[url])
 	return new Promise((resolve, reject) => {
 		if (!url) return reject()
 		const request = new XMLHttpRequest()
 		request.addEventListener('readystatechange', event => {
 			if (request.readyState !== 4) return
-		    if (request.status == 200) return resolve(JSON.parse(request.responseText))
+		    if (request.status == 200) {
+		    	cache[url] = JSON.parse(request.responseText)
+		    	return resolve(cache[url])
+		    }
 			return reject()
 		})
 	    request.open("GET", url, true)

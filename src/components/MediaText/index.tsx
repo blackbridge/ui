@@ -10,7 +10,7 @@ type MediaTextProps = {
 	class?: HTMLElement['className']
 	style?: string
 	image?: JSX.IntrinsicElements['img'] | string
-	imagePosition?: 'left'|'right'
+	position?: 'left'|'right'
 	videoSrc?: string
 	breakpoint?: 'small'|'medium'|'large'|'x-large'
 	fullwidth?: boolean
@@ -25,7 +25,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 		class: className, 
 		children,
 		image,
-		imagePosition = 'left',
+		position = 'left',
 		videoSrc,
 		align,
 		breakpoint = 'medium',
@@ -40,7 +40,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 		align && `flex-${align}`,
 		gutter && `grid--gutter`,
 		fullwidth && `ui-mediatext--fullwidth`,
-		imagePosition === 'right' && `ui-mediatext--flip row-reverse@${breakpoint}`,
+		position === 'right' && `ui-mediatext--flip row-reverse@${breakpoint}`,
 		className,
 	)
 

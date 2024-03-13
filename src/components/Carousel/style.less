@@ -1,0 +1,64 @@
+@import '../../styles/mixins.less';
+
+
+.swiper-wrapper {
+    height: auto;
+    display: flex;
+}
+
+.ui-carousel__item {
+    box-sizing: border-box;
+    width: var(--carousel-item-width);
+}
+
+.ui-carousel__item__inner {
+    margin-right: var(--carousel-item-margin);
+    padding: var(--carousel-item-padding);
+    background: #F4F4F4;
+    height: 100%;
+}
+
+
+.ui-carousel--no-loop .ui-carousel__item:last-of-type .ui-carousel__item__inner {
+    margin-right: 0;
+}
+
+
+
+// Navigation
+
+.ui-carousel__navigation {
+    display: flex;
+}
+
+.ui-carousel__navigation__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3.4em; height: 3.4em;
+    background: transparent;
+    border: 1px solid #CCC;
+    border-radius: 100%;
+    margin-right: 0.5em;
+    margin-top: var(--carousel-item-margin);
+    cursor: pointer;
+}
+
+.ui-carousel__navigation__button::after {
+    display: block;
+    font-size: 1.25em;
+}
+
+.ui-carousel__navigation--prev::after {
+    content: "→";
+}
+
+.ui-carousel__navigation--next::after {
+    content: "←";
+}
+
+.swiper-button-disabled {
+    cursor: default;
+    opacity: 0.3;
+}

@@ -33,16 +33,18 @@
     "./TextArea": "./src/components/TextArea/index.tsx",
     "./TextInput": "./src/components/TextInput/index.tsx",
     "./VideoEmbed": "./src/components/VideoEmbed/index.tsx",
+    "./Carousel": "./src/components/Carousel/index.tsx",
     "./VideoPoster": "./src/components/VideoPoster/index.tsx"
   },
   "dependencies": {
-    "classnames": "^2.3.2"
+    "classnames": "^2.3.2",
+    "swiper": "^11.0.7"
   },
   "devDependencies": {
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "preact": "^10.17.1",
-    "@preact/signals": "^1.2.1"
+    "@preact/signals": "^1.2.1",
+    "preact": "^10.17.1"
   }
 }

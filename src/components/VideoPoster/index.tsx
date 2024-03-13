@@ -60,11 +60,11 @@ export default function VideoPoster(props: VideoPosterProps): JSX.Element {
 					<ButtonPlayPause />
 				</LinkWrap>
 			</div>
-			{!newTab && <template>
+			{!newTab &&
 				<VideoModal class="js-video-poster__modal">
-					<VideoEmbed src={src} />
+					<VideoEmbed src={src} autoplay={true} />
 				</VideoModal>
-			</template>}
+			}
 		</video-poster>
 	</>
 }

@@ -1,7 +1,7 @@
 @layer ui {
 	:root {
 		/* sets the spacing of the default buttons */
-		--button-spacing: 1.5em;
+		--button-spacing: 1.1em;
 		--button-child-spacing: .75em;
 
 		/* sets the spacing if the button has a seprator  */
@@ -116,4 +116,11 @@
 		padding: 0;
 	}
 
+	.ui-button--icon.ui-button--small {
+		width: var(--ui-input-height--small);
+	}
+
+	.ui-button--icon.ui-button--large {
+		width: var(--ui-input-height--large);
+	}
 }

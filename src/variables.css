@@ -1,21 +1,18 @@
 :root {
+	/* copy these into the project */
 	--ui-page-width:90vw;
 	--ui-page-width-small: 50em;
 	--ui-page-width-medium:60em;
 	--ui-page-width-large:70em;
-
-	--ui-page-width-small-min: min(var(--ui-page-width), var(--ui-page-width-small));
-	--ui-page-width-medium-min: min(var(--ui-page-width), var(--ui-page-width-medium));
-	--ui-page-width-large-min: min(var(--ui-page-width), var(--ui-page-width-large));
 
 	--ui-grid-gutter:2rem;
 
 	--ui-focus-width:2px;
 	--ui-focus-color:rgb(0, 95, 204);
 
-	--ui-input-height--small: 2.4em;
-	--ui-input-height--medium: 2.6em;
-	--ui-input-height--large: 2.8em;
+	--ui-input-height--small: 2.4rem;
+	--ui-input-height--medium: 2.6rem;
+	--ui-input-height--large: 2.8rem;
 
 	--ui-input-fontsize--small: 0.85em;
 	--ui-input-fontsize--medium: 1em;
@@ -28,4 +25,9 @@
 	--z-index-2: 200;
 	--z-index-3: 300;
 	--z-index-4: 400;
+
+	/* computed variables */
+	--ui-page-width-small-min: min(var(--ui-page-width), var(--ui-page-width-small));
+	--ui-page-width-medium-min: min(var(--ui-page-width), var(--ui-page-width-medium));
+	--ui-page-width-large-min: min(var(--ui-page-width), var(--ui-page-width-large));
 }

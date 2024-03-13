@@ -1,13 +1,9 @@
 @import './mixins.less';
-@import '../variables.css';
-
-
-@grid-columns: 12;
+@import './../variables.css';
 
 .grid {
-	display:inline-flex;
-	flex-wrap: wrap;
-	min-width: 100%;
+	display:flex;
+	flex-wrap:wrap;
 }
 
 // gutter
@@ -17,9 +13,7 @@
 }
 
 .grid--gutter-y, .grid--gutter {
-	position: relative;
-	top:calc(var(--ui-grid-gutter) * -1);
-	margin-bottom:calc(var(--ui-grid-gutter) * -1);
+	margin-top:calc(var(--ui-grid-gutter) * -1);
 	[class*=col-] { padding-top:var(--ui-grid-gutter) }
 }
 
@@ -29,11 +23,11 @@
 	box-sizing: border-box;
 }
 
-.for(@grid-columns, {
-	.col-@{i} { width: (100% / @grid-columns * @i) }
+.for(12, {
+	.col-@{i} { width: (100% / 12 * @i) }
 });
 
 // .col-x@breakpoint classes
-.for-n-per-breakpoint(@grid-columns, {
-	.col-@{i}\@@{breakpoint} { width: (100% / @grid-columns * @i) }
+.for-n-per-breakpoint(12, {
+	.col-@{i}\@@{breakpoint} { width: (100% / 12 * @i) }
 });

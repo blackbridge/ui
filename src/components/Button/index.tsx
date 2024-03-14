@@ -1,8 +1,9 @@
-import type { JSX, AnyComponent, ComponentChildren } from "preact"
-import type { WithElementProps } from '../../types.tsx'
 import './style.css'
+import LinkWrap from '../LinkWrap/index.tsx'
 import classnames from 'classnames'
 
+import type { JSX, AnyComponent, ComponentChildren, FunctionComponent } from "preact"
+import type { WithElementProps } from '../../types.tsx'
 
 type LinkArgs = {
 	href: string 
@@ -17,7 +18,8 @@ type BaseProps = {
 	separator?: boolean,
 	class?: HTMLElement['className'],
 	style?: string,
-	children?: ComponentChildren
+	children?: ComponentChildren,
+	as?: string | FunctionComponent<any>
 }
 
 type ButtonProps = WithElementProps<'button', BaseProps> | WithElementProps<'a', LinkArgs & BaseProps>
@@ -34,6 +36,7 @@ export function Button(props: ButtonProps): JSX.Element {
 		separator,
 		class: className, 
 		children,
+		as = 'button',
 		...attributes 
 	} = props
 
@@ -46,19 +49,21 @@ export function Button(props: ButtonProps): JSX.Element {
 		separator && 'ui-button--separator',
 	)
 
-	const attrs = { class: classes, href, ...attributes }
+	const attrs = { 
+		class: classes, 
+		href, 
+		as,
+		...attributes 
+	}
 
-	const content = <>
+	// @ts-ignore
+	return <LinkWrap {...attrs}>
 		{iconLeft && <span class="ui-button__icon ui-button__icon--left"><Any value={iconLeft} /></span>}
 		{iconLeft && separator && <span class="ui-button__separator"></span>}
 		{children && <span class="ui-button__label">{children}</span>}
 		{iconRight && separator && <span class="ui-button__separator"></span>}
 		{iconRight && <span class="ui-button__icon ui-button__icon--right"><Any value={iconRight} /></span>}
-	</>
-
-	return (href !== undefined) 
-		? <a {...attrs as JSX.IntrinsicElements['a'] }>{content}</a>
-		: <button {...attrs as JSX.IntrinsicElements['button'] }>{content}</button>
+	</LinkWrap>
 }
 
 type IconButtonBase = {
@@ -78,6 +83,7 @@ export function IconButton(props: IconButtonProps): JSX.Element {
 		size = 'medium',
 		icon,
 		class: className, 
+		as = 'button',
 		...attributes 
 	} = props
 
@@ -88,15 +94,17 @@ export function IconButton(props: IconButtonProps): JSX.Element {
 		className,
 	)
 
-	const attrs = { class: classes, href, ...attributes }
+	const attrs = { 
+		class: classes, 
+		href,
+		as,
+		 ...attributes
+	}
 
-	const content = <>
+	// @ts-ignore
+	return <LinkWrap {...attrs}>
 		{icon && <span class="ui-button__icon"><Any value={icon} /></span>}
-	</>		
-	
-	return (href !== undefined) 
-		? <a {...attrs as JSX.IntrinsicElements['a'] }>{content}</a>
-		: <button {...attrs as JSX.IntrinsicElements['button'] }>{content}</button>
+	</LinkWrap>
 }
 
 export default Button

@@ -1,6 +1,7 @@
 import type { JSX } from 'preact'
 import type { WithElementProps } from '../../types.tsx'
 import classnames from 'classnames'
+import LinkWrap from '../LinkWrap/index.tsx'
 import ButtonPlayPause from '../ButtonPlayPause/index.tsx'
 import { VideoModal } from '../Modal/index.tsx'
 import VideoEmbed from '../VideoEmbed/index.tsx'
@@ -56,9 +57,7 @@ export default function VideoPoster(props: VideoPosterProps): JSX.Element {
 				}
 			</div>
 			<div class="ui-video-poster__button">
-				<LinkWrap href={src} target={target} class="js-video-poster__open-modal">
-					<ButtonPlayPause />
-				</LinkWrap>
+				<ButtonPlayPause href={src} target={target} class="js-video-poster__open-modal" />
 			</div>
 			{!newTab &&
 				<VideoModal class="js-video-poster__modal">
@@ -67,11 +66,4 @@ export default function VideoPoster(props: VideoPosterProps): JSX.Element {
 			}
 		</video-poster>
 	</>
-}
-
-
-function LinkWrap({ children, ...props }: JSX.IntrinsicElements['a']) {
-	return (props.href !== undefined) 
-		? <a {...props }>{children}</a>
-		: <>{children}</>
 }

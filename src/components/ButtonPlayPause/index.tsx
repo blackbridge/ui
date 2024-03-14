@@ -1,14 +1,15 @@
-import type { JSX } from "preact"
-import type { WithElementProps } from '../../types.tsx'
 import './style.css'
 import classnames from 'classnames'
-
+import LinkWrap from "../LinkWrap/index.tsx"
+import type { JSX, FunctionComponent } from "preact"
+import type { WithElementProps } from '../../types.tsx'
 
 type LinkArgs = {
 	href: string 
 }
 
 type BaseProps = {
+	as?: string | FunctionComponent<any>
 	class?: HTMLElement['className']
 	pause?: boolean
 }
@@ -23,6 +24,7 @@ export default function ButtonPlayPause(props: ButtonPlayPauseProps): JSX.Elemen
 		href, 
 		class: className,
 		pause = false,
+		as = 'button',
 		...attributes 
 	} = props
 
@@ -32,7 +34,12 @@ export default function ButtonPlayPause(props: ButtonPlayPauseProps): JSX.Elemen
 		className,
 	)
 
-	const attrs = { class: classes, href, ...attributes }
+	const attrs = { 
+		class: classes, 
+		href, 
+		as,
+		...attributes 
+	}
 
 	const content = <>
 		<div className="ui-button-play-pause__inner">
@@ -46,7 +53,6 @@ export default function ButtonPlayPause(props: ButtonPlayPauseProps): JSX.Elemen
 		</div>
 	</>
 
-	return (href !== undefined) 
-		? <a {...attrs as JSX.IntrinsicElements['a'] }>{content}</a>
-		: <button {...attrs as JSX.IntrinsicElements['button'] }>{content}</button>
+	// @ts-ignore
+	return <LinkWrap {...attrs}>{content}</LinkWrap>
 }

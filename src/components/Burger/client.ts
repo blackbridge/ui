@@ -1,5 +1,5 @@
 
-customElements.define('burger-button', class BurgerNav extends HTMLElement {
+customElements.define('burger-button', class BurgerButton extends HTMLElement {
 	static observedAttributes = ["open"]
 	attributeChangedCallback(name: string, _: string, newValue: string) {
 		if (!name) return

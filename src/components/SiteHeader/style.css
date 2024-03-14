@@ -1,0 +1,41 @@
+@import "./../../variables.css";
+
+.ui-site-header {
+	padding:2vw 0;
+}
+
+.ui-site-header__inner {
+	max-width:95vw;
+	margin:0 auto;
+}
+
+.ui-site-header__inner,
+.ui-site-header__middle,
+.ui-site-header__right {
+	display:flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.ui-site-header__logo-image {
+    max-width: 200px;
+}
+
+.ui-site-header__mobile-toggle {
+	margin-left:1em;
+}
+
+.ui-site-header__middle { display:none }
+@media(min-width:900px) {
+	.ui-site-header__middle {
+		display:block;
+	}
+	.ui-site-header__mobile-toggle {
+		display:none;
+	}
+}
+
+.ui-site-header__mobile-toggle {
+	position:relative;
+	z-index:calc(var(--ui-z-index-3) + 1);
+}

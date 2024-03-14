@@ -42,7 +42,7 @@ export default function MediaText(props: MediaTextProps): JSX.Element {
 		align && `flex-${align}`,
 		gutter && `grid--gutter`,
 		fullwidth && `ui-mediatext--fullwidth`,
-		position === 'right' && `ui-mediatext--flip row-reverse@${breakpoint}`,
+		`ui-mediatext--position-${position}`,
 		className,
 	)
 

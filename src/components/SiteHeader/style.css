@@ -26,11 +26,13 @@
 }
 
 .ui-site-header__middle { display:none }
+
 @media(min-width:900px) {
 	.ui-site-header__middle {
 		display:block;
 	}
-	.ui-site-header__mobile-toggle {
+	.ui-site-header__mobile-nav:not([open]),
+	.ui-site-header__mobile-toggle:not([open]) {
 		display:none;
 	}
 }

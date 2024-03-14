@@ -4,8 +4,8 @@
 
 :root {
 	--ui-burger-line-width:25px;
-    --ui-burger-line-height:3px;
-    --ui-burger-line-space:7px;
+    --ui-burger-line-height:2px;
+    --ui-burger-line-space:6px;
 	--ui-burger-height: calc(
 		var(--ui-burger-line-height) * 3 + 
 		var(--ui-burger-line-space) * 2
@@ -62,7 +62,7 @@
 
 .ui-burger__inner, 
 .ui-burger__inner > span {
-	transition: all 0.3s var(--ui-ease-2, ease-in-out);
+	transition: all 0.4s var(--ui-ease-2, ease-in-out);
 }
 
 .ui-burger[open] .ui-burger {
@@ -70,19 +70,28 @@
 }
 
 .ui-burger[open] .ui-burger__patty {
-    transform: rotate(45deg);
-}
-
-.ui-burger[open] .ui-burger__top,
-.ui-burger[open] .ui-burger__bottom {
-    top: calc(50% - calc(var(--ui-burger-line-height)/2));
+    transform:scaleX(0);
+    opacity:0;
 }
 
 .ui-burger[open] .ui-burger__top {
-    transform: rotate(135deg);
+/*    top: calc(50% - calc(var(--ui-burger-line-height)/2));*/
+}
+
+.ui-burger[open] .ui-burger__top {
+    transform: 
+    	translateY(calc(
+    		var(--ui-burger-line-height) + var(--ui-burger-line-space)
+    	)) 
+    	rotate(45deg)
+    ;
 }
 
 .ui-burger[open] .ui-burger__bottom {
-    transform: rotate(135deg);
-    opacity:0;
+    transform: 
+	    translateY(calc(
+	    	-1 * (var(--ui-burger-line-height) + var(--ui-burger-line-space))
+	    ))
+    	rotate(-45deg)
+    ;
 }

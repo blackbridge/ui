@@ -1,8 +1,10 @@
 import type { JSX } from 'preact'
 
+
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {}
+
 
 export type WithElementProps<
 	ElementName extends keyof JSX.IntrinsicElements,

@@ -40,10 +40,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 3.4em; height: 3.4em;
     background: transparent;
-    border: 1px solid #CCC;
+    border: 1px solid black;
     border-radius: 100%;
     margin-right: 0.5em;
     margin-top: var(--ui-carousel-item-margin);
@@ -82,10 +81,10 @@
     align-items: center;
     justify-content: center;
 
-    width: 1.2em; height: 1.2em;
-    border: 1px solid #CCC;
+    width: 1em; height: 1em;
+    border: 1px solid black;
     border-radius: 100%;
-    margin-right: 0.25em;
+    margin-right: 0.5em;
 
     cursor: pointer;
     box-sizing: border-box;
@@ -101,13 +100,13 @@
 
     opacity: 0;
     width: 0; height: 0;
-    background: #ccc;
+    background: black;
     border-radius: 100%;
 
     transition: 0.3s all ease-in-out;
 }
 
 .ui-carousel__pagination__item.active::before {
-    width: 0.7em; height: 0.7em;
+    width: 0.625em; height: 0.625em;
     opacity: 1;
 }

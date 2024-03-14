@@ -27,6 +27,7 @@
     "./Radio": "./src/components/Radio/index.tsx",
     "./Select": "./src/components/Select/index.tsx",
     "./SiteHeader": "./src/components/SiteHeader/index.tsx",
+    "./SiteFooter": "./src/components/SiteFooter/index.tsx",
     "./SocialIcon": "./src/components/SocialIcon/index.tsx",
     "./SplitText": "./src/components/SplitText/index.tsx",
     "./SwipeMenu": "./src/components/SwipeMenu/index.tsx",

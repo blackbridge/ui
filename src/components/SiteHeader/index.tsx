@@ -1,6 +1,7 @@
 import LinkWrap from '../LinkWrap/index.tsx'
 import Burger from '../Burger/index.tsx'
 import SwipeMenu from '../SwipeMenu/index.tsx'
+import classnames from 'classnames'
 import { imageAttributes } from '../../utility/image.ts'
 import './style.css'
 import './client.tsx?client'
@@ -14,11 +15,28 @@ type SiteHeaderProps = {
 	nav?: ComponentChildren
 	mobileNav?: ComponentChildren
 	right?: ComponentChildren
+	class?: HTMLElement['className']
 }
 
-export default function SiteHeader({ homeUrl, logo, nav, mobileNav, right }: SiteHeaderProps) {
+export default function SiteHeader(props: SiteHeaderProps) {
+
+	const { 
+		homeUrl, 
+		logo, 
+		nav, 
+		mobileNav, 
+		right,
+		class: className,
+		...attributes
+	} = props
+
+	const classes = classnames(
+		'ui-site-header',
+		className
+	)
+
 	return <>
-		<header class="ui-site-header">
+		<header class={classes} {...attributes}>
 			<div class="ui-site-header__inner">
 				<div class="ui-site-header__left">
 					<LinkWrap class="ui-site-header__logo-link" href={homeUrl} as="div">

@@ -4,9 +4,6 @@ import './client.ts?client'
 import 'swiper/css';
 import './style.less'
 
-import Container from '../Container/index.tsx'
-
-
 import type { JSX, ComponentChildren } from "preact"
 
 type CarouselGroupProps = {
@@ -65,12 +62,7 @@ export function CarouselGroup(props : CarouselGroupProps): JSX.Element {
                     <button class="ui-carousel__navigation__button ui-carousel__navigation--prev"></button>
                 </div>
             }
-
-
         </div>
-
-        {/* <div class="ui-carousel__pagination swiper-pagination"></div> */}
-
     </>
 }
 

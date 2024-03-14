@@ -23,11 +23,11 @@ export function TabGroup(props: TabbedGroupProps): JSX.Element {
 	return <div class="ui-tabbedcontent" {...attributes}>
 		<HorizontalScroll>
 			<div class="ui-tabbedcontent__tabs" role="tablist" aria-labelledby="tablist">
-				{tabs.map((tab, index) => <TabbedTitle index={index} {...tab} />)}
+				{tabs.map((tab, index) => <TabTitle index={index} {...tab} />)}
 			</div>
 		</HorizontalScroll>
 		<div class="ui-tabbedcontent__content">
-			{tabs.map((tab, index) => <TabbedContent index={index} {...tab} />)}
+			{tabs.map((tab, index) => <TabContent index={index} {...tab} />)}
 		</div>
 	</div>
 }
@@ -45,7 +45,7 @@ export function TabItem(_props: TabbedProps) {
 	return <></>
 }
 
-function TabbedTitle(props: TabbedProps): JSX.Element {
+function TabTitle(props: TabbedProps): JSX.Element {
 		
 	const {
 		title,
@@ -76,7 +76,7 @@ function TabbedTitle(props: TabbedProps): JSX.Element {
 	</>
 }
 
-function TabbedContent(props: TabbedProps): JSX.Element {
+function TabContent(props: TabbedProps): JSX.Element {
 		
 	const {
 		index,

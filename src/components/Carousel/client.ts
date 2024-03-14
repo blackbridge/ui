@@ -12,6 +12,7 @@ function carouselInit(el) {
     // ?? Is there a better way to do this, where you store the child items in a next / prev object?
     const navNext = el.querySelector('.ui-carousel__navigation--prev')
     const navPrev = el.querySelector('.ui-carousel__navigation--next')
+    const pagination = el.querySelector('.ui-carousel__pagination')
     
     new Swiper(el, {
         modules: [Navigation, Pagination, Autoplay],
@@ -21,6 +22,12 @@ function carouselInit(el) {
         navigation: {
             nextEl: navNext,
             prevEl: navPrev,
+        },
+        pagination: {
+            el: pagination,
+            bulletClass: 'ui-carousel__pagination__item',
+            bulletActiveClass: 'active',
+            clickable: true,
         },
         ...options
     })

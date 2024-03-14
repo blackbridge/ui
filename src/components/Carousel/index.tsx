@@ -16,6 +16,7 @@ type CarouselGroupProps = {
     loop?: boolean,
     autoplay?: boolean,
     navigation?: boolean,
+    pagination?: boolean,
     children?: ComponentChildren,
     align?: 'start'|'center'|'end'
 }
@@ -29,15 +30,16 @@ export function CarouselGroup(props : CarouselGroupProps): JSX.Element {
         loop = false,
         autoplay = false,
         navigation = false,
+        pagination = false,
         align,
         children
     } = props
 
     const classes = classnames(
         'ui-carousel',
+        center && `ui-carousel--center`,
         !loop && `ui-carousel--no-loop`,
         className
-        // centered add a class to change margin
     )
 
     const wrapperClasses = classnames(
@@ -53,12 +55,18 @@ export function CarouselGroup(props : CarouselGroupProps): JSX.Element {
                 {children}
             </div>
 
+            {pagination &&
+                <div class="ui-carousel__pagination"></div>
+            }
+            
             {navigation && 
                 <div class="ui-carousel__navigation">
                     <button class="ui-carousel__navigation__button ui-carousel__navigation--next"></button>
                     <button class="ui-carousel__navigation__button ui-carousel__navigation--prev"></button>
                 </div>
             }
+
+
         </div>
 
         {/* <div class="ui-carousel__pagination swiper-pagination"></div> */}

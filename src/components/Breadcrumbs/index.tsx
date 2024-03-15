@@ -68,7 +68,7 @@ export function BreadcrumbLink(props: LinkProps): JSX.Element {
 	const attrs = { class: classes, ...attributes }
 
 	const link = (href !== undefined)
-		? <a {...attrs as JSX.IntrinsicElements['a'] } href="#">{children}</a>
+		? <a {...attrs as JSX.IntrinsicElements['a'] } href={href}>{children}</a>
 		: <span aria-current="page" {...attrs as JSX.IntrinsicElements['span'] }>{children}</span>
 
 	return <>

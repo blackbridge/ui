@@ -12,16 +12,16 @@
 .ui-carousel__item {
     box-sizing: border-box;
     width: var(--ui-carousel-item-width);
+    margin-right: var(--ui-carousel-item-margin);
 }
 
 .ui-carousel__item__inner {
-    margin-right: var(--ui-carousel-item-margin);
     padding: var(--ui-carousel-item-padding);
-    background: #F4F4F4;
     height: 100%;
+    border: 1px solid #ccc;
 }
 
-.ui-carousel--no-loop .ui-carousel__item:last-of-type .ui-carousel__item__inner {
+.ui-carousel--no-loop .ui-carousel__item:last-of-type {
     margin-right: 0;
 }
 

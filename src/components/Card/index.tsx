@@ -37,11 +37,13 @@ export default function Card(props: CardProps): JSX.Element {
 	const attrs = { class: classes, href, ...attributes }
 
 	const content = <>
-			<div class="ui-card__media">
-				<img class="object-fit--absolute object-fit--cover" src={image} />
-			</div>
-			<div class="ui-card__content">
-				{children}
+			<div class="ui-card__inner">
+				<div class="ui-card__media">
+					<img class="object-fit--absolute object-fit--cover" src={image} />
+				</div>
+				<div class="ui-card__content first-last">
+					{children}
+				</div>
 			</div>
 		</>
 	

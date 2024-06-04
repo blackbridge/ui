@@ -67,8 +67,8 @@
 	top:min(3vw, 3vh); right:min(3vw, 3vh);
 }
 
-.ui-modal-floating__close svg path {
-	fill:white;
+.ui-modal-floating__close {
+	--ui-button-icon-color:white;
 }
 
 .ui-modal-floating .ui-modal__bg {

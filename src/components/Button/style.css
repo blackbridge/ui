@@ -1,10 +1,17 @@
 
 :root {
-	/* sets the spacing of the default buttons */
-	--ui-button-spacing: 1.1em;
-	--ui-button-child-spacing: .75em;
+	/* default colours */
+	--ui-button-color-main:black;
+	--ui-button-color-text:inherit;
 
-	/* sets the spacing if the button has a separator  */
+	/* default icon size */
+	--ui-button-icon-size:1em;
+
+	/* default spacing */
+	--ui-button-spacing: 1.1em;
+	--ui-button-child-spacing: .5em;
+
+	/* default spacing when the button has a separator */
 	--ui-button-spacing--separator: 1em;
 }
 
@@ -12,7 +19,7 @@
 	/* Reset */
 	text-decoration:none;
 	box-sizing:border-box;
-	color: inherit;
+	color: var(--ui-button-color-text);
 	cursor:pointer;
 	padding: 0;
 	font: inherit;
@@ -57,16 +64,21 @@
 }
 
 .ui-button--outline {
-	border: 1px solid black;
+	border: 1px solid var(--ui-button-color-main);
 }
 
 .ui-button--fill {
-	background: black;
-	color: #fff;
+	background: var(--ui-button-color-main);
+	color: var(--ui-button-color-text, white);
+	--ui-button-icon-color: white;
 }
 
 .ui-button--ghost:hover {
-	background:rgba(0,0,0,0.08);
+	background:color-mix(
+		in srgb, 
+		var(--ui-button-color-main) var(--ui-button-ghost-percentage, 10%), 
+		transparent
+	);
 }
 
 
@@ -74,12 +86,20 @@
 .ui-button__icon {
 	display: flex;
 	align-items: center;
-	height: 1em;
+	height: var(--ui-button-icon-size);
 }
 
 .ui-button__icon > * {
 	width: auto; 
 	height: 100%;
+}
+
+/* Auto-colour svg icons when `--ui-button-icon-color` is set */
+.ui-button__icon [stroke]:not([stroke=none]) {
+	stroke:var(--ui-button-icon-color, revert-layer);
+}
+.ui-button__icon [fill]:not([fill=none]) {
+	fill:var(--ui-button-icon-color, revert-layer);
 }
 
 /* Separator */
@@ -123,3 +143,4 @@
 .ui-button--icon.ui-button--large {
 	width: var(--ui-input-height--large);
 }
+

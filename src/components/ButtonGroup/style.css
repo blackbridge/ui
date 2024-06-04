@@ -1,0 +1,27 @@
+:root {
+	--ui-button-group-spacing: 0.35em;
+	--ui-button-group-spacing-text: 0.8em;
+	--ui-button-group-spacing-ghost: 0.1em;
+}
+
+.ui-button-group > .ui-button {
+	margin-left:var(--ui-button-group-spacing);
+	margin-right:var(--ui-button-group-spacing);
+}
+
+.ui-button-group > .ui-button--text {
+	margin-left:var(--ui-button-group-spacing-text);
+	margin-right:var(--ui-button-group-spacing-text);
+}
+
+.ui-button-group > .ui-button--ghost {
+	margin-left:var(--ui-button-group-spacing-ghost);
+	margin-right:var(--ui-button-group-spacing-ghost);
+}
+
+.ui-button-group > .ui-button:first-child {
+	margin-left:0;
+}
+.ui-button-group > .ui-button:last-child {
+	margin-right:0;
+}

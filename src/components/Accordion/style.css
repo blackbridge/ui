@@ -10,6 +10,10 @@
 	margin-bottom: 2px;
 }
 
+.ui-accordion:last-of-type {
+	margin-bottom: 0;
+}
+
 .ui-accordion__button {
 	border:0;
 	display: flex;
